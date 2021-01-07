@@ -48,7 +48,8 @@
                                 <th>NO</th>
                                 <th>NIM</th>
                                 <th>NAMA</th>
-                                <th>ALAMAT</th>
+                                <th>TEMPAT / TGL LAHIR</th>
+                                <th>AKTIF</th>
                                 <th></th>
                             </tr>
                             @foreach ($rows as $row)
@@ -56,7 +57,8 @@
                                     <td>{{ $rows->perPage() * ($rows->currentPage() - 1) + $loop->iteration }}</td>
                                     <td>{{ $row->mhsw_nim }}</td>
                                     <td>{{ $row->mhsw_nama }}</td>
-                                    <td>{{ $row->mhsw_alamat }}</td>
+                                    <td>{{ $row->mhsw_tmplahir }} / {{ \Carbon\Carbon::parse($row->mhsw_tgllahir)->formatLocalized('%d %B %Y') }}</td>
+                                    <td><img src="{{ asset('images') }}/{{ $row->mhsw_aktif == 1 ? 1 : 0 }}.png" alt="[IMG]"></td>
                                     <td>
                                         <div class="d-flex float-right">
                                             <a href="{{ url('/dashboard/mahasiswa/' . $row->_id) }}"

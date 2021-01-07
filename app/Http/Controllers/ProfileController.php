@@ -38,10 +38,7 @@ class ProfileController extends Controller
 
         $id = Auth::id();
         $row = User::findOrFail($id);
-        $any = User::where([
-            ['email', '=', $request->email],
-            ['_id', '<>', $id]
-        ])->first();
+        $any = User::where([['email', '=', $request->email], ['_id', '<>', $id]])->first();
 
         if ($row != null && $any === null) {
             if (!empty($request->password)) {

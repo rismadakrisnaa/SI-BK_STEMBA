@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     @livewireStyles
 </head>
@@ -213,7 +214,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; 2020</span>
+                        <span>Copyright &copy; 2021</span>
                         <div class="my-2">Template by SB Admin 2</div>
                     </div>
                 </div>

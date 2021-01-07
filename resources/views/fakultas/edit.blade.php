@@ -20,7 +20,8 @@
                             <label class="col-sm-2">KODE</label>
                             <div class="col-sm-10">
                                 <input class="form-control @error('fak_kode')is-invalid @enderror" type="text"
-                                    name="fak_kode" value="{{ $row->fak_kode }}" placeholder="Kode Fakultas" required="" autofocus="">
+                                    name="fak_kode" value="{{ $row->fak_kode }}" placeholder="Kode Fakultas" required=""
+                                    autofocus="">
 
                                 @error('fak_kode')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -43,14 +44,16 @@
                             <div class="col-sm-10">
                                 @php $checked1 = $row->fak_aktif == 1 ? ' checked' : '' @endphp
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fak_aktif" value="1" id="aktif1" {{ $checked1 }}>
+                                    <input class="form-check-input" type="radio" name="fak_aktif" value="1" id="aktif1"
+                                        {{ $checked1 }}>
                                     <label class="form-check-label" for="aktif2">
                                         Aktif
                                     </label>
                                 </div>
                                 @php $checked2 = $row->fak_aktif == 0 ? ' checked' : '' @endphp
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="fak_aktif" value="0" id="aktif2" {{ $checked2 }}>
+                                    <input class="form-check-input" type="radio" name="fak_aktif" value="0" id="aktif2"
+                                        {{ $checked2 }}>
                                     <label class="form-check-label" for="aktif2">
                                         Tidak Aktif
                                     </label>

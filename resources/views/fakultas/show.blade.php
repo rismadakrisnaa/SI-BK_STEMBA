@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <th>KODE</th>
-            <td>{{ $row->fak_kode }}</td>
+            <td><span class="font-weight-bold">{{ $row->fak_kode }}</span></td>
         </tr>
         <tr>
             <th>NAMA</th>

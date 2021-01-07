@@ -17,7 +17,7 @@
                         @csrf
                         <div class="form-group row">
                             <label class="col-sm-2">NIM</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-5">
                                 <input class="form-control @error('mhsw_nim')is-invalid @enderror" type="text"
                                     name="mhsw_nim" placeholder="Nomor Induk Mahasiswa" required="" autofocus="">
 
@@ -71,24 +71,46 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2">HP</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-6">
                                 <input class="form-control" type="text" name="mhsw_hp" placeholder="Nomor HP">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2">PROGRAM STUDI</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" name="prodi">
-                                    <option>Default select</option>
-                                  </select>
+                            <div class="col-sm-7">
+                                @if (count($col_dosen))
+                                    <select class="form-control @error('prodi_kode')is-invalid @enderror" name="prodi_kode">
+                                        <option value="">-- Pilih Program Studi --</option>
+                                        @foreach ($col_prodi as $prodi)                                            
+                                            <option value="{{ $prodi->prodi_kode }}">{{ $prodi->fakultas['fak_kode'] }} - {{ $prodi->prodi_nama }} ({{ $prodi->prodi_kode }})</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <div class="text-danger">Prodi tidak ditemukan</div>
+                                @endif
+
+                                @error('prodi_kode')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2">PEMBIMBING AKADEMIK</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" name="dosen">
-                                    <option>Default select</option>
-                                  </select>
+                            <div class="col-sm-7">
+                                @if (count($col_dosen))
+                                    <select class="form-control @error('dsn_nidn')is-invalid @enderror" name="dsn_nidn">
+                                        <option value="">-- Pilih Pembimbing Akademik --</option>
+                                        @foreach ($col_dosen as $dsn)
+                                            <option value="{{ $dsn->dsn_nidn }}">{{ $dsn->prodi['prodi_kode'] }} - {{ $dsn->dsn_nama }} ({{ $dsn->dsn_nidn }})</option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <div class="text-danger">Dosen tidak ditemukan</div>
+                                @endif
+
+                                @error('dsn_nidn')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group float-right">

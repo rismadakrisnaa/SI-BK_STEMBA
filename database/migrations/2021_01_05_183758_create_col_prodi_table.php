@@ -14,11 +14,11 @@ class CreateColProdiTable extends Migration
     public function up()
     {
         Schema::create('col_prodi', function (Blueprint $col) {
+            $col->string('prodi_kd_fak');
+            $col->string('prodi_nama_fak');
             $col->string('prodi_kode');
             $col->string('prodi_nama');
             $col->string('prodi_akreditasi');
-            $col->string('prodi_kd_fak');
-            $col->string('prodi_nama_fak');
             $col->timestamps();
         });
     }

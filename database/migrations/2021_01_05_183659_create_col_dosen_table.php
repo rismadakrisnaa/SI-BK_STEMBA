@@ -21,6 +21,8 @@ class CreateColDosenTable extends Migration
             $col->string('dsn_gelar_belakang');
             $col->string('dsn_kd_prodi');
             $col->string('dsn_nama_prodi');
+            $col->string('dsn_kd_fakultas');
+            $col->string('dsn_nama_fakultas');
             $col->timestamps();
         });
     }

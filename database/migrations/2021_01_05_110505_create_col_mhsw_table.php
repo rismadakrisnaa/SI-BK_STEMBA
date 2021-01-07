@@ -23,7 +23,7 @@ class CreateColMhswTable extends Migration
             $col->string('mhsw_hp');
             $col->string('mhsw_kd_prodi');
             $col->string('mhsw_nama_prodi');
-            $col->string('mhsw_nip_dosen');
+            $col->string('mhsw_nidn_dosen');
             $col->string('mhsw_nama_dosen');
             $col->timestamps();
         });

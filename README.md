@@ -9,6 +9,6 @@ php artisan migrate:fresh --seed
 ```
 
 ## Donation
-Please read BACA-DONASI.txt dan BACA-INSTALASI.txt
+Please read BACA-DONASI.txt and BACA-INSTALASI.txt
 
 ![](screenshot3.jpg)

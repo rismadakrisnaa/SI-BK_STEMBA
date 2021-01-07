@@ -8,7 +8,6 @@ use App\Models\Mahasiswa;
 
 class MahasiswaIndex extends Component
 {
-
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';

@@ -55,11 +55,13 @@ class FakultasController extends Controller
             ]
         );
 
+        $aktif = 1;
+
         Fakultas::firstOrCreate(
             ['fak_kode' => $request->fak_kode],
             [
                 'fak_nama' => $request->fak_nama,
-                'fak_aktif' => 1
+                'fak_aktif' => $aktif
             ]
         );
 
@@ -112,16 +114,14 @@ class FakultasController extends Controller
         );
 
         $row = Fakultas::findOrFail($id);
-        $any = Fakultas::where([
-            ['fak_kode', '=', $request->fak_kode],
-            ['_id', '<>', $id]
-        ])->first();
+        $any = Fakultas::where([['fak_kode', '=', $request->fak_kode], ['_id', '<>', $id]])->first();
+        $aktif = intval($request->fak_aktif);
 
         if ($row != null && $any === null) {
             $row->update([
                 'fak_kode' => $request->fak_kode,
                 'fak_nama' => $request->fak_nama,
-                'fak_aktif' => $request->fak_aktif,
+                'fak_aktif' => $aktif
             ]);
             $request->session()->flash('alert-success', 'Data berhasil diperbarui!');
         } else {

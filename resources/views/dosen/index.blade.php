@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-@livewire('fakultas-index')
+@livewire('dosen-index')
 
 @endsection

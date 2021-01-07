@@ -32,4 +32,5 @@ class Fakultas extends Model
      * @var array
      */
     protected $guarded = [];
+
 }
