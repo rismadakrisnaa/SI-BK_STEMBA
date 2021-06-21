@@ -23,6 +23,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('vendor/DataTables/datatables.min.css')}}">
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     @livewireStyles
 </head>
@@ -62,7 +63,7 @@
             </div>
 
             <!-- Nav Item -->
-        
+
             </li>
 
             <li class="nav-item">
@@ -72,7 +73,7 @@
                 </a>
 
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseTwo" id="master-data">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Master Data</span>
                 </a>
@@ -81,7 +82,7 @@
                         <a class="collapse-item" href="{{ url('/dashboard/siswa') }}">Data Siswa</a>
                         <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Data Kelas dan Jurusan</a>
                         <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Jenis Pelanggaran</a>
-                        <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}">Data Guru BK</a>
+                        <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
                         <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Data Wali Kelas</a>
                         <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Data Absensi Siswa</a>
                     </div>
@@ -118,7 +119,7 @@
                     <i class="fas fa-fw fa-users"></i>
                     <span>Riwayat Pelanggaran</span></a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
@@ -135,7 +136,7 @@
                 </div>
             </li>
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider mt-3 mb-4">
@@ -292,7 +293,7 @@
                                 </a>
                             </div>
                         </li>
-                        
+
                     </ul>
 
                 </nav>
@@ -336,9 +337,11 @@
     <script src="{{ asset('js/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
 
     @include('sweetalert::alert')
     @livewireScripts
+    @stack('js')
 
 </body>
 

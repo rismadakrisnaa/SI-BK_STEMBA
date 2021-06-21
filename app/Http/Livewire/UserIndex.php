@@ -22,8 +22,8 @@ class UserIndex extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public int $perPage = 10;
-    public string $search = '';
+    public $perPage = 10;
+    public $search = '';
 
     public function render()
     {

@@ -22,13 +22,13 @@ class GuruIndex extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public int $perPage = 10;
-    public string $search = '';
+    public $perPage = 10;
+    public $search = '';
 
     public function render()
     {
         //$sql = Guru::orderBy('kelasjurusan.kelasjurusan_kode', 'ASC')->orderBy('guru_nama', 'ASC')->get();
-        
+
         $sql = Guru::query()
         ->when($this->search, function ($query) {
             return $query->where('guru_nidn', 'like', '%' . $this->search . '%')

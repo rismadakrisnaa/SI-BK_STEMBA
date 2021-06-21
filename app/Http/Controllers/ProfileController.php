@@ -27,18 +27,18 @@ class ProfileController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *  
-     * 
+     *
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
     protected function update_avatar(array $data)
     {
         if(request()->has('avatar')){
-            
+
             $avataruploaded = request()->file('avatar');
             $avatarname = time() . '.' . $avataruploaded->getClientOriginalExtension();
             $avatarpath = public_path('/images/avatars/');
@@ -86,7 +86,7 @@ class ProfileController extends Controller
 
         if ($row != null && $any === null) {
             if (!empty($request->password)) {
-                
+
                 $row->update([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -95,14 +95,16 @@ class ProfileController extends Controller
                 ]);
                 $request->session()->flash('alert-success', 'Data berhasil diperbarui dengan perubahan password!');
             } else {
-                $avataruploaded = request()->file('avatar');
-                $avatarname = time() . '.' . $avataruploaded->getClientOriginalExtension();
-                $avatarpath = public_path('/images/avatars/');
-                $avataruploaded->move($avatarpath, $avatarname);
+                if($request->hasFile('avatar')){
+                    $avataruploaded = request()->file('avatar');
+                    $avatarname = time() . '.' . $avataruploaded->getClientOriginalExtension();
+                    $avatarpath = public_path('/images/avatars/');
+                    $avataruploaded->move($avatarpath, $avatarname);
+                    $row->update(['avatar'=>'/images/avatars/' . $avatarname]);
+                }
                 $row->update([
                     'name' => $request->name,
-                    'email' => $request->email,
-                    'avatar' => '/images/avatars/' . $avatarname,
+                    'email' => $request->email
                 ]);
                 $request->session()->flash('alert-success', 'Data berhasil diperbarui tanpa perubahan password!');
             }
