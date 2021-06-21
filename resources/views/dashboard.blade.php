@@ -20,7 +20,7 @@
             @endif
 
             {{ __('You are logged in!') }}
-            <div>Create Read Update and Delete Laravel 8 using Database MongoDB</div>
+            <div>Welcome, {{ Auth::user()->name }}!</div>
         </div>
     </div>
 

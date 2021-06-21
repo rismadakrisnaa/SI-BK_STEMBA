@@ -24,10 +24,12 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update']);
-    Route::resource('mahasiswa', App\Http\Controllers\MahasiswaController::class);
-    Route::resource('dosen', App\Http\Controllers\DosenController::class)->except('destroy');
-    Route::resource('prodi', App\Http\Controllers\ProdiController::class)->except('destroy');
-    Route::resource('fakultas', App\Http\Controllers\FakultasController::class)->except('destroy');
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update_avatar']);
+    Route::resource('siswa', App\Http\Controllers\SiswaController::class);
+    Route::resource('guru', App\Http\Controllers\GuruController::class);
+    // Route::resource('gurubk', App\Http\Controllers\GuruBKController::class)->except('destroy');
+    Route::resource('kelasjurusan', App\Http\Controllers\KelasjurusanController::class);
+    Route::resource('jenispelanggaran', App\Http\Controllers\JenispelanggaranController::class);
     Route::resource('user', App\Http\Controllers\UserController::class);
 
 });

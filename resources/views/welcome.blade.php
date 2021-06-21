@@ -7,7 +7,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-		<link href="{{ asset('images/favicon.ico') }}" rel="shortcut icon">
+		<link href="{{ asset('images/logo-smk-n-5-sby.png') }}" rel="shortcut icon">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
@@ -39,7 +39,7 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:pt-0 text-center">
-                    <div style="font-size:2.25rem; font-weight: bold; color:#FF2D20">CRUD Mongodb Laravel 8</div>
+                    <div style="font-size:2.25rem; font-weight: bold; color:#FF2D20">SIM BK STEMBA</div>
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">

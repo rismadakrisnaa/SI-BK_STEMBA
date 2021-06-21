@@ -1,0 +1,34 @@
+----------------------------------------------------------------------------------------------------
+|| PENDAHULUAN
+---------------------------------------------------------------------------------------------------
+
+Gosoftware CRUD Menggunakan Laravel 8 dan MongoDB
+Program ini adalah program Personal Gosoftware Media http://gosoftware.web.id
+
+---------------------------------------------------------------------------------------------------
+Website 	: www.gosoftware.web.id
+Blog		: http://phpbego.wordpress.com
+Email 		: cs@gosoftware.web.id
+SMS/WA 		: 62852-6361-6901 
+---------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------
+|| LISENSI
+---------------------------------------------------------------------------------------------------
+
+Tidak dibenarkan menyebarkan, memperbanyak, menggandakan Program ini
+untuk kepentingan pribadi, kelompok atau instansi yang dijadikan 
+program komersial maupun gratisan kepada pihak ketiga. Namun dibenarkan 
+merubah program, menambah atau mengurangi sebahagian atau seluruh program 
+hanya bagi pelanggan Personal kami, tanpa menghilangkan atribut lisensi yang ada
+pada tiap-tiap file program.
+
+---------------------------------------------------------------------------------------------------
+
+Terimakasih telah menjadi pelanggan Personal kami.
+
+SUENDRI
+
+Gosoftware Media
+http://gosoftware.web.id
+http://phpbego.wordpress.com

@@ -42,6 +42,14 @@ E. Login
 
    Anda bisa registrasi langsung dari menu Registrasi.
 
+F. Youtube
+
+   Instalasi XAMPP dan Database MongoDB di Windows10 dari Awal hingga Akhir
+   https://www.youtube.com/watch?v=ndIf2pQ7t4E
+
+   Instalasi Laravel CRUD XAMPP dan MongoDB di Windows10
+   https://www.youtube.com/watch?v=xdVd-FVYuPM
+
 ---------------------------------------------------------------------------------------------------
 || TERIMAKASIH
 ---------------------------------------------------------------------------------------------------
