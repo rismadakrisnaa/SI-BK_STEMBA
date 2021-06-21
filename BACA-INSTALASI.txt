@@ -6,24 +6,22 @@ A. Kebutuhan Sistem
 
 1. Kami membuat dan mengembangkan Sistem ini pada Sistem Operasi windows 10, 
    Silakan kondisikan jika anda menggunakan sistem operasi lain.
-2. Kami menggunakan XAMPP 7.4.13 dan MongoDB driver for PHP 1.9.0.
-2. Kami menggunakan MongoDB Community Server 4.4.3.
+2. Kami menggunakan XAMPP 8.0.5 dan MongoDB Driver for PHP 1.9.1.
+2. Kami menggunakan MongoDB Community Server 4.4.5.
 3. Kami juga menganjurkan untuk menggunakan Browser Google Chrome terbaru
    untuk tampilan lebih sempurna.
-4. Kami menganggap anda sudah paham Laravel 7 Dasar dan MongoDB Dasar.
+4. Kami menganggap anda sudah paham Laravel 8 Dasar dan MongoDB 4.4 Dasar.
 5. Anda harus terhubung dengan internet untuk memanggil resources lainnya.
-6. Ready untuk instalasi pada cpanel Hosting, Silakan mengikuti panduan 
-   masing-masing penyedia hosting.
 
 B. Pengaturan .env
 
-   Copy file .env.example dan rename menjadi .env untuk pengaturan framework.
+   Copy file .env.example dan rename menjadi .env untuk pengaturan koneksi.
    generate app key baru dan atur koneksi database sebagai berikut.
 
    DB_CONNECTION=mongodb
    DB_HOST=127.0.0.1
    DB_PORT=27017
-   DB_DATABASE=laravel7
+   DB_DATABASE=crudlaravel8
    DB_USERNAME=
    DB_PASSWORD=
 
@@ -31,16 +29,16 @@ C. Menjalankan Program
 
 1. Start Apache.
 2. Start MongoDB Community Server.
-3. Extract crud-mongodb-laravel7.zip ke folder C:/xampp/htdoc/
-4. Buat Database baru : laravel7
-5. Jalankan : php artisan migrate atau php artisan migrate:fresh --seed
-6. Buka Browser, panggil via address : ttp://localhost/crud-mongodb-laravel7/public atau buat domain lokal anda.
+3. Extract crud-mongodb-laravel8.zip ke folder C:/xampp/htdoc/
+4. Buat Database dan Collection baru : crudlaravel8 dan users
+5. Jalankan : php artisan migrate atau php artisan migrate:fresh
+6. Buka Browser, panggil via address : ttp://localhost/crud-mongodb-laravel8/public atau buat domain lokal anda.
 
-C. Permission
+D. Permission
 
    Tidak ada permission khusus.
 
-D. Login
+E. Login
 
    Anda bisa registrasi langsung dari menu Registrasi.
 

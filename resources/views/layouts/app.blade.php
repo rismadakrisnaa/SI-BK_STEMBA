@@ -68,13 +68,6 @@
                     <span>Mahasiswa</span></a>
             </li>
 
-            <!-- Nav Item -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/dashboard/dosen') }}">
-                    <i class="fas fa-fw fa-user-md"></i>
-                    <span>Dosen</span></a>
-            </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -83,14 +76,15 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ url('/dashboard/prodi') }}">Program Studi</a>
                         <a class="collapse-item" href="{{ url('/dashboard/fakultas') }}">Fakultas</a>
+                        <a class="collapse-item" href="{{ url('/dashboard/prodi') }}">Program Studi</a>
+                        <a class="collapse-item" href="{{ url('/dashboard/dosen') }}">Dosen</a>
                     </div>
                 </div>
             </li>
 
-             <!-- Nav Item -->
-             <li class="nav-item">
+            <!-- Nav Item -->
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('/dashboard/user') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>User</span></a>
@@ -186,7 +180,8 @@
                                 document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </a>
@@ -237,7 +232,7 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-	@include('sweetalert::alert')
+    @include('sweetalert::alert')
     @livewireScripts
 
 </body>
