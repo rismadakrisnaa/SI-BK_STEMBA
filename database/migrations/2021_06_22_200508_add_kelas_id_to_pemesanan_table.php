@@ -14,6 +14,7 @@ class AddKelasIdToPemesananTable extends Migration
     public function up()
     {
         Schema::table('pemesanan_jadwal_konseling', function (Blueprint $table) {
+            $table->text('hasil_konseling');
             $table->unsignedBigInteger('kelas_id');
         });
     }
@@ -27,6 +28,7 @@ class AddKelasIdToPemesananTable extends Migration
     {
         Schema::table('pemesanan_jadwal_konseling', function (Blueprint $table) {
             $table->dropColumn('kelas_id');
+            $table->dropColumn('hasil_konseling');
         });
     }
 }

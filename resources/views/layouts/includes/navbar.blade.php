@@ -71,8 +71,12 @@
                 Pemesanan Jadwal <br/>Konseling
             </a>
             <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Panggilan Konseling <br/>Siswa</a>
-            <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Pelaksanaan Konseling</a>
-            <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Hasil Konseling</a>
+            <a class="collapse-item" href="{{ url('/dashboard/pelaksanaan-konseling') }}" id="pelaksanaan-konseling">
+                Pelaksanaan Konseling
+            </a>
+            <a class="collapse-item" href="{{ url('/dashboard/hasil-konseling') }}" id="hasil-konseling">
+                Hasil Konseling
+            </a>
         </div>
     </div>
 </li>
