@@ -26,6 +26,9 @@
                         <td>Nama Siswa</td><td id="detail-nama"></td>
                     </tr>
                     <tr>
+                        <td>Kelas</td><td> {{$peserta->classes->kelasjurusan_nama}}</td>
+                    </tr>
+                    <tr>
                         <td>Nama Guru BK</td><td id="detail-guru_bk"></td>
                     </tr>
                     <tr>
