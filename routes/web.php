@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GuruBkController;
+use App\Http\Controllers\PelaksanaanKonseling;
+use App\Http\Controllers\PelaksanaanKonselingController;
 use App\Http\Controllers\PemesananJadwalKonselingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -37,4 +39,6 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
 
     // Konseling
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);
+    Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
+    Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);
 });
