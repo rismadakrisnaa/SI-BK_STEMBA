@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class GuruBk extends Model
+class PemesananJadwalKonseling extends Model
 {
     use HasFactory;
 
-    protected $collection = 'guru_bk';
+    protected $collection = 'pemesanan_jadwal_konseling';
 
     protected $primaryKey = '_id';
 
@@ -17,8 +17,8 @@ class GuruBk extends Model
 
     protected $guarded = [];
 
-    public function pemesananJadwalKonseling()
+    public function guruBk()
     {
-        return $this->hasMany(PemesananJadwalKonseling::class, 'guru_bk_id','_id');
+        return $this->belongsTo(GuruBk::class, 'guru_bk_id','_id');
     }
 }

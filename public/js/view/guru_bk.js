@@ -1,29 +1,5 @@
-(function($){
-    $('#master-data').addClass('active').next().addClass('show');
-    $('#guru-bk').addClass('active');
-
-    "use_strict";
-
-     var table=$('#guru_bk_table').DataTable({
-        "language": {
-            "sEmptyTable":     ("No data available in table"),
-            "sInfo":           ("Showing")+" _START_ "+("to")+" _END_ "+("out of")+" _TOTAL_ "+("results"),
-            "sInfoEmpty":      ("Showing")+" 0 "+("to")+" 0 "+("out of")+" 0 "+("results"),
-            "sInfoFiltered":   "("+("filtered")+" "+("from")+" _MAX_ "+("total")+" "+("records")+")",
-            "sInfoPostFix":    "",
-            "sInfoThousands":  ",",
-            "sLengthMenu":     ("Per Page : ")+" _MENU_ ",
-            "sLoadingRecords": ("Loading..."),
-            "sProcessing":     ("Processing..."),
-            "sSearch":         ("Search")+":",
-            "sZeroRecords":    ("No matching records found"),
-            "oPaginate": {
-                "sFirst":    ("First"),
-                "sLast":     ("Last"),
-            }
-        }
-     });
-})(jQuery);
+$('#master-data').addClass('active').next().addClass('show');
+$('#guru-bk').addClass('active');
 
 function tambahData(){
     $('#guruBkModalLabel').text('Tambah Data Guru BK');

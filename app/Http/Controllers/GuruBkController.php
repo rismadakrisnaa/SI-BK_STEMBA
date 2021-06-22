@@ -36,6 +36,10 @@ class GuruBkController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nip'=>'required|numeric',
+            'name'=>'required|string',
+        ]);
         GuruBk::create($request->all());
         return back()->with('alert-success', 'Guru BK berhasil ditambahkan.');
     }
@@ -71,6 +75,10 @@ class GuruBkController extends Controller
      */
     public function update(Request $request, GuruBk $gurubk)
     {
+        $request->validate([
+            'nip'=>'required|numeric',
+            'name'=>'required|string',
+        ]);
         $is_active=$request->has('is_active')?1:0;
         $request=$request->all();
         $request['is_active']=$is_active;

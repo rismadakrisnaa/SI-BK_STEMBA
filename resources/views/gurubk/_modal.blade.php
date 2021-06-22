@@ -15,10 +15,16 @@
                 <div class="form-group">
                     <label for="nim">NIM</label>
                     <input type="number" name="nim" id="nim" class="form-control">
+                    @error('nim')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="name">Nama Lengkap</label>
                     <input type="text" name="name" id="name" class="form-control">
+                    @error('name')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="gelar_depan">Gelar Depan</label>
