@@ -58,6 +58,7 @@ class PemesananJadwalKonselingController extends Controller
      */
     public function show(PemesananJadwalKonseling $pemesananJadwalKonseling)
     {
+        $pemesananJadwalKonseling->guruBk;
         return request()->ajax()?response()->json($pemesananJadwalKonseling):abort(403);
     }
 

@@ -11,6 +11,7 @@ function detailPesanan(id) {
                 $('#detail-'+i).text(peserta[i])
             }
             $('#detail-jadwal').text(jadwal);
+            $('#detail-guru_bk').text(peserta.guru_bk.name);
         }
     })
     $('#button').text('Edit');
