@@ -12,9 +12,21 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" class="form-control">
+                    <label for="nama">Nama Siswa</label>
+                    <input type="text" name="nama" id="nama" class="form-control" value="{{ Auth::user()->name }}">
                     @error('nama')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="guru_bk_id">Kelas</label>
+                    <select name="guru_bk_id" id="guru_bk_id" class="custom-select">
+                        <option value=""></option>
+                        @foreach ($guruBk as $guru)
+                            <option value="{{$guru->_id}}">{{$guru->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('guru_bk_id')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>

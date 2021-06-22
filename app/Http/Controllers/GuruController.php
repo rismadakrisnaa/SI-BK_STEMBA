@@ -51,12 +51,11 @@ class GuruController extends Controller
             [
                 'guru_nidn' => 'required|unique:col_guru,guru_nidn',
                 'guru_nama' => 'required',
-                'kelasjurusan_kode' => 'required'
+                'kelasjurusan_kode' => 'sometimes'
             ],
             [
                 'guru_nidn.required' => 'Nomor Induk Guru Nasional Wajib Diisi',
                 'guru_nama.required' => 'Nama Guru Wajib Diisi',
-                'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
             ]
         );
 
