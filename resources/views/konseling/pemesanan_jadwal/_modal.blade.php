@@ -18,18 +18,18 @@
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>
-                {{-- <div class="form-group">
-                    <label for="pesanjadwal_kd_kelasjurusan">Kelas</label>
-                    <select name="pesanjadwal_kd_kelasjurusan" id="pesanjadwal_kd_kelasjurusan" class="custom-select">
+                <div class="form-group">
+                    <label for="kelas_id">Kelas</label>
+                    <select name="kelas_id" id="kelas_id" class="custom-select">
                         <option value=""></option>
-                        @foreach ($col_kelasjurusan as $kelasjurusan)
+                        @foreach ($classes as $kelasjurusan)
                             <option value="{{$kelasjurusan->_id}}">{{$kelasjurusan->kelasjurusan_nama}}</option>
                         @endforeach
                     </select>
-                    @error('guru_bk_id')
+                    @error('kelas_id')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
-                </div> --}}
+                </div>
                 <div class="form-group form-row">
                     <div class="col-7">
                         <label for="jadwal">Jadwal Konseling</label>

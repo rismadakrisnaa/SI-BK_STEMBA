@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuruBk;
+use App\Models\Kelasjurusan;
 use App\Models\PemesananJadwalKonseling;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class PemesananJadwalKonselingController extends Controller
     {
         $guruBk = GuruBk::all();
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->get();
-        return view('konseling.pemesanan_jadwal.index',compact('guruBk','pesertaKonseling'));
+        $classes = Kelasjurusan::all();
+        return view('konseling.pemesanan_jadwal.index',compact('guruBk','pesertaKonseling','classes'));
     }
 
     /**
