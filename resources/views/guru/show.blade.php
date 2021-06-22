@@ -33,10 +33,10 @@
             <th>GELAR BELAKANG</th>
             <td>{{ $row->guru_gelar_belakang }}</td>
         </tr>
-        <tr>
+        {{-- <tr>
             <th>KELAS DAN JURUSAN</th>
             <td>{{ $row->kelasjurusan['kelasjurusan_nama'] }} (<span class="font-weight-bold">{{ $row->kelasjurusan['kelasjurusan_kode'] }}</span>)</td>
-        </tr>
+        </tr> --}}
         
         <tr>
             <th>DIBUAT</th>

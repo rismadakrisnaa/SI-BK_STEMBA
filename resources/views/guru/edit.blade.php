@@ -59,7 +59,7 @@
                                     name="guru_gelar_belakang" value="{{ $row->guru_gelar_belakang }}" placeholder="Gelar Belakang">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-sm-2">KELAS DAN JURUSAN</label>
                             <div class="col-sm-7">
                                 @if (count($col_kelasjurusan))
@@ -74,7 +74,7 @@
                                     <div class="text-danger">Kelas dan Jurusan tidak ditemukan</div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label class="col-sm-2">AKTIF</label>
                             <div class="col-sm-10">

@@ -13,7 +13,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kelasjurusan;
 use App\Models\Guru;
 
 class GuruController extends Controller
@@ -35,8 +34,8 @@ class GuruController extends Controller
      */
     public function create()
     {
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
-        return view('guru.create', compact('col_kelasjurusan'));
+        
+        return view('guru.create');
     }
 
     /**
@@ -59,7 +58,6 @@ class GuruController extends Controller
             ]
         );
 
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
         $aktif = 1;
 
         Guru::firstOrCreate(
@@ -70,8 +68,8 @@ class GuruController extends Controller
                 'guru_gelar_depan' => $request->guru_gelar_depan,
                 'guru_gelar_belakang' => $request->guru_gelar_belakang,
                 'guru_aktif' => $aktif,
-                'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
+                // 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
+                // 'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
             ]
         );
 
@@ -100,8 +98,8 @@ class GuruController extends Controller
     public function edit($id)
     {
         $row = Guru::find($id);
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
-        return view('guru.edit', compact('row', 'col_kelasjurusan'));
+        // $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
+        return view('guru.edit', compact('row'));
     }
 
     /**
@@ -117,18 +115,18 @@ class GuruController extends Controller
             [
                 'guru_nidn' => 'required',
                 'guru_nama' => 'required',
-                'kelasjurusan_kode' => 'required'
+                // 'kelasjurusan_kode' => 'required'
             ],
             [
                 'guru_nidn.required' => 'Nomor Induk Guru Nasional Wajib Diisi',
                 'guru_nama.required' => 'Nama Guru Wajib Diisi',
-                'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
+                // 'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
             ]
         );
             
         $row = Guru::findOrFail($id);
         $any = Guru::where([['guru_nidn', '=', $request->guru_nidn], ['_id', '<>', $id]])->first();
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
+        // $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
         $aktif = intval($request->guru_aktif);
 
         if ($row != null && $any === null) {
@@ -139,8 +137,8 @@ class GuruController extends Controller
                 'guru_gelar_depan' => $request->guru_gelar_depan,
                 'guru_gelar_belakang' => $request->guru_gelar_belakang,
                 'guru_aktif' => $aktif,
-                'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
+                // 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
+                // 'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
             ]);
             $request->session()->flash('alert-success', 'Data berhasil diperbarui!');
         } else {

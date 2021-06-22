@@ -77,7 +77,7 @@
                                 @enderror
                             </div>
                         </div> --}}
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-sm-2">KELAS DAN JURUSAN</label>
                             <div class="col-sm-7">
                                 @if (count($col_kelasjurusan))
@@ -90,7 +90,7 @@
                                     <div class="text-danger">Kelas dan Jurusan tidak ditemukan</div>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group float-right">
                             <a href="{{ url('/dashboard/guru') }}" class="btn btn-primary">
