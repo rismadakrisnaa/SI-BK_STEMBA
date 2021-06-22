@@ -101,7 +101,7 @@
                                     <select class="form-control @error('guru_nidn')is-invalid @enderror" name="guru_nidn">
                                         <option value="">-- Pilih Wali Kelas --</option>
                                         @foreach ($col_guru as $guru)
-                                            <option value="{{ $guru->guru_nidn }}">{{ $guru->kelasjurusan['kelasjurusan_kode'] }} - {{ $guru->guru_nama }} ({{ $guru->guru_nidn }})</option>
+                                            <option value="{{ $guru->guru_nidn }}">{{ $guru->guru_nama }} - ({{ $guru->guru_nidn }})</option>
                                         @endforeach
                                     </select>
                                 @else

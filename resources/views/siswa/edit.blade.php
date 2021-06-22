@@ -100,7 +100,7 @@
                                     <select class="form-control" name="guru_nidn">
                                         @foreach ($col_guru as $guru)
                                             <option value="{{ $guru->guru_nidn }}"{{ $guru->guru_nidn == $row->guru['guru_nidn'] ? ' selected' : '' }}>
-                                                {{ $guru->kelasjurusan['kelasjurusan_kode'] }} - {{ $guru->guru_nama }} ({{ $guru->guru_nidn }})
+                                                {{ $guru->guru_nama }} - ({{ $guru->guru_nidn }})
                                             </option>
                                         @endforeach
                                     </select>
