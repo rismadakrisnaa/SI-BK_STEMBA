@@ -21,4 +21,6 @@ class PemesananJadwalKonseling extends Model
     {
         return $this->belongsTo(GuruBk::class, 'guru_bk_id','_id');
     }
+
+    
 }

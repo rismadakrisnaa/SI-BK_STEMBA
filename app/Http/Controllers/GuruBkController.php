@@ -37,7 +37,7 @@ class GuruBkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip'=>'required|numeric',
+            'nim'=>'required|numeric',
             'name'=>'required|string',
         ]);
         GuruBk::create($request->all());
