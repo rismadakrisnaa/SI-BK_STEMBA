@@ -14,9 +14,9 @@
     
     <div class="col-xl-4">
         <!-- Profile picture card-->
-    <div class="card mb-4 mb-xl-0 ">
+    {{-- <div class="card mb-4 mb-xl-0 ">
         <div class="card-header m-0 font-weight-bold text-primary">Profile Picture</div>
-        <div class="card-body text-center">
+        <div class="card-body text-center"> --}}
             
             
                 {{-- <!-- Profile picture image-->

@@ -48,14 +48,14 @@
                                     <td>@include('konseling.pemesanan_jadwal._status')</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            <button class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
+                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
                                                 <div class="fas fa-info-circle"></div>
-                                                Detail
+                                                DETAIL
                                             </button>
                                             <form action="{{route('pemesanan-jadwal-konseling.destroy',$peserta->_id)}}" method="post" class="delete-confirm">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
                                             </form>
                                         </div>
                                     </td>
