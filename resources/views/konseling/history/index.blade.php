@@ -47,15 +47,16 @@
                                     <td>{{$peserta->hasil_konseling}}</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            <button class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
+                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
                                                 <div class="fas fa-info-circle"></div>
-                                                Detail
+                                                DETAIL
                                             </button>
                                             <form action="hasil-konseling/cetak" method="post" target="_blank">
                                                 @csrf
                                                 @method('put')
                                                 <button value="{{$peserta->_id}}" name="id" class="btn btn-sm btn-success"><i class="fas fa-file-pdf"></i> Cetak</button>
                                             </form>
+                                            <button class="btn btn-sm btn-success"><i class="fas fa-file-pdf"></i> CETAK</button>
                                         </div>
                                     </td>
                                 </tr>

@@ -31,6 +31,7 @@
                                 <th>No</th>
                                 <th>Jadwal Konseling</th>
                                 <th>Nama Siswa</th>
+                                <th>Kelas</th>
                                 <th>Nama Guru BK</th>
                                 <th>Aktif</th>
                                 <th>Action</th>
@@ -42,18 +43,19 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
                                     <td>{{$peserta->nama}}</td>
+                                    <td>{{$peserta->classes->kelasjurusan_nama}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>@include('konseling.pemesanan_jadwal._status')</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            <button class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
+                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
                                                 <div class="fas fa-info-circle"></div>
-                                                Detail
+                                                DETAIL
                                             </button>
                                             <form action="{{route('pemesanan-jadwal-konseling.destroy',$peserta->_id)}}" method="post" class="delete-confirm">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
                                             </form>
                                         </div>
                                     </td>

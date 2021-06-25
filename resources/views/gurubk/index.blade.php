@@ -46,16 +46,16 @@
                                         <div class="d-flex float-right">
                                             <button class="btn btn-sm btn-info mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
                                                 <div class="fas fa-info-circle"></div>
-                                                Detail
+                                                DETAIL
                                             </button>
                                             <button class="btn btn-sm btn-warning mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
                                                 <div class="fas fa-edit"></div>
-                                                Edit
+                                                EDIT
                                             </button>
                                             <form action="{{route('gurubk.destroy',$guru->id)}}" method="post" class="delete-confirm">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button>
+                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
                                             </form>
                                         </div>
                                     </td>
