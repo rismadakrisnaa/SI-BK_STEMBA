@@ -42,7 +42,7 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
-                                    <td>{{$peserta->nama}}</td>
+                                    <td>{{$peserta->siswa->siswa_nama}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>{{$peserta->perihal_bimbingan}}</td>
                                     <td>@include('konseling.pemesanan_jadwal._status')</td>

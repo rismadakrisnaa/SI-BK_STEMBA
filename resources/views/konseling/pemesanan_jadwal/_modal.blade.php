@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="guruBkModal" tabindex="-1" aria-labelledby="guruBkModalLabel" aria-hidden="true">
+<div class="modal fade" id="guruBkModal" aria-labelledby="guruBkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <form action="" method="post" id="form">
@@ -12,9 +12,19 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="nama">Nama Siswa</label>
+                    {{-- <label for="nama">Nama Siswa</label>
                     <input type="text" name="nama" id="nama" class="form-control" value="{{ Auth::user()->name }}">
                     @error('nama')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror --}}
+                    <label for="siswa_id">Nama Siswa</label>
+                    <select name="siswa_id" id="siswa_id" style="width: 100%" class="custom-select select2">
+                        <option value=""></option>
+                        @foreach ($siswa as $s)
+                            <option value="{{$s->_id}}">{{$s->siswa_nama.' ('.$s->kelas->kelasjurusan_nama}})</option>
+                        @endforeach
+                    </select>
+                    @error('siswa_id')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>

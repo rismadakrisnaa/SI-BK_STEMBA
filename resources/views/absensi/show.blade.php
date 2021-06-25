@@ -57,3 +57,10 @@
     </form>
 </div>
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show')
+        $('#absensi').addClass('active')
+    </script>
+@endpush

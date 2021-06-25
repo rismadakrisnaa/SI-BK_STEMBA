@@ -10,8 +10,9 @@ function detailPesanan(id) {
             for(i in peserta){
                 $('#detail-'+i).text(peserta[i])
             }
-            console.log(peserta);
             $('#detail-jadwal').text(jadwal);
+            $('#detail-nama').text(peserta.siswa.siswa_nama);
+            $('#detail-kelas').text(peserta.classes.kelasjurusan_nama);
             $('#detail-guru_bk').text(peserta.guru_bk.name);
         }
     })

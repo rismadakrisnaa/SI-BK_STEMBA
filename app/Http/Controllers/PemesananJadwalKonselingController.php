@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GuruBk;
 use App\Models\Kelasjurusan;
 use App\Models\PemesananJadwalKonseling;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class PemesananJadwalKonselingController extends Controller
@@ -16,10 +17,11 @@ class PemesananJadwalKonselingController extends Controller
      */
     public function index()
     {
+        $siswa=Siswa::with('kelas')->get();
         $guruBk = GuruBk::all();
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->get();
         $classes = Kelasjurusan::all();
-        return view('konseling.pemesanan_jadwal.index',compact('guruBk','pesertaKonseling','classes'));
+        return view('konseling.pemesanan_jadwal.index',compact('guruBk','pesertaKonseling','classes','siswa'));
     }
 
     /**
@@ -41,7 +43,7 @@ class PemesananJadwalKonselingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required',
+            'siswa_id'=>'required',
             'jadwal'=>'required|date',
             'pukul'=>'required',
             'perihal_bimbingan'=>'required',
@@ -61,6 +63,8 @@ class PemesananJadwalKonselingController extends Controller
     public function show(PemesananJadwalKonseling $pemesananJadwalKonseling)
     {
         $pemesananJadwalKonseling->guruBk;
+        $pemesananJadwalKonseling->siswa;
+        $pemesananJadwalKonseling->classes;
         return request()->ajax()?response()->json($pemesananJadwalKonseling):abort(403);
     }
 

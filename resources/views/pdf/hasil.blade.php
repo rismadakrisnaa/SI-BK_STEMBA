@@ -78,7 +78,10 @@
                     <td>Pukul</td><td id="detail-pukul">{{$peserta->pukul}}</td>
                 </tr>
                 <tr>
-                    <td>Nama Siswa</td><td id="detail-nama">{{$peserta->nama}}</td>
+                    <td>Nama Siswa</td><td id="detail-nama">{{$peserta->siswa->siswa_nama}}</td>
+                </tr>
+                <tr>
+                    <td>Kelas</td><td id="detail-nama">{{$peserta->classes->kelasjurusan_nama}}</td>
                 </tr>
                 <tr>
                     <td>Nama Guru BK</td><td id="detail-guru_bk">{{$peserta->guruBk->name}}</td>

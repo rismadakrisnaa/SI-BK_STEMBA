@@ -52,4 +52,9 @@ class Kelasjurusan extends Model
     {
         return $this->hasMany(Siswa::class, 'kelasjurusan.kelasjurusan_kode','kelasjurusan_kode');
     }
+
+    public function jadwaKonseling()
+    {
+        return $this->hasMany(PemesananJadwalKonseling::class, 'kelas_id','_id');
+    }
 }

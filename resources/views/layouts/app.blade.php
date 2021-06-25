@@ -24,8 +24,22 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('vendor/DataTables/datatables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/select2/css/select2.min.css')}}">
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     @livewireStyles
+    <style>
+        .select2-container .select2-choice, .select2-result-label {
+            display: block!important;
+            height: 60px!important;
+            white-space: nowrap!important;
+            line-height: 26px!important;
+        }
+
+        .select2-arrow, .select2-chosen {
+            padding-top: 6px;
+        }
+
+    </style>
 </head>
 
 <body id="page-top">
@@ -87,10 +101,16 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/select2/js/select2.min.js')}}"></script>
 
-    @include('sweetalert::alert')
     @livewireScripts
+    @include('sweetalert::alert')
+
     <script>
+        $.fn.select2.defaults.set("width", "style");
+        $(document).ready(function(){
+            var select2 = $('.select2').select2();
+        })
         var table=$('.myDataTable').DataTable({
             "language": {
                 "sEmptyTable":     ("No data available in table"),

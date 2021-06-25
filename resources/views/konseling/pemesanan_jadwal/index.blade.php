@@ -42,13 +42,13 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
-                                    <td>{{$peserta->nama}}</td>
-                                    <td>{{$peserta->classes->kelasjurusan_nama}}</td>
+                                    <td>{{$peserta->siswa->siswa_nama??''}}</td>
+                                    <td>{{$peserta->classes->kelasjurusan_nama??''}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>@include('konseling.pemesanan_jadwal._status')</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
+                                            <button class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
                                                 <div class="fas fa-info-circle"></div>
                                                 DETAIL
                                             </button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GuruBk;
 use App\Models\Kelasjurusan;
 use App\Models\PemesananJadwalKonseling;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class PelaksanaanKonselingController extends Controller
@@ -16,18 +17,20 @@ class PelaksanaanKonselingController extends Controller
      */
     public function index()
     {
+        $siswa=Siswa::with('kelas')->get();
         $guruBk = GuruBk::all();
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->get();
         $classes = Kelasjurusan::all();
-        return view('konseling.pelaksanaan.index',compact('guruBk','pesertaKonseling','classes'));
+        return view('konseling.pelaksanaan.index',compact('guruBk','pesertaKonseling','classes','siswa'));
     }
 
     public function hasil()
     {
+        $siswa=Siswa::with('kelas')->get();
         $guruBk = GuruBk::all();
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->get();
         $classes = Kelasjurusan::all();
-        return view('konseling.history.index',compact('guruBk','pesertaKonseling','classes'));
+        return view('konseling.history.index',compact('guruBk','pesertaKonseling','classes','siswa'));
     }
 
     public function cetak(Request $request)

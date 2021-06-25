@@ -48,6 +48,11 @@ class Siswa extends Model
         return $this->hasMany(Absensi::class, 'siswa_id','_id');
     }
 
+    public function jadwalKonseling()
+    {
+        return $this->hasMany(PemesananJadwalKonseling::class, 'siswa_id','_id');
+    }
+
     public function kelas()
     {
         return $this->belongsTo(Kelasjurusan::class, 'kelasjurusan.kelasjurusan_kode' ,'kelasjurusan_kode');
