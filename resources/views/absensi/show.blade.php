@@ -44,7 +44,7 @@
                                 <select name="absen[{{$siswa->_id}}]" id="siswa-{{$siswa->_id}}" class="custom-select">
                                     <option value=""></option>
                                     @foreach ($absenan as $i => $absen)
-                                    <option value="{{$i}}" {{($absenToday->isNotEmpty()&&$absenToday->where('siswa_id',$siswa->_id)->first()->absen==$i)?'selected':''}}>{{$absen}}</option>
+                                    <option value="{{$i}}" {{($absenToday->isNotEmpty()&&($absenToday->where('siswa_id',$siswa->_id)->first()->absen??'')==$i)?'selected':''}}>{{$absen}}</option>
                                     @endforeach
                                 </select>
                             </td>
