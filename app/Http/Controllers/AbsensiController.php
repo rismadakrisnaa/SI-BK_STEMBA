@@ -85,7 +85,14 @@ class AbsensiController extends Controller
             return back()->with('alert-success','Absensi siswa berhasil diinput.');
         }else{
             foreach($request->absen as $siswa_id => $absen){
-                $absenToday->where('siswa_id',$siswa_id)->first()->update(['absen'=>$absen]);
+                $updateAbsen=Absensi::firstOrCreate([
+                    '_id'=>$absenToday->where('siswa_id',$siswa_id)->first()->_id??'0',
+                    'siswa_id'=>$siswa_id
+                ],[
+                    'absen'=>$absen,
+                    'kelas_id'=>$kode
+                ]);
+                $updateAbsen->update(['absen'=>$absen]);
             }
             return back()->with('alert-success','Absensi siswa berhasil diupdate.');
         }
