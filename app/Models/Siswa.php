@@ -42,4 +42,14 @@ class Siswa extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function absen()
+    {
+        return $this->hasMany(Absensi::class, 'siswa_id','_id');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelasjurusan::class, 'kelasjurusan.kelasjurusan_kode' ,'kelasjurusan_kode');
+    }
 }

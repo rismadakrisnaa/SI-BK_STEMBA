@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AbsenesiController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\PelaksanaanKonseling;
 use App\Http\Controllers\PelaksanaanKonselingController;
@@ -36,6 +38,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('kelasjurusan', App\Http\Controllers\KelasjurusanController::class);
     Route::resource('jenispelanggaran', App\Http\Controllers\JenispelanggaranController::class);
     Route::resource('user', App\Http\Controllers\UserController::class);
+    Route::resource('absensi', AbsensiController::class);
 
     // Konseling
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);

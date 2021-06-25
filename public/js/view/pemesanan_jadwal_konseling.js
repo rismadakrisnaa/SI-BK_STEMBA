@@ -10,6 +10,7 @@ function detailPesanan(id) {
             for(i in peserta){
                 $('#detail-'+i).text(peserta[i])
             }
+            console.log(peserta);
             $('#detail-jadwal').text(jadwal);
             $('#detail-guru_bk').text(peserta.guru_bk.name);
         }

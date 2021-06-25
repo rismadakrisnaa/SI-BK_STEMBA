@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Guru BK</h1>
         <button data-toggle="modal" data-target="#guruBkModal" id="tambah_data" onclick="tambahData()" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">

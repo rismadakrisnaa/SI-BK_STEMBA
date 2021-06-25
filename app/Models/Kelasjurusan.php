@@ -42,4 +42,14 @@ class Kelasjurusan extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'kelasjurusan_kode';
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'kelasjurusan.kelasjurusan_kode','kelasjurusan_kode');
+    }
 }

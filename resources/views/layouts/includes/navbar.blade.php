@@ -45,7 +45,7 @@
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Jenis Pelanggaran</a>
             <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
             <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Data Guru dan Wali Kelas</a>
-            <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Data Absensi Siswa</a>
+            <a class="collapse-item" href="{{ url('/dashboard/absensi') }}" id="absensi">Data Absensi Siswa</a>
         </div>
     </div>
 </li>
