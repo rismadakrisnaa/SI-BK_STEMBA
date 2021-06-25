@@ -30,6 +30,14 @@ class PelaksanaanKonselingController extends Controller
         return view('konseling.history.index',compact('guruBk','pesertaKonseling','classes'));
     }
 
+    public function cetak(Request $request)
+    {
+        $peserta=PemesananJadwalKonseling::with('guruBk')->where('_id',$request->id)->first();
+        $pdf = \PDF::loadView('pdf.hasil',compact('peserta'));
+        return $pdf->stream('contoh.pdf');
+        dd($peserta);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -41,4 +41,5 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);
     Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
     Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);
+    Route::put('hasil-konseling/cetak', [PelaksanaanKonselingController::class, 'cetak']);
 });

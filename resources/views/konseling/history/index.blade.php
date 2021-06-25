@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">History Konseling</h1>
         <button data-toggle="modal" data-target="#guruBkModal" id="tambah_data" onclick="tambahData()" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -52,7 +51,11 @@
                                                 <div class="fas fa-info-circle"></div>
                                                 Detail
                                             </button>
-                                            <button class="btn btn-sm btn-success"><i class="fas fa-file-pdf"></i> Cetak</button>
+                                            <form action="hasil-konseling/cetak" method="post" target="_blank">
+                                                @csrf
+                                                @method('put')
+                                                <button value="{{$peserta->_id}}" name="id" class="btn btn-sm btn-success"><i class="fas fa-file-pdf"></i> Cetak</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
