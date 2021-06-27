@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Form Timeline Akademik</h1>
-        <a href="/dashboard/timeline-akademik/create" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="/dashboard/timeline-akademik/" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-arrow-left mr-2 fa-sm text-white-50"></i> Kembali
         </a>
     </div>
@@ -111,7 +111,6 @@
                     processData: false,
                     contentType: false,
                     success: function(result){
-                        console.log(result);
                         Swal.fire({
                             title: '<strong>Link Medianya</strong>',
                             icon: 'success',

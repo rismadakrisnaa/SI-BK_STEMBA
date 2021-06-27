@@ -19,8 +19,11 @@
     @include('layouts.includes.errors')
 
     @foreach ($timelines as $timeline)
-        <div class="card">
-            <div class="card-header">{{$timeline->judul}}</div>
+        <div class="card mt-3">
+            <div class="card-header">
+                <span class="h2">{{$timeline->judul}}</span><br>
+                <span class="text-muted">Dibuat oleh <b class="text-info">{{$timeline->created_by??'Tidak diketahui'}}</b> tanggal <b class="text-info">{{date('d M Y', strtotime($timeline->created_at))}}</b></span>
+            </div>
             <div class="card-body">{!! $timeline->body !!}</div>
         </div>
     @endforeach

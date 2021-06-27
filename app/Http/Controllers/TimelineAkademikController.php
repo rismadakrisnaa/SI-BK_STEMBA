@@ -45,7 +45,10 @@ class TimelineAkademikController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $data = $request->except('_token');
+        $data['created_by']=auth()->user()->name;
+        TimelineAkademik::create($data);
+        return back()->with('alert-success', 'Timeline berhasil dibuat.');
     }
 
     /**
