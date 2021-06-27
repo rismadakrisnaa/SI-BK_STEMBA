@@ -19,7 +19,8 @@
     @include('layouts.includes.errors')
 
     @include('timeline-akademik._form',[
-        'action'=>route('timeline-akademik.store')
+        'action'=>route('timeline-akademik.update',$timelineAkademik->_id),
+        'optional'=> '<input type="hidden" name="_method" value="put">'
     ])
 
 @endsection

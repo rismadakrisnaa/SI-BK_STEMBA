@@ -46,7 +46,7 @@ class TimelineAkademikController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $data['created_by']=auth()->user()->name;
+        $data['user_id']=auth()->user()->_id;
         TimelineAkademik::create($data);
         return back()->with('alert-success', 'Timeline berhasil dibuat.');
     }
@@ -70,7 +70,7 @@ class TimelineAkademikController extends Controller
      */
     public function edit(TimelineAkademik $timelineAkademik)
     {
-        //
+        return view('timeline-akademik.edit',compact('timelineAkademik'));
     }
 
     /**
@@ -82,7 +82,8 @@ class TimelineAkademikController extends Controller
      */
     public function update(Request $request, TimelineAkademik $timelineAkademik)
     {
-        //
+        $timelineAkademik->update($request->all());
+        return back()->with('alert-success','Timeline berhasil diperbarui.');
     }
 
     /**
@@ -93,6 +94,7 @@ class TimelineAkademikController extends Controller
      */
     public function destroy(TimelineAkademik $timelineAkademik)
     {
-        //
+        $timelineAkademik->delete();
+        return back()->with('alert-success', 'Timeline berhasil dihapus.');
     }
 }

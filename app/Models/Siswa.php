@@ -57,4 +57,9 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelasjurusan::class, 'kelasjurusan.kelasjurusan_kode' ,'kelasjurusan_kode');
     }
+
+    public function timelineAkademik()
+    {
+        return $this->hasMany(TimelineAkademik::class, 'user_id','_id');
+    }
 }

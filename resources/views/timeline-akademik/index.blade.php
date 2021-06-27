@@ -18,11 +18,22 @@
 
     @include('layouts.includes.errors')
 
-    @foreach ($timelines as $timeline)
+    @foreach ($timelines->sortByDesc('created_at') as $timeline)
         <div class="card mt-3">
-            <div class="card-header">
-                <span class="h2">{{$timeline->judul}}</span><br>
-                <span class="text-muted">Dibuat oleh <b class="text-info">{{$timeline->created_by??'Tidak diketahui'}}</b> tanggal <b class="text-info">{{date('d M Y', strtotime($timeline->created_at))}}</b></span>
+            <div class="card-header d-flex justify-content-between">
+                <div>
+                    <span class="h2">{{$timeline->judul}}</span><br>
+                    <span class="text-muted">Dibuat oleh <b class="text-info">{{$timeline->user->name??'Tidak diketahui'}}</b> tanggal <b class="text-info">{{date('d M Y', strtotime($timeline->created_at))}}</b></span>
+                </div>
+                @if ($timeline->user_id==auth()->user()->_id)
+                <div class="d-flex justify-content-between" style="height: 100%">
+                    <a href="{{route('timeline-akademik.edit',$timeline->_id)}}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                    <form action="{{route('timeline-akademik.destroy',$timeline->_id)}}" method="post">
+                        @csrf @method('delete')
+                        <button class="btn btn-sm btn-danger delete-confirm">Delete</button>
+                    </form>
+                </div>
+                @endif
             </div>
             <div class="card-body">{!! $timeline->body !!}</div>
         </div>
@@ -37,5 +48,23 @@
 @push('js')
     <script>
         $('#timeline-akademik').parent().addClass('active');
+        $(document).on('click', '.delete-confirm', function(e) {
+            e.preventDefault();
+            var form = $(this).parent();
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: 'Data ini akan dihapus secara permanen',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus permanen!'
+            }).then((result) => {
+                if (result.value) {
+                    form.submit();
+                }
+            });
+        });
+
     </script>
 @endpush
