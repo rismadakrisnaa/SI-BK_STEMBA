@@ -24,44 +24,46 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Guru BK</h6>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover table-striped myDataTable">
-                        <thead class="text-center">
-                            <tr>
-                                <th>No</th>
-                                <th>NIP</th>
-                                <th>Name</th>
-                                <th>Active</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($guruBk as $guru)
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped myDataTable">
+                            <thead class="text-center bg-primary text-white">
                                 <tr>
-                                    <td class="text-center">{{$loop->iteration}}</td>
-                                    <td>{{$guru->nim}}</td>
-                                    <td>{{$guru->gelar_depan.' '.$guru->name.' '.$guru->gelar_belakang}}</td>
-                                    <td>@include('gurubk._status')</td>
-                                    <td>
-                                        <div class="d-flex float-right">
-                                            <button class="btn btn-sm btn-info mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
-                                                <div class="fas fa-info-circle"></div>
-                                                DETAIL
-                                            </button>
-                                            <button class="btn btn-sm btn-warning mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
-                                                <div class="fas fa-edit"></div>
-                                                EDIT
-                                            </button>
-                                            <form action="{{route('gurubk.destroy',$guru->id)}}" method="post" class="delete-confirm">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                    <th>No</th>
+                                    <th>NIP</th>
+                                    <th>Name</th>
+                                    <th>Active</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($guruBk as $guru)
+                                    <tr>
+                                        <td class="text-center">{{$loop->iteration}}</td>
+                                        <td>{{$guru->nim}}</td>
+                                        <td>{{$guru->gelar_depan.' '.$guru->name.' '.$guru->gelar_belakang}}</td>
+                                        <td>@include('gurubk._status')</td>
+                                        <td>
+                                            <div class="d-flex float-right">
+                                                <button class="btn btn-sm btn-info mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
+                                                    <div class="fas fa-info-circle"></div>
+                                                    DETAIL
+                                                </button>
+                                                <button class="btn btn-sm btn-warning mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
+                                                    <div class="fas fa-edit"></div>
+                                                    EDIT
+                                                </button>
+                                                <form action="{{route('gurubk.destroy',$guru->id)}}" method="post" class="delete-confirm">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -98,6 +98,7 @@
 
     <script src="{{ asset('js/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
@@ -109,7 +110,17 @@
     <script>
         $.fn.select2.defaults.set("width", "style");
         $(document).ready(function(){
-            var select2 = $('.select2').select2();
+            var select2 = $('.select2').select2({
+                dropdownAutoWidth: true,
+                theme: 'default',
+                width: '100%'
+            });
+            $('input[type=file]').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
         })
         var table=$('.myDataTable').DataTable({
             "language": {

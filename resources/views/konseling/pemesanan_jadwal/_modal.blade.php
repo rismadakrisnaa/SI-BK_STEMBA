@@ -17,13 +17,15 @@
                     @error('nama')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror --}}
-                    <label for="siswa_id">Nama Siswa</label>
-                    <select name="siswa_id" id="siswa_id" style="width: 100%" class="custom-select select2">
-                        <option value=""></option>
-                        @foreach ($siswa as $s)
-                            <option value="{{$s->_id}}">{{$s->siswa_nama.' ('.$s->kelas->kelasjurusan_nama}})</option>
-                        @endforeach
-                    </select>
+                    <div class="input-group">
+                        <label for="siswa_id">Nama Siswa</label>
+                        <select name="siswa_id" id="siswa_id" class="custom-select select2">
+                            <option value=""></option>
+                            @foreach ($siswa as $s)
+                                <option value="{{$s->_id}}">{{$s->siswa_nama.' ('.$s->kelas->kelasjurusan_nama}})</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @error('siswa_id')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror

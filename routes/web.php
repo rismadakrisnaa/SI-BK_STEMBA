@@ -6,6 +6,7 @@ use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\PelaksanaanKonseling;
 use App\Http\Controllers\PelaksanaanKonselingController;
 use App\Http\Controllers\PemesananJadwalKonselingController;
+use App\Http\Controllers\TimelineAkademikController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,9 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('jenispelanggaran', App\Http\Controllers\JenispelanggaranController::class);
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('absensi', AbsensiController::class);
+
+    Route::resource('timeline-akademik', TimelineAkademikController::class);
+    Route::post('timeline-akademik/post_media', [TimelineAkademikController::class, 'post_media']);
 
     // Konseling
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);

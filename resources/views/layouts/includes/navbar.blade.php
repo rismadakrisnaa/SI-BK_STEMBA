@@ -52,7 +52,7 @@
 
 <!-- Nav Item -->
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('/dashboard/user') }}">
+    <a class="nav-link" href="{{ url('/dashboard/timeline-akademik') }}" id="timeline-akademik">
         <i class="fas fa-fw fa-users"></i>
         <span>Timeline Akademik</span>
     </a>
