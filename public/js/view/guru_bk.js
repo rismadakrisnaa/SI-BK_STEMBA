@@ -27,6 +27,25 @@ function editData(id) {
     $('#button').text('Edit');
 }
 
+function detailData(id) {
+    $.ajax({
+        url: 'gurubk/'+id,
+        success: function(guru){
+            console.log(guru);
+            $('#detailGuruBkLabel').text('Detail Data Guru BK '+guru.name);
+            for(i in guru){
+                $('#detail-'+i).text(guru[i])
+            }
+            if(guru.is_active==1){
+                $('#detail-status').html('<div class="text-center"><i class="fa fa-check-double text-success"></i></div>');
+            }else{
+                $('#detail-status').html('<div class="text-center"><i class="fa fa-times-circle text-danger"></i></div>');
+            }
+            $('#DetailGuruBk').on('show.bs.modal');
+        }
+    })
+}
+
 $(document).on('click', '.delete-confirm', function(e) {
     e.preventDefault();
     var form = $(this);
