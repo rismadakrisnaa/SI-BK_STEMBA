@@ -70,10 +70,10 @@
             <a class="collapse-item" href="{{ url('/dashboard/pemesanan-jadwal-konseling') }}" id="pemesanan-jadwal-konseling">
                 Pemesanan Jadwal <br/>Konseling
             </a>
-            <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Panggilan Konseling <br/>Siswa</a>
+            {{-- <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Panggilan Konseling <br/>Siswa</a>
             <a class="collapse-item" href="{{ url('/dashboard/pelaksanaan-konseling') }}" id="pelaksanaan-konseling">
                 Pelaksanaan Konseling
-            </a>
+            </a> --}}
             <a class="collapse-item" href="{{ url('/dashboard/hasil-konseling') }}" id="hasil-konseling">
                 Hasil Konseling
             </a>
