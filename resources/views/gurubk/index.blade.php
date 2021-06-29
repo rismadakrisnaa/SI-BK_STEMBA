@@ -44,7 +44,7 @@
                                         <td>@include('gurubk._status')</td>
                                         <td>
                                             <div class="d-flex float-right">
-                                                <button class="btn btn-sm btn-info mr-2" onclick="detailData('{{$guru->_id}}')">
+                                                <button class="btn btn-sm btn-info mr-2" onclick="detailData('{{$guru->_id}}')" data-toggle="modal" data-target="#detailGuruBk">
                                                     <div class="fas fa-info-circle"></div>
                                                     DETAIL
                                                 </button>
