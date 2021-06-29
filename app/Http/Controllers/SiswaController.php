@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Kelasjurusan;
@@ -67,7 +68,7 @@ class SiswaController extends Controller
 
         $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
         $col_guru = Guru::where('guru_nidn', $request->guru_nidn)->first();
-     
+
         $aktif = 1;
 
         Siswa::firstOrCreate(
@@ -82,7 +83,7 @@ class SiswaController extends Controller
                 'siswa_aktif' => $aktif,
                 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
                 'guru' => [
-                    'guru_nidn' => $col_guru->guru_nidn, 
+                    'guru_nidn' => $col_guru->guru_nidn,
                     'guru_nama' => $col_guru->guru_nama,
                     'guru_gelar_depan' => $col_guru->guru_gelar_depan,
                     'guru_gelar_belakang' => $col_guru->guru_gelar_belakang,
@@ -102,10 +103,11 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $row = Siswa::find($id);
-        return view('siswa.show', compact('row'));
+        $row     = Siswa::find($id);
+        $absensi = Absensi::where('siswa_id',$id)->get();
+        return view('siswa.show', compact('row','absensi'));
     }
-    
+
     //public function search(Request $request)
     //{
       //  $cari = $request->get('$cari');
@@ -113,7 +115,7 @@ class SiswaController extends Controller
 
         //if($request->has('cari')){
           //  $col_siswa = Siswa::where('siswa_nama','LIKE',"%".$request->cari."%")->get();
-        
+
         //}
         //return view ('siswa.show',compact('col_siswa'))
 
@@ -155,7 +157,7 @@ class SiswaController extends Controller
                 'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
                 'guru_nidn.required' => 'Pembimbing Akademik wajib dipilih'
             ]
-            
+
         );
 
         $row = Siswa::findOrFail($id);
@@ -176,7 +178,7 @@ class SiswaController extends Controller
                 'siswa_aktif' => $aktif,
                 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
                 'guru' => [
-                    'guru_nidn' => $col_guru->guru_nidn, 
+                    'guru_nidn' => $col_guru->guru_nidn,
                     'guru_nama' => $col_guru->guru_nama,
                     'guru_gelar_depan' => $col_guru->guru_gelar_depan,
                     'guru_gelar_belakang' => $col_guru->guru_gelar_belakang,
@@ -205,5 +207,5 @@ class SiswaController extends Controller
         return redirect('/dashboard/siswa');
     }
 
-    
+
 }

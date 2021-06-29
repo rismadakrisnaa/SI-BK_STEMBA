@@ -52,6 +52,15 @@
         </td>
     </tr>
     <tr>
+        <th>ABSENSI</th>
+        <td>
+            Hadir {{$absensi->where('absen','h')->count()}},
+            Izin {{$absensi->where('absen','i')->count()}},
+            Sakit {{$absensi->where('absen','s')->count()}},
+            Alfa {{$absensi->where('absen','a')->count()}}
+        </td>
+    </tr>
+    <tr>
         <th>DIBUAT</th>
         <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
     </tr>

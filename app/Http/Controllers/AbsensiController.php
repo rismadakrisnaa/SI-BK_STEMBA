@@ -52,6 +52,9 @@ class AbsensiController extends Controller
     {
         $kode=$absensi->kelasjurusan_kode;
         $absenToday=Absensi::where('kelas_id',$kode)->whereRaw(DB::raw("DATE(created_at) = '".date('Y-m-d')."'"))->get();
+        $absenToday=$absenToday->filter(function($item){
+            return $item->created_at->format('d-m-Y')==date('d-m-Y');
+        });
         $absenan=['h'=>'Hadir','a'=>'Alfa','i'=>'Izin','s'=>'Sakit'];
         return view('absensi.show',compact('absensi','absenToday','absenan'));
     }
@@ -77,7 +80,10 @@ class AbsensiController extends Controller
     public function update(Request $request, Kelasjurusan $absensi)
     {
         $kode=$absensi->kelasjurusan_kode;
-        $absenToday=Absensi::where('kelas_id',$kode)->whereRaw(DB::raw("DATE(created_at) = '".date('Y-m-d')."'"))->get();
+        $absenToday=Absensi::where('kelas_id',$kode)->get();
+        $absenToday=$absenToday->filter(function($item){
+            return $item->created_at->format('d-m-Y')==date('d-m-Y');
+        });
         if($absenToday->isEmpty()){
             foreach($request->absen as $id => $absen){
                 Absensi::create(['absen'=>$absen,'siswa_id'=>$id,'kelas_id'=>$kode]);
@@ -87,7 +93,7 @@ class AbsensiController extends Controller
             foreach($request->absen as $siswa_id => $absen){
                 $updateAbsen=Absensi::firstOrCreate([
                     '_id'=>$absenToday->where('siswa_id',$siswa_id)->first()->_id??'0',
-                    'siswa_id'=>$siswa_id
+                    'siswa_id'=>$siswa_id,
                 ],[
                     'absen'=>$absen,
                     'kelas_id'=>$kode
