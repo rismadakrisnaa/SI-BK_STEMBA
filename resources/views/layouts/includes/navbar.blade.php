@@ -100,7 +100,6 @@
             <a class="collapse-item" href="{{ url('/dashboard/siswa') }}">Panggilan Orang Tua</a>
             <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Home Visit</a>
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Hasil Konseling</a>
-            <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Absensi Siswa</a>
         </div>
     </div>
 </li>
