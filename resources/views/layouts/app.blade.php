@@ -43,7 +43,7 @@
 </head>
 
 <body id="page-top">
-
+    <input type="hidden" name="base_url" value="{{url('')}}">
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -141,6 +141,7 @@
                 }
             }
         });
+        var base_url = $('input[name=base_url]').val();
     </script>
     @stack('js')
 

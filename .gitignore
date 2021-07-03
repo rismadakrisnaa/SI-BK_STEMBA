@@ -3,6 +3,7 @@
 /public/storage
 /public/images/avatars
 /public/images/media
+/public/images/bukti_foto
 /storage/*.key
 /vendor
 .env

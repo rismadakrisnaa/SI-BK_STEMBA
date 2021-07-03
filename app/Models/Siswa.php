@@ -62,4 +62,22 @@ class Siswa extends Model
     {
         return $this->hasMany(TimelineAkademik::class, 'user_id','_id');
     }
+
+    public function pelanggaran()
+    {
+        return $this->hasMany(PelanggaranSiswa::class, 'siswa_id', '_id');
+    }
+
+    public function totalPoint()
+    {
+        $point = $this->pelanggaran->sum('point');
+        if($point<=74){
+            $string = '<b class="text-success">'.$point.'</b>';
+        }elseif($point<=89){
+            $string = '<b class="text-warning">'.$point.'</b>';
+        }else{
+            $string = '<b class="text-danger">'.$point.'</b>';
+        }
+        return $string;
+    }
 }

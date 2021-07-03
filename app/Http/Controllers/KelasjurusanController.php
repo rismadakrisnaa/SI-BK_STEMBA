@@ -29,6 +29,11 @@ class KelasjurusanController extends Controller
         return view('kelasjurusan.index');
     }
 
+    public function ajax()
+    {
+        return request()->ajax()?response()->json(Kelasjurusan::all()):abort(403, 'permintaan harus ajax');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -87,7 +92,8 @@ class KelasjurusanController extends Controller
     public function show($id)
     {
         $row = Kelasjurusan::find($id);
-        return view('kelasjurusan.show', compact('row'));
+        $row->siswa;
+        return request()->ajax()?response()->json($row):view('kelasjurusan.show', compact('row'));
     }
 
     /**
@@ -112,7 +118,7 @@ class KelasjurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $request->validate(
             [
                 'guru_nip' => 'required',
@@ -125,7 +131,7 @@ class KelasjurusanController extends Controller
                 'kelasjurusan_nama.required' => 'Nama Program Studi Wajib Diisi'
             ]
         );
-     
+
         $row = Kelasjurusan::findOrFail($id);
         $any = Kelasjurusan::where([['kelasjurusan_kode', '=', $request->kelasjurusan_kode], ['_id', '<>', $id]])->first();
         $col_guru = Guru::where('guru_nip', $request->guru_nip)->first();

@@ -5,6 +5,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\PelaksanaanKonseling;
 use App\Http\Controllers\PelaksanaanKonselingController;
+use App\Http\Controllers\PelanggaranSiswaController;
 use App\Http\Controllers\PemesananJadwalKonselingController;
 use App\Http\Controllers\TimelineAkademikController;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,14 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('guru', App\Http\Controllers\GuruController::class);
     Route::resource('gurubk', App\Http\Controllers\GuruBkController::class);
     Route::resource('kelasjurusan', App\Http\Controllers\KelasjurusanController::class);
+    Route::get('get_kelas', [\App\Http\Controllers\KelasjurusanController::class, 'ajax']);
+
     Route::resource('jenispelanggaran', App\Http\Controllers\JenispelanggaranController::class);
+    Route::get('get_jenispelanggaran', [\App\Http\Controllers\JenispelanggaranController::class, 'ajax']);
+
+    Route::resource('pelanggaran-siswa', PelanggaranSiswaController::class);
+    Route::get('get_pelanggaran', [App\Http\Controllers\PelanggaranSiswaController::class, 'ajax']);
+
     Route::resource('user', App\Http\Controllers\UserController::class);
     Route::resource('absensi', AbsensiController::class);
 

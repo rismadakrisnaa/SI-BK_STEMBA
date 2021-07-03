@@ -43,4 +43,9 @@ class Jenispelanggaran extends Model
      */
     protected $guarded = [];
 
+    public function pelanggaranSiswa()
+    {
+        return $this->hasMany(PelanggaranSiswa::class, 'pelanggaran_id', '_id');
+    }
+
 }

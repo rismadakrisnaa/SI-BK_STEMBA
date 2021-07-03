@@ -36,6 +36,11 @@ class JenispelanggaranController extends Controller
         return view('jenispelanggaran.index');
     }
 
+    public function ajax()
+    {
+        return request()->ajax()?response()->json(Jenispelanggaran::all()):abort(403,'permintaan harus ajax');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

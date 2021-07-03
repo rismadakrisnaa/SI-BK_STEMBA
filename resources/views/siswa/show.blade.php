@@ -61,6 +61,10 @@
         </td>
     </tr>
     <tr>
+        <th>POIN PELANGGARAN</th>
+        <td>{!! $row->totalPoint() !!}</td>
+    </tr>
+    <tr>
         <th>DIBUAT</th>
         <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
     </tr>
