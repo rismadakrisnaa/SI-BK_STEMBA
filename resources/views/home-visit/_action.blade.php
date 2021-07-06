@@ -1,5 +1,5 @@
 <div class="d-flex float-right">
-    <form action="/dashboard/home-visit/cetak" method="post">
+    <form action="/dashboard/home-visit/cetak/{{$data->_id}}" target="_blank" method="post">
         @method('put')
         @csrf
         <button class="btn btn-sm btn-success mr-2"><i class="fas fa-file-pdf"></i> CETAK</button>

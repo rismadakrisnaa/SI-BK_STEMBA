@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HomeVisit;
+use PDF;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -70,8 +71,13 @@ class HomeVisitController extends Controller
      */
     public function show(HomeVisit $homeVisit)
     {
-        // dd($homeVisit->guru)
         return view('home-visit.show',compact('homeVisit'));
+    }
+
+    public function cetak(HomeVisit $homeVisit)
+    {
+        $pdf = PDF::loadView('pdf.home-visit',compact('homeVisit'));
+        return $pdf->stream('SURAT HOME VISIT.pdf');
     }
 
     /**

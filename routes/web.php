@@ -55,6 +55,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('timeline-akademik', TimelineAkademikController::class);
     Route::post('timeline-akademik/post_media', [TimelineAkademikController::class, 'post_media']);
 
+    Route::put('home-visit/cetak/{home_visit}', [\App\Http\Controllers\HomeVisitController::class, 'cetak']);
     Route::resource('home-visit',HomeVisitController::class);
     Route::get('get_home_visit',[App\Http\Controllers\HomeVisitController::class,'ajax']);
 

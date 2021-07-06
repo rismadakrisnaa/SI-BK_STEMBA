@@ -37,7 +37,7 @@ class PelaksanaanKonselingController extends Controller
     {
         $peserta=PemesananJadwalKonseling::with('guruBk')->where('_id',$request->id)->first();
         $pdf = \PDF::loadView('pdf.hasil',compact('peserta'));
-        return $pdf->stream('contoh.pdf');
+        return $pdf->stream('Pelaksanaan Konseling.pdf');
     }
 
     /**
