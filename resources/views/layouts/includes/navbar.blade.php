@@ -112,7 +112,7 @@
     <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ url('/dashboard/siswa') }}">Panggilan Orang Tua</a>
-            <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Home Visit</a>
+            <a class="collapse-item" href="{{ route('home-visit.index') }}" id="home-visit">Home Visit</a>
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Hasil Konseling</a>
         </div>
     </div>

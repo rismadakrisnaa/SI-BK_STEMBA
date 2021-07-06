@@ -14,6 +14,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guru;
+use App\Models\GuruBk;
 
 class GuruController extends Controller
 {
@@ -27,6 +28,19 @@ class GuruController extends Controller
         return view('guru.index');
     }
 
+    public function ajax()
+    {
+        $guruBk=GuruBk::all();
+        $waliKelas=Guru::all();
+        foreach($guruBk as $g){
+            $dataGuru[]=['nip'=>$g->nim,'nama'=>$g->name];
+        }
+        foreach($waliKelas as $wk){
+            $dataGuru[]=['nip'=>$wk->guru_nip,'nama'=>$wk->guru_nama];
+        }
+        return response()->json($dataGuru);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +48,7 @@ class GuruController extends Controller
      */
     public function create()
     {
-        
+
         return view('guru.create');
     }
 
@@ -123,7 +137,7 @@ class GuruController extends Controller
                 // 'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
             ]
         );
-            
+
         $row = Guru::findOrFail($id);
         $any = Guru::where([['guru_nidn', '=', $request->guru_nidn], ['_id', '<>', $id]])->first();
         // $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();

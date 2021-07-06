@@ -68,6 +68,11 @@ class Siswa extends Model
         return $this->hasMany(PelanggaranSiswa::class, 'siswa_id', '_id');
     }
 
+    public function homeVisit()
+    {
+        return $this->hasMany(HomeVisit::class, 'siswa_id', '_id');
+    }
+
     public function totalPoint()
     {
         $point = $this->pelanggaran->sum('point');

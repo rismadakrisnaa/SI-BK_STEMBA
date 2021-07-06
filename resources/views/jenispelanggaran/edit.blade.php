@@ -51,27 +51,6 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label class="col-sm-2">AKTIF</label>
-                            <div class="col-sm-10">
-                                @php $checked1 = $row->jenispelanggaran_aktif == 1 ? ' checked' : '' @endphp
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="jenispelanggaran_aktif" value="1" id="aktif1"
-                                        {{ $checked1 }}>
-                                    <label class="form-check-label" for="aktif2">
-                                        Aktif
-                                    </label>
-                                </div>
-                                @php $checked2 = $row->jenispelanggaran_aktif == 0 ? ' checked' : '' @endphp
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="jenispelanggaran_aktif" value="0" id="aktif2"
-                                        {{ $checked2 }}>
-                                    <label class="form-check-label" for="aktif2">
-                                        Tidak Aktif
-                                    </label>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="form-group float-right">
                             <a href="{{ url('/dashboard/jenispelanggaran') }}" class="btn btn-primary">
                                 <i class="fa fa-arrow-left mr-2"></i> KEMBALI

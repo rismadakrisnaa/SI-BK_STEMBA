@@ -104,7 +104,6 @@
     <script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/js/select2.min.js')}}"></script>
 
-    @livewireScripts
     @include('sweetalert::alert')
 
     <script>
@@ -144,7 +143,7 @@
         var base_url = $('input[name=base_url]').val();
     </script>
     @stack('js')
-
+    @livewireScripts
 </body>
 
 </html>

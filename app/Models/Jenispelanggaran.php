@@ -48,4 +48,9 @@ class Jenispelanggaran extends Model
         return $this->hasMany(PelanggaranSiswa::class, 'pelanggaran_id', '_id');
     }
 
+    public function homeVisit()
+    {
+        return $this->hasMany(HomeVisit::class, 'jenispelanggaran_id', '_id');
+    }
+
 }

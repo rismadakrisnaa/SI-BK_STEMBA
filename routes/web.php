@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbsenesiController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GuruBkController;
+use App\Http\Controllers\HomeVisitController;
 use App\Http\Controllers\PelaksanaanKonseling;
 use App\Http\Controllers\PelaksanaanKonselingController;
 use App\Http\Controllers\PelanggaranSiswaController;
@@ -37,6 +38,8 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::resource('siswa', App\Http\Controllers\SiswaController::class);
     Route::resource('guru', App\Http\Controllers\GuruController::class);
     Route::resource('gurubk', App\Http\Controllers\GuruBkController::class);
+    Route::get('get_guru', [\App\Http\Controllers\GuruController::class, 'ajax']);
+
     Route::resource('kelasjurusan', App\Http\Controllers\KelasjurusanController::class);
     Route::get('get_kelas', [\App\Http\Controllers\KelasjurusanController::class, 'ajax']);
 
@@ -51,6 +54,9 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
 
     Route::resource('timeline-akademik', TimelineAkademikController::class);
     Route::post('timeline-akademik/post_media', [TimelineAkademikController::class, 'post_media']);
+
+    Route::resource('home-visit',HomeVisitController::class);
+    Route::get('get_home_visit',[App\Http\Controllers\HomeVisitController::class,'ajax']);
 
     // Konseling
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);
