@@ -1,4 +1,4 @@
-$('#collapseThree').addClass('active').addClass('show');
+$('#collapseThree').addClass('show').parent().addClass('active');
 $('#pemesanan-jadwal-konseling').addClass('active');
 
 function detailPesanan(id) {

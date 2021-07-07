@@ -100,3 +100,10 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#data-kelas').addClass('active');
+    </script>
+@endpush

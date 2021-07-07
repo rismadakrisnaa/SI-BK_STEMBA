@@ -64,7 +64,7 @@
                                 @if (count($col_kelasjurusan))
                                     <select class="form-control @error('kelasjurusan_kode')is-invalid @enderror" name="kelasjurusan_kode">
                                         <option value="">-- Pilih Kelas --</option>
-                                        @foreach ($col_kelasjurusan as $kelasjurusan)                                            
+                                        @foreach ($col_kelasjurusan as $kelasjurusan)
                                             <option value="{{ $kelasjurusan->kelasjurusan_kode }}">{{ $kelasjurusan->kelasjurusan_kode }} - {{ $kelasjurusan->kelasjurusan_nama }} ({{ $kelasjurusan->kelasjurusan_kode }})</option>
                                         @endforeach
                                     </select>
@@ -108,3 +108,10 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#guru').addClass('active');
+    </script>
+@endpush

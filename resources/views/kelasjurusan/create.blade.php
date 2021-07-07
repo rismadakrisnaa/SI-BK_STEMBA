@@ -15,7 +15,7 @@
 
                     <form method="POST" action="{{ url('/dashboard/kelasjurusan') }}">
                         @csrf
-                        
+
                         <div class="form-group row">
                             <label class="col-sm-2">WALI KELAS</label>
                             <div class="col-sm-10">
@@ -75,3 +75,10 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#data-kelas').addClass('active');
+    </script>
+@endpush

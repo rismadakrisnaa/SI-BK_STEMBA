@@ -20,11 +20,11 @@
         <tr>
             <th>NAMA</th>
             <td>{{ $row->jenispelanggaran_nama }}</td>
-        </tr>   
+        </tr>
         <tr>
             <th>POIN</th>
             <td>{{ $row->jenispelanggaran_poin }}</span></td>
-        </tr>    
+        </tr>
         <tr>
             <th>DIBUAT</th>
             <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
@@ -37,3 +37,10 @@
     </table>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseFive').addClass('show').parent().addClass('active');
+        $('#jenis-pelanggaran').addClass('active');
+    </script>
+@endpush

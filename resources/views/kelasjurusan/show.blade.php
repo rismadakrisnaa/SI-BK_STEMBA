@@ -26,7 +26,7 @@
         <tr>
             <th>NAMA</th>
             <td>{{ $row->kelasjurusan_nama }}</td>
-        </tr>   
+        </tr>
         <tr>
             <th>DIBUAT</th>
             <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
@@ -39,3 +39,10 @@
     </table>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#data-kelas').addClass('active');
+    </script>
+@endpush

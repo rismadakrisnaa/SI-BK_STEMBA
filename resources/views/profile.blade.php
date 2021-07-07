@@ -11,47 +11,19 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 font-weight-bold">{{ Auth::user()->name }}'s Profile</h1>
     </div>
-    
-    <div class="col-xl-4">
-        <!-- Profile picture card-->
-    {{-- <div class="card mb-4 mb-xl-0 ">
-        <div class="card-header m-0 font-weight-bold text-primary">Profile Picture</div>
-        <div class="card-body text-center"> --}}
-            
-            
-                {{-- <!-- Profile picture image-->
-                <img class="img-account-profile rounded-circle mb-2" src="{{ Auth::user()->avatar }}" style="width: 100px; height: 100px; float:center; border-radius:50%; margin-right:25px;">
-                <!-- Profile picture help block-->
-                <form method="POST" action="{{ url('/dashboard/profile') }}" enctype="multipart/form-data">
-                    @csrf
-                        <label>Update Profile Image</label>
-                        <input type="file" class="form-control" name="avatar" />
-                        <input type="hidden" value="{{csrf_token()}}" name="_token" />
-                        JPG or PNG no larger than 5 MB
-                    <!-- Profile picture upload button-->
-                        <input class="btn btn-primary" name="avatar" type="submit">
-                </form> --}}
-        </div>
-        </div>
-    </div>
-
-    <br>
-
-    
-
     <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Profile User</h6>
                 </div>
-                
+
                 <div class="card-body">
 
                     <form action="{{ url('/dashboard/profile') }}" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PATCH">
                         @csrf
-                        
+
                         <img class="img-account-profile rounded-circle mb-2 d-block mx-auto" src="{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; float:center; border-radius:50%; margin-right:25px;">
                         <div class="form-group row">
                             <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Upload Profil Picture') }}<br>
@@ -126,3 +98,7 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script>$('#profile').addClass('active')</script>
+@endpush

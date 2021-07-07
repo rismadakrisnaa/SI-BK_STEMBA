@@ -112,3 +112,10 @@
     </div>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#guru').addClass('active');
+    </script>
+@endpush

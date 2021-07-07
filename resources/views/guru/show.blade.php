@@ -37,7 +37,7 @@
             <th>KELAS DAN JURUSAN</th>
             <td>{{ $row->kelasjurusan['kelasjurusan_nama'] }} (<span class="font-weight-bold">{{ $row->kelasjurusan['kelasjurusan_kode'] }}</span>)</td>
         </tr> --}}
-        
+
         <tr>
             <th>DIBUAT</th>
             <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
@@ -50,3 +50,10 @@
     </table>
 
 @endsection
+
+@push('js')
+    <script>
+        $('#collapseTwo').addClass('show').parent().addClass('active');
+        $('#guru').addClass('active');
+    </script>
+@endpush

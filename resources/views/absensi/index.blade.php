@@ -57,7 +57,7 @@
 
 @push('js')
     <script>
-        $('#collapseTwo').addClass('show')
+        $('#collapseTwo').addClass('show').parent().addClass('active')
         $('#absensi').addClass('active')
     </script>
 @endpush

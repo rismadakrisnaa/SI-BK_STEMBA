@@ -1,4 +1,4 @@
-$('#master-data').addClass('active').next().addClass('show');
+$('#collapseTwo').addClass('show').parent().addClass('active');
 $('#guru-bk').addClass('active');
 
 function tambahData(){

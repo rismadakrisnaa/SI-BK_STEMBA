@@ -10,7 +10,7 @@
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="{{ url('/dashboard') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
@@ -27,12 +27,14 @@
 
 <!-- Nav Item -->
 
-<li class="nav-item">
+<li class="nav-item" id="profile">
     <a class="nav-link" href="{{ url('/dashboard/profile') }}">
         <i class="fas fa-fw fa-users"></i>
         <span>Profil</span>
     </a>
+</li>
 
+<li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo" id="master-data">
         <i class="fas fa-fw fa-cog"></i>
@@ -40,11 +42,10 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url('/dashboard/siswa') }}">Data Siswa</a>
-            <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Data Kelas dan Jurusan</a>
-            <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Jenis Pelanggaran</a>
+            <a class="collapse-item" href="{{ url('/dashboard/siswa') }}" id="data-siswa">Data Siswa</a>
+            <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}" id="data-kelas">Data Kelas dan Jurusan</a>
             <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
-            <a class="collapse-item" href="{{ url('/dashboard/guru') }}">Data Guru dan Wali Kelas</a>
+            <a class="collapse-item" href="{{ url('/dashboard/guru') }}" id="guru">Data Guru dan Wali Kelas</a>
             <a class="collapse-item" href="{{ url('/dashboard/absensi') }}" id="absensi">Data Absensi Siswa</a>
         </div>
     </div>
@@ -97,7 +98,7 @@
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Jenis Pelanggaran</a>
+            <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}" id="jenis-pelanggaran">Jenis Pelanggaran</a>
             <a class="collapse-item" href="{{ url('/dashboard/pelanggaran-siswa') }}" id="pelanggaran-siswa">Pelanggaran Siswa</a>
         </div>
     </div>

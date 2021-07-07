@@ -3,7 +3,7 @@
     "use strict";
 
     //active
-    $('#collapseFive').addClass('show');
+    $('#collapseFive').addClass('show').parent().addClass('active');
     $('#pelanggaran-siswa').addClass('active');
 
     // Initialization Data
