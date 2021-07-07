@@ -66,7 +66,7 @@
                 <td style="height: 100px">&nbsp;</td>
             </tr>
             <tr>
-                <td><p class="underline" style="margin: 0">Mayarsih, S. Pd, M.M</p><p>NIP.</p></td>
+                <td><p class="underline" style="margin: 0">{{$panggilanOrtu->guruBk->gelar_depan.' '.$panggilanOrtu->guruBk->name.' '.$panggilanOrtu->guruBk->gelar_belakang}}</p><p>NIP. {{$panggilanOrtu->guruBk->nim}}</p></td>
             </tr>
         </table>
     </div>
