@@ -21,4 +21,9 @@ class GuruBk extends Model
     {
         return $this->hasMany(PemesananJadwalKonseling::class, 'guru_bk_id','_id');
     }
+
+    public function panggilanOrtu()
+    {
+        return $this->hasMany(PanggilanOrtu::class, 'gurubk_id', '_id');
+    }
 }

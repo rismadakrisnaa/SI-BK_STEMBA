@@ -21,7 +21,7 @@ class HomeVisitController extends Controller
 
     public function ajax(Request $request)
     {
-        // if(!$request->ajax())return abort(403,'Permintaan harus ajax');
+        if(!$request->ajax())return abort(403,'Permintaan harus ajax');
         $model=HomeVisit::with(['pelanggaran','siswa','siswa.kelas']);
 
         if($request->kelas!='')

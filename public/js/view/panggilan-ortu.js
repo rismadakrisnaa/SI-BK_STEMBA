@@ -4,7 +4,7 @@
 
     //active
     $('#collapseFour').addClass('show').parent().addClass('active');
-    $('#home-visit').addClass('active');
+    $('#panggilan-ortu').addClass('active');
 
     // Initialization Data
     $.ajax({
@@ -19,12 +19,12 @@
     })
 
     $.ajax({
-        url: base_url+'/dashboard/get_jenispelanggaran',
+        url: base_url+'/dashboard/get_guru_bk',
         async: false,
-        success:function(kelas){
-            $('#jenispelanggaran_id').empty().append('<option value=""></option>');
-            kelas.forEach(v=>{
-                $('#jenispelanggaran_id').append(`<option value="${v._id}">${v.jenispelanggaran_nama} (${v.jenispelanggaran_poin} point)</option>`);
+        success:function(guru){
+            $('#gurubk_id').empty().append('<option value=""></option>');
+            guru.forEach(v=>{
+                $('#gurubk_id').append(`<option value="${v._id}">${v.nim} - ${v.name}</option>`);
             });
         }
     })
@@ -36,7 +36,7 @@
                 url: base_url+'/dashboard/kelasjurusan/'+kelas_id,
                 async: false,
                 success: function({siswa}){
-                    $('#siswa_id').empty().append('<option></option>');
+                    $('#siswa_id').empty();
                     siswa.forEach(v=>{
                         $('#siswa_id').append(`<option value="${v._id}">${v.siswa_nama}</option>`);
                     })
@@ -46,16 +46,15 @@
     })
 
     //admin groups datatable
-   var table=$('#homeVisitTable').DataTable( {
+   var table=$('#panggilanOrtuTable').DataTable( {
         "processing": true,
         "serverSide": true,
         "bSort" : false,
         "ajax": {
-        url: base_url+"/dashboard/get_home_visit",
+        url: base_url+"/dashboard/get_panggilan-ortu",
         data:function(data)
         {
             data.kelas=$('#kelas_id').val();
-            data.orderBy=$('#order_by').val();
         }
         },
         // orderCellsTop: true,
@@ -64,7 +63,7 @@
         {data:"no"},
         {data:"siswa.siswa_nama"},
         {data:"siswa.kelasjurusan.kelasjurusan_nama"},
-        {data:"tanggal_kunjungan"},
+        {data:"tanggal_panggilan"},
         {data:"action",searchable:false,orderable:false,sortable:false}//action
         ],
         "language": {
@@ -111,46 +110,3 @@
     });
 
 })(jQuery);
-
-var index=1;
-addGuru();
-
-function addGuru(nama,jabatan) {
-    var template = `
-    <div class="form-group row">
-        <div class="col-7">
-            <label for="guru_bk${index}">Guru BK ${index}</label>
-            <select name="guru[${index}]['nama']" id="guru_bk${index}" class="custom-select">
-                <option value=""></option>
-
-            </select>
-        </div>
-        <div class="col-5">
-            <label for="jabatan${index}">Jabatan ${index}</label>
-            <input type="text" name="guru[${index}]['jabatan']" id="jabatan${index}" class="form-control">
-        </div>
-    </div>
-    `
-    $('.form-guru').append(template)
-    $.ajax({
-        url: base_url+'/dashboard/get_guru',
-        async: false,
-        success: function(guru){
-            guru.forEach(g=>{
-                if(typeof nama == 'undefined'){
-                    $('#guru_bk'+index).append(`<option value="${g.nama}">${g.nip} - ${g.nama}</option>`);
-                }else{
-                    if(nama==g.nama){
-                        $('#guru_bk'+index).append(`<option value="${g.nama}" selected>${g.nip} - ${g.nama}</option>`);
-                    }else{
-                        $('#guru_bk'+index).append(`<option value="${g.nama}">${g.nip} - ${g.nama}</option>`);
-                    }
-                }
-            })
-            if(typeof jabatan!='undefined'){
-                $('#jabatan'+index).val(jabatan);
-            }
-        }
-    })
-    index++;
-}

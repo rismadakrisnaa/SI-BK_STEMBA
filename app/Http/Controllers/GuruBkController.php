@@ -18,6 +18,12 @@ class GuruBkController extends Controller
         return view('gurubk.index',compact('guruBk'));
     }
 
+    public function ajax()
+    {
+        $guruBk=GuruBk::all();
+        return request()->ajax()?response()->json($guruBk):abort(403);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
