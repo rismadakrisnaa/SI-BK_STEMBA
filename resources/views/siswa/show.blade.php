@@ -10,6 +10,10 @@
 
 <table class="table table-striped">
     <tr>
+        <th>FOTO PROFIL</th>
+        <td><img class="img-account-profile rounded-circle mb-2 d-block mx-auto" src="{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; float:center; border-radius:50%; margin-right:25px;"></td>
+    </tr>
+    <tr>
         <th style="width: 200px;">ID</th>
         <td>{{ $row->_id }}</td>
     </tr>
@@ -38,12 +42,49 @@
         <td>{{ \Carbon\Carbon::parse($row->siswa_tgllahir)->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
+        <th>AGAMA</th>
+        <td>{{ $row->siswa_agama }}</td>
+    </tr>
+    <tr>
+        <th>STATUS DALAM KELUARGA</th>
+        <td>{{ $row->status_anak }}</td>
+    </tr>
+    <tr>
+        <th>ANAK KE</th>
+        <td>{{ $row->anak_ke??'' }}</td>
+    </tr>
+    <tr>
         <th>ALAMAT</th>
         <td>{{ $row->siswa_alamat }}</td>
     </tr>
     <tr>
         <th>HP</th>
         <td>{{ $row->siswa_hp }}</td>
+    </tr>
+    <tr>
+        <th>EMAIL</th>
+        <td>{{ $row->email }}</td>
+    </tr>
+    <tr>
+        <th>NAMA AYAH</th>
+        <td>{{ $row->nama_ayah }}</td>
+    </tr><tr>
+        <th>PEKERJAAN AYAH</th>
+        <td>{{ $row->pekerjaan_ayah }}</td>
+    </tr><tr>
+        <th>NAMA IBU</th>
+        <td>{{ $row->nama_ibu }}</td>
+    </tr>
+    <tr>
+        <th>PEKERJAAN IBU</th>
+        <td>{{ $row->pekerjaan_ibu }}</td>
+    </tr>
+    <tr>
+        <th>NAMA WALI</th>
+        <td>{{ $row->nama_wali }}</td>
+    </tr><tr>
+        <th>PEKERJAAN WALI</th>
+        <td>{{ $row->pekerjaan_wali }}</td>
     </tr>
     <tr>
         <th>KELAS</th>
