@@ -64,4 +64,9 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany(Siswa::class, 'user_id', '_id');
     }
+
+    public function wali()
+    {
+        return $this->hasMany(OrangTua::class,'user_id','_id');
+    }
 }

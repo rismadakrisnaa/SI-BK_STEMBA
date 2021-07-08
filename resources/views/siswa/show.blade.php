@@ -38,12 +38,36 @@
         <td>{{ \Carbon\Carbon::parse($row->siswa_tgllahir)->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
+        <th>AGAMA</th>
+        <td>{{ $row->siswa_agama }}</td>
+    </tr>
+    <tr>
+        <th>STATUS DALAM KELUARGA</th>
+        <td>{{ $row->status_anak }} Anak Ke - {{$row->anak_ke}}</td>
+    </tr>
+    <tr>
         <th>ALAMAT</th>
         <td>{{ $row->siswa_alamat }}</td>
     </tr>
     <tr>
         <th>HP</th>
         <td>{{ $row->siswa_hp }}</td>
+    </tr>
+    <tr>
+        <th>EMAIL</th>
+        <td>{{ $row->email }}</td>
+    </tr>
+    <tr>
+        <th>DATA AYAH</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_ayah??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_ayah}}</b></td>
+    </tr>
+    <tr>
+        <th>DATA IBU</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_ibu??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_ibu}}</b></td>
+    </tr>
+    <tr>
+        <th>DATA WALI</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_wali??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_wali}}</b>, No Telp/HP: <b class="text-danger">{{$row->no_telp_wali??''}}</b></td>
     </tr>
     <tr>
         <th>KELAS</th>

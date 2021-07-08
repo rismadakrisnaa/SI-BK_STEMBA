@@ -16,4 +16,14 @@ class OrangTua extends Model
     protected $keyType = 'string';
 
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id','_id','cascade');
+    }
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'orang_tua_id', '_id');
+    }
 }
