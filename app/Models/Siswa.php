@@ -63,6 +63,12 @@ class Siswa extends Model
         return $this->belongsTo(Kelasjurusan::class, 'kelas_id' ,'_id');
     }
 
+    public function waliKelas()
+    {
+        $guru_id = $this->kelas->guru_id;
+        return Guru::find($guru_id);
+    }
+
     public function timelineAkademik()
     {
         return $this->hasMany(TimelineAkademik::class, 'user_id','_id');

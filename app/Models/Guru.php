@@ -48,6 +48,12 @@ class Guru extends Model
         return $this->hasMany(Kelasjurusan::class, 'guru_id', '_id');
     }
 
+    public function siswa()
+    {
+        $siswa_ids = $this->kelas()->select('kelas._id')->get()->pluck('_id');
+        return Siswa::whereIn('kelas_id',$siswa_ids)->get();
+    }
+
     public function getFullName()
     {
         $gelarDepan    = !empty($this->guru_gelar_depan) ? $this->guru_gelar_depan . '. ' : '';

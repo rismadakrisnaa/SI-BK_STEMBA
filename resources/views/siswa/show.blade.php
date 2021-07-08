@@ -14,8 +14,12 @@
         <td>{{ $row->_id }}</td>
     </tr>
     <tr>
-        <th>NIM</th>
-        <td>{{ $row->siswa_nim }}</td>
+        <th>NIS</th>
+        <td>{{ $row->siswa_nis }}</td>
+    </tr>
+    <tr>
+        <th>NISN</th>
+        <td>{{ $row->siswa_nisn }}</td>
     </tr>
     <tr>
         <th>NAMA</th>
@@ -23,7 +27,7 @@
     </tr>
     <tr>
         <th>JENIS KELAMIN</th>
-        <td>{{ $row->siswa_jk }}</td>
+        <td>{{ $row->siswa_jk??'Tidak Diketahui' }}</td>
     </tr>
     <tr>
         <th>TEMPAT LAHIR</th>
@@ -43,12 +47,11 @@
     </tr>
     <tr>
         <th>KELAS</th>
-        <td>{{ $row->kelasjurusan['kelasjurusan_nama'] }} (<span class="font-weight-bold">{{ $row->kelasjurusan['kelasjurusan_kode'] }}</span>)</td>
+        <td>{{ $row->kelas->kelasjurusan_nama }} (<span class="font-weight-bold">{{ $row->kelas->kelasjurusan_kode }}</span>)</td>
     </tr>
     <tr>
         <th>WALI KELAS</th>
-        <td>{{ !empty($row->guru['guru_gelar_depan']) ? $row->guru['guru_gelar_depan'] . '. ' : '' }}
-            {{ $row->guru['guru_nama'] }}{{ !empty($row->guru['guru_gelar_belakang']) ? ', ' . $row->guru['guru_gelar_belakang'] : '' }}
+        <td>{{ $row->waliKelas()->getFullName() }}
         </td>
     </tr>
     <tr>
