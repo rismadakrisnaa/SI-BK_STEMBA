@@ -12,12 +12,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="nim">NIM</label>
-                    <input type="number" name="nim" id="nim" class="form-control">
-                    @error('nim')
-                        <i class="text-sm text-danger">{{$message}}</i>
-                    @enderror
+                <div class="form-group form-row">
+                    <div class="col-6">
+                        <label for="nim">NIM</label>
+                        <input type="number" name="nim" id="nim" class="form-control">
+                        @error('nim')
+                            <i class="text-sm text-danger">{{$message}}</i>
+                        @enderror
+                    </div>
+                    <div class="col-6">
+                        <label for="nidn">NIDN</label>
+                        <input type="number" name="nidn" id="nidn" class="form-control">
+                        @error('nidn')
+                            <i class="text-sm text-danger">{{$message}}</i>
+                        @enderror
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="name">Nama Lengkap</label>
@@ -27,12 +36,38 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                    @error('email')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" value="Laki-laki" id="jk1">
+                        <label class="form-check-label" for="jk1">
+                            Laki-laki
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" value="Perempuan" id="jk2">
+                        <label class="form-check-label" for="jk2">
+                            Perempuan
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="gelar_depan">Gelar Depan</label>
                     <input type="text" name="gelar_depan" id="gelar_depan" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="gelar_belakang">Gelar Belakang</label>
                     <input type="text" name="gelar_belakang" id="gelar_belakang" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="mengajar_mapel">Mengajar Mata Pelajaran</label>
+                    <input type="text" name="mengajar_mapel" id="mengajar_mapel" class="form-control">
                 </div>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">

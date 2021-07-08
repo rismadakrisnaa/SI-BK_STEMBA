@@ -20,7 +20,7 @@ class Kelasjurusan extends Model
 {
     use HasFactory;
 
-    protected $collection = 'col_kelasjurusan';
+    protected $collection = 'kelasjurusan';
 
     /**
      * The primary key associated with the table.
@@ -46,6 +46,11 @@ class Kelasjurusan extends Model
     public function getRouteKeyName()
     {
         return 'kelasjurusan_kode';
+    }
+
+    public function waliKelas()
+    {
+        return $this->belongsTo(Guru::class, 'guru_id', '_id');
     }
 
     public function siswa()

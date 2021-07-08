@@ -20,7 +20,7 @@ class Jenispelanggaran extends Model
 {
     use HasFactory;
 
-    protected $collection = 'col_jenispelanggaran';
+    protected $collection = 'jenispelanggaran';
 
     /**
      * The primary key associated with the table.

@@ -20,7 +20,7 @@ class Siswa extends Model
 {
     use HasFactory;
 
-    protected $collection = 'col_siswa';
+    protected $collection = 'siswa';
 
     /**
      * The primary key associated with the table.
@@ -43,6 +43,11 @@ class Siswa extends Model
      */
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', '_id');
+    }
+
     public function absen()
     {
         return $this->hasMany(Absensi::class, 'siswa_id','_id');
@@ -55,7 +60,7 @@ class Siswa extends Model
 
     public function kelas()
     {
-        return $this->belongsTo(Kelasjurusan::class, 'kelasjurusan.kelasjurusan_kode' ,'kelasjurusan_kode');
+        return $this->belongsTo(Kelasjurusan::class, 'kelas_id' ,'_id');
     }
 
     public function timelineAkademik()

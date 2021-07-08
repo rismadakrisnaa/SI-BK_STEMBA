@@ -20,9 +20,9 @@
                             <label class="col-sm-2">WALI KELAS</label>
                             <div class="col-sm-10">
                                 @if (count($col_guru))
-                                    <select class="form-control" name="guru_nip">
+                                    <select class="form-control" name="guru_id">
                                         @foreach ($col_guru as $guru)
-                                            <option value="{{ $guru->guru_nip }}">{{ $guru->guru_nip }} - {{ $guru->guru_nama }}</option>
+                                            <option value="{{ $guru->_id }}">{{ $guru->guru_nip }} - {{ $guru->guru_nama }}</option>
                                         @endforeach
                                     </select>
                                 @else

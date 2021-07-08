@@ -4,6 +4,7 @@ use App\Http\Controllers\AbsenesiController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GuruBkController;
 use App\Http\Controllers\HomeVisitController;
+use App\Http\Controllers\OrangTuaController;
 use App\Http\Controllers\PanggilanOrtuController;
 use App\Http\Controllers\PelaksanaanKonseling;
 use App\Http\Controllers\PelaksanaanKonselingController;
@@ -37,6 +38,10 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update']);
     Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update_avatar']);
     Route::resource('siswa', App\Http\Controllers\SiswaController::class);
+
+    Route::get('get_orang_tua', [App\Http\Controllers\OrangTuaController::class,'ajax']);
+    Route::resource('orang-tua', OrangTuaController::class);
+
     Route::resource('guru', App\Http\Controllers\GuruController::class);
     Route::resource('gurubk', App\Http\Controllers\GuruBkController::class);
     Route::get('get_guru_bk', [\App\Http\Controllers\GuruBkController::class, 'ajax']);

@@ -15,6 +15,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\GuruBk;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class GuruController extends Controller
 {
@@ -25,7 +28,8 @@ class GuruController extends Controller
      */
     public function index()
     {
-        return view('guru.index');
+        $allGuru=Guru::all();
+        return view('guru.index',compact('allGuru'));
     }
 
     public function ajax()
@@ -48,7 +52,6 @@ class GuruController extends Controller
      */
     public function create()
     {
-
         return view('guru.create');
     }
 
@@ -62,29 +65,31 @@ class GuruController extends Controller
     {
         $request->validate(
             [
-                'guru_nidn' => 'required|unique:col_guru,guru_nidn',
+                'guru_nidn' => 'required|unique:guru,guru_nidn',
                 'guru_nama' => 'required',
-                'kelasjurusan_kode' => 'sometimes'
+                'kelasjurusan_kode' => 'sometimes',
+                'email'=>      'required|email|unique:users,email'
             ],
             [
                 'guru_nidn.required' => 'Nomor Induk Guru Nasional Wajib Diisi',
                 'guru_nama.required' => 'Nama Guru Wajib Diisi',
+                'email.unique'       => 'Email Sudah Digunakan orang lain',
             ]
         );
 
-        $aktif = 1;
+        $data = $request->except('guru_nidn','input');
+        $data['guru_aktif']=1;
+        $data['user_id']=User::create([
+            'email'=>$request->email,
+            'name'=>$request->guru_nama,
+            'password'=>Hash::make('passwordguru'),
+            'role'=>'guru',
+            'avatar'=>'/images/avatars/default.png'
+        ])->id;
 
         Guru::firstOrCreate(
             ['guru_nidn' => $request->guru_nidn],
-            [
-                'guru_nip' => $request->guru_nip,
-                'guru_nama' => $request->guru_nama,
-                'guru_gelar_depan' => $request->guru_gelar_depan,
-                'guru_gelar_belakang' => $request->guru_gelar_belakang,
-                'guru_aktif' => $aktif,
-                // 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                // 'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
-            ]
+            $data
         );
 
         $request->session()->flash('alert-success', 'Data berhasil disimpan!');
@@ -111,9 +116,8 @@ class GuruController extends Controller
      */
     public function edit($id)
     {
-        $row = Guru::find($id);
-        // $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
-        return view('guru.edit', compact('row'));
+        $guru = Guru::find($id);
+        return view('guru.edit', compact('guru'));
     }
 
     /**
@@ -123,43 +127,42 @@ class GuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Guru $guru)
     {
         $request->validate(
             [
                 'guru_nidn' => 'required',
                 'guru_nama' => 'required',
-                // 'kelasjurusan_kode' => 'required'
+                'email'     => 'required|email|unique:users,email,'.$guru->user_id.',_id'
             ],
             [
                 'guru_nidn.required' => 'Nomor Induk Guru Nasional Wajib Diisi',
                 'guru_nama.required' => 'Nama Guru Wajib Diisi',
-                // 'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
+                'email.unique'       => 'Email Sudah Digunakan orang lain',
             ]
         );
 
-        $row = Guru::findOrFail($id);
-        $any = Guru::where([['guru_nidn', '=', $request->guru_nidn], ['_id', '<>', $id]])->first();
-        // $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
-        $aktif = intval($request->guru_aktif);
+        $user = User::find($guru->user_id);
+        $user->update([
+            'name'  => $request->guru_nama,
+            'email' => $request->email,
+        ]);
 
-        if ($row != null && $any === null) {
-            $row->update([
-                'guru_nip' => $request->guru_nip,
-                'guru_nidn' => $request->guru_nidn,
-                'guru_nama' => $request->guru_nama,
-                'guru_gelar_depan' => $request->guru_gelar_depan,
-                'guru_gelar_belakang' => $request->guru_gelar_belakang,
-                'guru_aktif' => $aktif,
-                // 'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                // 'jenispelanggaran' => ['jenispelanggaran_kode' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_kode'], 'jenispelanggaran_nama' => $col_kelasjurusan->jenispelanggaran['jenispelanggaran_nama']]
-            ]);
-            $request->session()->flash('alert-success', 'Data berhasil diperbarui!');
-        } else {
-            $request->session()->flash('alert-warning', 'Data gagal diperbarui!');
+        $data = $request->except('guru_nidn','input');
+        $guru->update($data);
+
+        return redirect('/dashboard/guru')->with('alert-success','Data Guru berhasil diperbarui!');
+    }
+
+    public function destroy(Guru $guru)
+    {
+        $user=User::find($guru->user_id);
+        if($user->avatar!='/images/avatars/default.png'){
+            unlink($user->avatar);
         }
-
-        return redirect('/dashboard/guru');
+        $user->delete();
+        $guru->delete();
+        return back()->with('alert-success', 'Guru berhasil dihapus.');
     }
 
 }

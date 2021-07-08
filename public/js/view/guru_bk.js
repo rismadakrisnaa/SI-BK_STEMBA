@@ -21,6 +21,8 @@ function editData(id) {
             for(i in guru){
                 $('#'+i).val(guru[i])
             }
+            $('#jk1').attr('checked',guru.jenis_kelamin=='Laki-laki');
+            $('#jk2').attr('checked',guru.jenis_kelamin=='Perempuan');
             $('#is_active').attr('checked',typeof guru.is_active != 'undefined');
         }
     })

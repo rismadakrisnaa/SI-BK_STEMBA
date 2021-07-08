@@ -35,9 +35,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $row->kelasjurusan_nama }} (<span class="font-weight-bold">{{ $row->kelasjurusan_kode }}</span>)</td>
-                                    <td>{{ !empty($row->guru['guru_gelar_depan']) ? $row->guru['guru_gelar_depan'] . '. ' : '' }}
-                                        {{ $row->guru['guru_nama'] }}{{ !empty($row->guru['guru_gelar_belakang']) ? ', ' . $row->guru['guru_gelar_belakang'] : '' }}
-                                    </td>
+                                    <td>{{ $row->waliKelas->getFullName()}}</td>
                                     <td><img src="{{ asset('images') }}/{{ $row->kelasjurusan_aktif == 1 ? 1 : 0 }}.png" alt="[IMG]"></td>
                                     <td>
                                         <div class="d-flex float-right">
@@ -50,7 +48,7 @@
                                                 class="btn btn-sm btn-warning ml-2">
                                                 <i class="fa fa-edit"></i>
                                                 <span class="d-none d-lg-inline">EDIT</span>
-                                            </a> 
+                                            </a>
                                             <form action="{{ url('/dashboard/kelasjurusan/' . $row->_id) }}" method="POST"
                                                 class="delete-confirm">
                                                 <input type="hidden" name="_method" value="DELETE">
@@ -59,7 +57,7 @@
                                                     <i class="fa fa-trash"></i>
                                                     <span class="d-none d-lg-inline">HAPUS</span>
                                                 </button>
-                                            </form>                                          
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Kelasjurusan;
 use App\Models\Guru;
+use App\Models\OrangTua;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -28,7 +31,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view('siswa.index');
+        $allSiswa=Siswa::latest()->get();
+        return view('siswa.index',compact('allSiswa'));
     }
 
     /**
@@ -38,9 +42,11 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
-        $col_guru = Guru::where('guru_aktif', 1)->orderBy('guru_nama')->get();
-        return view('siswa.create', compact('col_kelasjurusan', 'col_guru'));
+        $kelas = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
+        $agama=['Islam','Kristen','Katolik','Hindu','Budha','Khonghucu','Lainya'];
+        $pekerjaan='Tidak Bekerja,Nelayan,Petani,Peternak,PNS/TNI/POLRI,Karyawan Swasta,Pedagang Kecil,Pedagang Besar,Wiraswasta,Buruh,Pensiunan,Tenaga Kerja Indonesia,Tidak dapat diterapkan,Sudah Meninggoy,Lainya';
+        $pekerjaan=explode(',',$pekerjaan);
+        return view('siswa.create', compact('kelas','agama','pekerjaan'));
     }
 
     /**
@@ -53,42 +59,40 @@ class SiswaController extends Controller
     {
         $request->validate(
             [
-                'siswa_nim' => 'bail|required|unique:col_siswa,siswa_nim',
+                'siswa_nis' => 'bail|required|unique:siswa,siswa_nis',
+                'siswa_nisn' => 'bail|required|unique:siswa,siswa_nisn',
                 'siswa_nama' => 'required',
-                'kelasjurusan_kode' => 'required',
-                'guru_nidn' => 'required'
+                'kelas_id' => 'required',
+                'email' => 'required|email|unique:users,email'
             ],
             [
-                'siswa_nim.required' => 'NIM Wajib Diisi',
+                'siswa_nis.required' => 'NIS Wajib Diisi',
+                'siswa_nisn.required' => 'NISN Wajib Diisi',
                 'siswa_nama.required' => 'Nama Wajib Diisi',
-                'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
-                'guru_nidn.required' => 'Pembimbing Akademik wajib dipilih'
+                'kelas_id.required' => 'Program Studi wajib dipilih',
+                'email.unique'     => 'Email ini sudah dipakai'
             ]
         );
+        $fileName = 'default.png';
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $fileName = time().'.'.$avatar->getClientOriginalExtension();
+            $avatar->move(public_path('/images/avatars/'),$fileName);
+        }
 
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
-        $col_guru = Guru::where('guru_nidn', $request->guru_nidn)->first();
-
-        $aktif = 1;
+        $data=$request->except('_token','input');
+        $data['siswa_aktif']=1;
+        $data['user_id']=User::create([
+            'email'=>$request->email,
+            'name'=>$request->siswa_nama,
+            'password'=>Hash::make('passwordsiswa'),
+            'role'=>'siswa',
+            'avatar'=>'/images/avatars/'.$fileName
+        ])->_id;
 
         Siswa::firstOrCreate(
-            ['siswa_nim' => $request->siswa_nim],
-            [
-                'siswa_nama' => $request->siswa_nama,
-                'siswa_jk' => $request->siswa_jk,
-                'siswa_tmplahir' => $request->siswa_tmplahir,
-                'siswa_tgllahir' => $request->siswa_tgllahir,
-                'siswa_alamat' => $request->siswa_alamat,
-                'siswa_hp' => $request->siswa_hp,
-                'siswa_aktif' => $aktif,
-                'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                'guru' => [
-                    'guru_nidn' => $col_guru->guru_nidn,
-                    'guru_nama' => $col_guru->guru_nama,
-                    'guru_gelar_depan' => $col_guru->guru_gelar_depan,
-                    'guru_gelar_belakang' => $col_guru->guru_gelar_belakang,
-                ]
-            ]
+            ['siswa_nis' => $request->siswa_nis],
+            $data
         );
 
         $request->session()->flash('alert-success', 'Data berhasil disimpan!');
@@ -108,31 +112,19 @@ class SiswaController extends Controller
         return view('siswa.show', compact('row','absensi'));
     }
 
-    //public function search(Request $request)
-    //{
-      //  $cari = $request->get('$cari');
-        //$col_siswa = Siswa:: all();
-
-        //if($request->has('cari')){
-          //  $col_siswa = Siswa::where('siswa_nama','LIKE',"%".$request->cari."%")->get();
-
-        //}
-        //return view ('siswa.show',compact('col_siswa'))
-
-    //}
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        $row = Siswa::findOrFail($id);
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
-        $col_guru = Guru::where('guru_aktif', 1)->orderBy('guru_nama')->get();
-        return view('siswa.edit', compact('row', 'col_kelasjurusan', 'col_guru'));
+        $kelas = Kelasjurusan::where('kelasjurusan_aktif', 1)->orderBy('kelasjurusan_nama')->get();
+        $agama=['Islam','Kristen','Katolik','Hindu','Budha','Khonghucu','Lainya'];
+        $pekerjaan='Tidak Bekerja,Nelayan,Petani,Peternak,PNS/TNI/POLRI,Karyawan Swasta,Pedagang Kecil,Pedagang Besar,Wiraswasta,Buruh,Pensiunan,Tenaga Kerja Indonesia,Tidak dapat diterapkan,Sudah Meninggoy,Lainya';
+        $pekerjaan=explode(',',$pekerjaan);
+        return view('siswa.edit', compact('siswa', 'kelas', 'agama', 'pekerjaan'));
     }
 
     /**
@@ -142,54 +134,44 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswa $siswa)
     {
         $request->validate(
             [
-                'siswa_nim' => 'required',
+                'siswa_nis' => 'bail|required',
+                'siswa_nisn' => 'bail|required',
                 'siswa_nama' => 'required',
-                'kelasjurusan_kode' => 'required',
-                'guru_nidn' => 'required'
+                'kelas_id' => 'required',
+                'email' => 'bail|required|email|unique:users,email,'.$siswa->user_id.',_id'
             ],
             [
-                'siswa_nim.required' => 'NIM Wajib Diisi',
+                'siswa_nis.required' => 'NIS Wajib Diisi',
+                'siswa_nisn.required' => 'NISN Wajib Diisi',
                 'siswa_nama.required' => 'Nama Wajib Diisi',
-                'kelasjurusan_kode.required' => 'Program Studi wajib dipilih',
-                'guru_nidn.required' => 'Pembimbing Akademik wajib dipilih'
+                'kelas_id.required' => 'Program Studi wajib dipilih',
+                'email.unique'     => 'Email ini sudah dipakai'
             ]
-
         );
 
-        $row = Siswa::findOrFail($id);
-        $any = Siswa::where([['siswa_nim', '=', $request->siswa_nim], ['_id', '<>', $id]])->first();
-        $col_kelasjurusan = Kelasjurusan::where('kelasjurusan_kode', $request->kelasjurusan_kode)->first();
-        $col_guru = Guru::where('guru_nidn', $request->guru_nidn)->first();
-        $aktif = intval($request->siswa_aktif);
-
-        if ($row != null && $any === null) {
-            $row->update([
-                'siswa_nim' => $request->siswa_nim,
-                'siswa_nama' => $request->siswa_nama,
-                'siswa_jk' => $request->siswa_jk,
-                'siswa_tmplahir' => $request->siswa_tmplahir,
-                'siswa_tgllahir' => $request->siswa_tgllahir,
-                'siswa_alamat' => $request->siswa_alamat,
-                'siswa_hp' => $request->siswa_hp,
-                'siswa_aktif' => $aktif,
-                'kelasjurusan' => ['kelasjurusan_kode' => $col_kelasjurusan->kelasjurusan_kode, 'kelasjurusan_nama' => $col_kelasjurusan->kelasjurusan_nama],
-                'guru' => [
-                    'guru_nidn' => $col_guru->guru_nidn,
-                    'guru_nama' => $col_guru->guru_nama,
-                    'guru_gelar_depan' => $col_guru->guru_gelar_depan,
-                    'guru_gelar_belakang' => $col_guru->guru_gelar_belakang,
-                ]
-            ]);
-            $request->session()->flash('alert-success', 'Data berhasil diperbarui!');
-        } else {
-            $request->session()->flash('alert-warning', 'Data gagal diperbarui!');
+        $data=$request->except('_token','_method','input');
+        $user=User::find($siswa->user_id);
+        if($request->hasFile('avatar')){
+            $avatar=$request->file('avatar');
+            if($user->avatar!='/images/avatars/default.png'){
+                unlink($user->avatar);
+            }
+            $fileName=time().'.'.$avatar->getClientOriginalExtension();
+            $avatar->move(public_path('/images/avatars/'),$fileName);
+            $user->update(['avatar'=>'/images/avatars/'.$fileName]);
         }
+        $user->update([
+            'email'=>$request->email,
+            'name'=>$request->siswa_nama
+        ]);
 
-        return redirect('/dashboard/siswa');
+        $siswa->update($data);
+
+        return redirect('/dashboard/siswa')->with('alert-success','Siswa berhasil diperbarui.');
     }
 
     /**
@@ -201,6 +183,13 @@ class SiswaController extends Controller
     public function destroy(Request $request, $id)
     {
         $row = Siswa::findOrFail($id);
+        $user=User::find($row->user_id);
+        if($user->avatar!='/images/avatars/default.png'){
+            if(file_exists($user->avatar)){
+                unlink($user->avatar);
+            }
+        }
+        $user->delete();
         $row->delete();
 
         $request->session()->flash('alert-success', 'Data berhasil dihapus!');

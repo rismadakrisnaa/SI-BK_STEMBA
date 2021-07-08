@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\GuruBk;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class GuruBkController extends Controller
 {
@@ -43,10 +45,22 @@ class GuruBkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim'=>'required|numeric',
-            'name'=>'required|string',
-        ]);
-        GuruBk::create($request->all());
+                'nim'=>'required|numeric',
+                'name'=>'required|string',
+                'email'=>'required|email|unique:users,email'
+            ],
+            [
+                'email.unique'=>'Email sudah pernah digunakan'
+            ]
+        );
+        $data = $request->all();
+        $data['user_id']=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make('passwordgurubk'),
+            'avatar'=>'/images/avatars/default.png'
+        ])->_id;
+        GuruBk::create($data);
         return back()->with('alert-success', 'Guru BK berhasil ditambahkan.');
     }
 
@@ -82,10 +96,20 @@ class GuruBkController extends Controller
     public function update(Request $request, GuruBk $gurubk)
     {
         $request->validate([
-            'nip'=>'required|numeric',
-            'name'=>'required|string',
-        ]);
+                'nip'=>'required|numeric',
+                'name'=>'required|string',
+                'email'=>'required|email|unique:users,email,'.$gurubk->user_id.',_id'
+            ],
+            [
+                'email.unique'=>'Email sudah pernah digunakan'
+            ]
+        );
         $is_active=$request->has('is_active')?1:0;
+        $user = User::find($gurubk->user_id);
+        $user->update([
+            'name'  => $request->guru_nama,
+            'email' => $request->email,
+        ]);
         $request=$request->all();
         $request['is_active']=$is_active;
         $gurubk->update($request);
@@ -100,7 +124,13 @@ class GuruBkController extends Controller
      */
     public function destroy(GuruBk $gurubk)
     {
-        $oldName = $gurubk->delete();
+        $user=User::find($gurubk->user_id);
+        if($user->avatar!='/images/avatars/default.png'){
+            unlink($user->avatar);
+        }
+        $user->delete();
+        $oldName = $gurubk->name;
+        $gurubk->delete();
         return back()->with('alert-success', 'Data Guru BK '.$oldName.' berhasil dihapus.');
     }
 }

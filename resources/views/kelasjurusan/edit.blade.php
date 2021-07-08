@@ -5,6 +5,8 @@
         <h1 class="h3 mb-0 text-gray-800">Edit Data Program Studi</h1>
     </div>
 
+    @include('layouts.includes.errors')
+
     <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">
@@ -20,9 +22,9 @@
                             <label class="col-sm-2">WALI KELAS</label>
                             <div class="col-sm-10">
                                 @if (count($col_guru))
-                                    <select class="form-control" name="guru_nip">
+                                    <select class="form-control" name="guru_id">
                                         @foreach ($col_guru as $guru)
-                                            <option value="{{ $guru->guru_nip }}" {{ $selected = $guru->guru_nip == $row->guru_nip ? 'selected' : '' }}>
+                                            <option value="{{ $guru->_id }}" {{ $guru->_id == $row->guru_id ? 'selected' : '' }}>
                                                 {{ $guru->guru_nip }} - {{ $guru->guru_nama }}
                                             </option>
                                         @endforeach

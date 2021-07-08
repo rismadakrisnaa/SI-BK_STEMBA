@@ -116,7 +116,7 @@
             });
             $('input[type=file]').on('change',function(){
                 //get the file name
-                var fileName = $(this).val();
+                var fileName = $(this)[0].files[0].name
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })

@@ -55,24 +55,23 @@ class KelasjurusanController extends Controller
     {
         $request->validate(
             [
-                'guru_nip' => 'required',
+                'guru_id' => 'required',
                 'kelasjurusan_kode' => 'bail|required|unique:col_kelasjurusan,kelasjurusan_kode',
                 'kelasjurusan_nama' => 'required'
             ],
             [
-                'guru_nip.required' => 'Wali Kelas wajib dipilih',
+                'guru_id.required' => 'Wali Kelas wajib dipilih',
                 'kelasjurusan_kode.required' => 'Kode Program Studi Wajib Diisi',
                 'kelasjurusan_nama.required' => 'Nama Program Studi Wajib Diisi'
             ]
         );
 
-        $col_guru = Guru::where('guru_nip', $request->guru_nip)->first();
         $aktif = 1;
 
         Kelasjurusan::firstOrCreate(
             ['kelasjurusan_kode' => $request->kelasjurusan_kode],
             [
-                'guru' => ['guru_nip' => $col_guru->guru_nip, 'guru_nama' => $col_guru->guru_nama],
+                'guru_id' => $request->guru_id,
                 'kelasjurusan_kode' => $request->kelasjurusan_kode,
                 'kelasjurusan_nama' => $request->kelasjurusan_nama,
                 'kelasjurusan_aktif' => $aktif
@@ -121,12 +120,12 @@ class KelasjurusanController extends Controller
 
         $request->validate(
             [
-                'guru_nip' => 'required',
+                'guru_id' => 'required',
                 'kelasjurusan_kode' => 'required',
                 'kelasjurusan_nama' => 'required'
             ],
             [
-                'guru_nip.required' => 'Wali Kelas wajib dipilih',
+                'guru_id.required' => 'Wali Kelas wajib dipilih',
                 'kelasjurusan_kode.required' => 'Kode Program Studi Wajib Diisi',
                 'kelasjurusan_nama.required' => 'Nama Program Studi Wajib Diisi'
             ]
@@ -134,22 +133,21 @@ class KelasjurusanController extends Controller
 
         $row = Kelasjurusan::findOrFail($id);
         $any = Kelasjurusan::where([['kelasjurusan_kode', '=', $request->kelasjurusan_kode], ['_id', '<>', $id]])->first();
-        $col_guru = Guru::where('guru_nip', $request->guru_nip)->first();
-        $aktif = intval($request->kelasjurusan_aktif);
 
         if ($row != null && $any === null) {
-            $row->update([
-                'guru' => ['guru_nip' => $col_guru->guru_nip, 'guru_nama' => $col_guru->guru_nama],
-                'kelasjurusan_kode' => $request->kelasjurusan_kode,
-                'kelasjurusan_nama' => $request->kelasjurusan_nama,
-                'kelasjurusan_aktif' => $aktif
-            ]);
+            $row->update($request->except('_token','_method','input'));
             $request->session()->flash('alert-success', 'Data berhasil diperbarui!');
         } else {
             $request->session()->flash('alert-warning', 'Data gagal diperbarui!');
         }
 
         return redirect('/dashboard/kelasjurusan');
+    }
+
+    public function destroy($kelasjurusan)
+    {
+        Kelasjurusan::find($kelasjurusan)->delete();
+        return back()->with('alert-success','Data Kelas berhasil dihapus!');
     }
 
 }

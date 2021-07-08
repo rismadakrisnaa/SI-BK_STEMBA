@@ -20,7 +20,7 @@ class Guru extends Model
 {
     use HasFactory;
 
-    protected $collection = 'col_guru';
+    protected $collection = 'guru';
 
     /**
      * The primary key associated with the table.
@@ -42,4 +42,16 @@ class Guru extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelasjurusan::class, 'guru_id', '_id');
+    }
+
+    public function getFullName()
+    {
+        $gelarDepan    = !empty($this->guru_gelar_depan) ? $this->guru_gelar_depan . '. ' : '';
+        $gelarBelakang = !empty($this->guru_gelar_belakang) ? ', ' . $this->guru_gelar_belakang : '';
+        return $gelarDepan.$this->guru_nama.$gelarBelakang;
+    }
 }
