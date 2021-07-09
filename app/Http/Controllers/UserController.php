@@ -36,7 +36,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        
+        $role=['admin','siswa','guru','gurubk','wali','kepala sekolah'];
+        return view('user.create', compact('role'));
     }
 
     /**
@@ -50,12 +52,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'bail|required|max:50',
             'email' => 'required|email|unique:users|max:50',
+            'role' => 'required|max:50',
             'password' => 'required|confirmed|max:50'
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password)
         ]);
 
