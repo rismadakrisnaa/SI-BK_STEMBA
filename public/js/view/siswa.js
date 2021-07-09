@@ -1,8 +1,11 @@
-function tambahWali(wali) {
+var redirect;
+function tambahWali(wali, href=false) {
+    redirect=href;
     $('#waliModalLabel').text('Tambah Data Orang Tua Siswa ('+wali+')');
-    $('#nama-label').text('Nama '+wali);
+    $('#name-label').text('Nama '+wali);
     $('#no_telp-label').text('Telp/HP '+wali);
     $('#email-label').text('Email '+wali);
+    $('#button').attr('onclick','save()');
 }
 
 function initOrangTua() {
@@ -23,9 +26,10 @@ initOrangTua();
 
 function save() {
     let form = new FormData();
-    form.append('name',$('#nama').val());
+    form.append('name',$('#name').val());
     form.append('no_telp',$('#no_telp').val());
     form.append('email',$('#email').val());
+    form.append('alamat',$('#alamat').val());
     form.append('_token',$('input[name=_token]').val());
     $.ajax({
         url: base_url+'/dashboard/orang-tua',
@@ -46,7 +50,11 @@ function save() {
             $('#waliModal').removeClass('show')[0].style='display:none';
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove()
-            initOrangTua();
+            if(!redirect){
+                initOrangTua();
+            }else{
+                window.location.href = base_url+'/dashboard/orang-tua';
+            }
         },
         error:function({responseJSON}){
             console.log(responseJSON.errors);

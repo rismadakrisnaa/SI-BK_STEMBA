@@ -16,7 +16,8 @@ class OrangTuaController extends Controller
      */
     public function index()
     {
-        //
+        $ortu=OrangTua::all();
+        return view('orang-tua.index',compact('ortu'));
     }
 
     public function ajax()
@@ -67,7 +68,7 @@ class OrangTuaController extends Controller
      */
     public function show(OrangTua $orangTua)
     {
-        //
+        return request()->ajax()?response()->json($orangTua):abort(403);
     }
 
     /**
@@ -90,7 +91,20 @@ class OrangTuaController extends Controller
      */
     public function update(Request $request, OrangTua $orangTua)
     {
-        //
+        $request->validate([
+            'email'=>'required|email|unique:users,email,'.$orangTua->user->_id.',_id',
+            'name'=>'required',
+            'no_telp'=>'required|numeric',
+            'alamat'=>'required'
+        ]);
+        $data=$request->except('_token','_method','input');
+        $orangTua->user->update([
+            'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        $orangTua->update($data);
+        $allOrtu=OrangTua::all();
+        return response()->json(['data'=>$allOrtu,'message'=>'Data Orang Tua berhasil diperbarui!']);
     }
 
     /**
@@ -101,6 +115,13 @@ class OrangTuaController extends Controller
      */
     public function destroy(OrangTua $orangTua)
     {
-        //
+        if($orangTua->user->avatar!='/images/avatars/default.png'){
+            if(file_exists($orangTua->user->avatar)){
+                unlink($orangTua->user->avatar);
+            }
+        }
+        $orangTua->user->delete();
+        $orangTua->delete();
+        return back()->with('alert-success','Data Orang Tua berhasil dihapus!');
     }
 }

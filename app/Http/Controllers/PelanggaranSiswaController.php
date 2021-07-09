@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PelanggaranSiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
 class PelanggaranSiswaController extends Controller
@@ -20,7 +21,7 @@ class PelanggaranSiswaController extends Controller
 
     public function ajax(Request $request)
     {
-        if(!$request->ajax())return abort(403,'Permintaan harus ajax');
+        // if(!$request->ajax())return abort(403,'Permintaan harus ajax');
         $model=PelanggaranSiswa::with(['pelanggaran','siswa','siswa.kelas']);
 
         if($request->kelas!='')
@@ -31,6 +32,9 @@ class PelanggaranSiswaController extends Controller
             $model->orderBy('point',$request->orderBy);
         }
         $model=collect($model->get());
+        $model=$model->filter(function($siswa){
+            return Gate::allows('siswa-ku',$siswa->siswa);
+        });
         foreach($model as $m => $d){
             $model[$m]['no']=$m+1;
         }

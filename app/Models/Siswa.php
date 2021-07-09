@@ -84,6 +84,11 @@ class Siswa extends Model
         return $this->hasMany(HomeVisit::class, 'siswa_id', '_id');
     }
 
+    public function orangTua()
+    {
+        return $this->belongsTo(OrangTua::class, 'orang_tua_id', '_id');
+    }
+
     public function panggilanOrtu()
     {
         return $this->hasMany(PanggilanOrtu::class, 'siswa_id', '_id');

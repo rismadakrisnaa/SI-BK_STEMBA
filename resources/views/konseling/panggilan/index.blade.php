@@ -26,10 +26,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jadwal Konseling</th>
-                                <th>Nama Siswa</th>
                                 <th>Nama Guru BK</th>
                                 <th>Perihal Konseling</th>
-                                <th>Hasil Konseling</th>
+                                <th>Link Virtual Meet</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -38,27 +37,20 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
-                                    <td>{{$peserta->siswa->siswa_nama}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>{{$peserta->perihal_bimbingan}}</td>
-                                    <td>{{$peserta->hasil_konseling}}</td>
+                                    <td class="text-primary">@if (date('Y-m-d')>=$peserta->jadwal){{$peserta->link}}@endif</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            @can('gurubk')
-                                            <a href="{{url('/dashboard/hasil-konseling/'.$peserta->_id)}}" class="btn btn-sm btn-warning mr-2">
+                                            @if (date('Y-m-d')>=$peserta->jadwal)
+                                            <a target="_blank" href="{{$peserta->link}}" class="btn btn-sm btn-primary mr-2">
                                                 <div class="fas fa-edit"></div>
-                                                HASIL
+                                                GO TO LINK
                                             </a>
-                                            @endcan
-                                            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
-                                                <div class="fas fa-info-circle"></div>
-                                                DETAIL
-                                            </button>
-                                            <form action="hasil-konseling/cetak" method="post" target="_blank">
-                                                @csrf
-                                                @method('put')
-                                                <button class="btn btn-sm btn-success ml-2"><i class="fas fa-file-pdf"></i> Cetak</button>
-                                            </form>
+                                            @else
+                                            <button class="btn btn-secondary btn-disable">
+                                                <i class="fas fa-sign-out-alt"></i><br> Belum waktunya</button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -74,18 +66,11 @@
 @endsection
 
 @push('js')
-    <script>
-        $('#detail-updated_at').parent().remove();
-        $('#detail-perihal_bimbingan').parent().after(`
-        <tr>
-            <td>Hasil Konseling</td><td id="detail-hasil_konseling"></td>
-        </tr>`);
-    </script>
     <script src="{{asset('js/view/pemesanan_jadwal_konseling.js')}}"></script>
     <script>
         $('#pemesanan-jadwal-konseling').removeClass('active');
         $('#detailPesananModalLabel').text('Detail History Konseling');
         $('#detailPesananModal .modal-dialog').addClass('modal-lg');
-        $('#hasil-konseling').addClass('active');
+        $('#panggilan-konseling').addClass('active');
     </script>
 @endpush

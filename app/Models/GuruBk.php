@@ -17,6 +17,11 @@ class GuruBk extends Model
 
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', '_id');
+    }
+
     public function pemesananJadwalKonseling()
     {
         return $this->hasMany(PemesananJadwalKonseling::class, 'guru_bk_id','_id');

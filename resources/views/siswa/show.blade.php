@@ -47,11 +47,15 @@
     </tr>
     <tr>
         <th>STATUS DALAM KELUARGA</th>
+<<<<<<< HEAD
         <td>{{ $row->status_anak }}</td>
     </tr>
     <tr>
         <th>ANAK KE</th>
         <td>{{ $row->anak_ke??'' }}</td>
+=======
+        <td>{{ $row->status_anak }} Anak Ke - {{$row->anak_ke}}</td>
+>>>>>>> 93e9ac7626cac3c1589b1f9d3349259b4e700388
     </tr>
     <tr>
         <th>ALAMAT</th>
@@ -66,6 +70,7 @@
         <td>{{ $row->email }}</td>
     </tr>
     <tr>
+<<<<<<< HEAD
         <th>NAMA AYAH</th>
         <td>{{ $row->nama_ayah }}</td>
     </tr><tr>
@@ -85,6 +90,18 @@
     </tr><tr>
         <th>PEKERJAAN WALI</th>
         <td>{{ $row->pekerjaan_wali }}</td>
+=======
+        <th>DATA AYAH</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_ayah??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_ayah}}</b></td>
+    </tr>
+    <tr>
+        <th>DATA IBU</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_ibu??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_ibu}}</b></td>
+    </tr>
+    <tr>
+        <th>DATA WALI</th>
+        <td>Nama: <b class="text-danger">{{ $row->nama_wali??'' }}</b>, Pekerjaan: <b class="text-danger">{{$row->pekerjaan_wali}}</b>, No Telp/HP: <b class="text-danger">{{$row->no_telp_wali??''}}</b></td>
+>>>>>>> 93e9ac7626cac3c1589b1f9d3349259b4e700388
     </tr>
     <tr>
         <th>KELAS</th>

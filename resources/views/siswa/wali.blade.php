@@ -13,20 +13,24 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="nama" id="nama-label">Nama Wali</label>
-                <input type="text" max="nama" id="nama" class="form-control">
+                <label for="name" id="name-label">Nama Wali</label>
+                <input type="text" name="name" id="name" class="form-control">
+                <div id="name-error"></div>
             </div>
             <div class="form-group">
                 <label for="no_telp" id="no_telp-label">Telp/HP Wali</label>
-                <input type="text" max="no_telp" id="no_telp" class="form-control">
+                <input type="text" name="no_telp" id="no_telp" class="form-control">
+                <div id="no_telp-error"></div>
             </div>
             <div class="form-group">
                 <label for="email" id="email-label">Email Wali</label>
-                <input type="text" max="email" id="email" class="form-control">
+                <input type="text" name="email" id="email" class="form-control">
+                <div id="email-error"></div>
             </div>
             <div class="form-group">
                 <label for="alamat" id="alamat-label">Alamat Wali</label>
-                <textarea rows="2" class="form-control"></textarea>
+                <textarea rows="2" id="alamat" name="alamat" class="form-control"></textarea>
+                <div id="alamat-error"></div>
             </div>
         </div>
         <div class="modal-footer">

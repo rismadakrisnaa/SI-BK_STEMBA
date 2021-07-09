@@ -64,4 +64,19 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany(Siswa::class, 'user_id', '_id');
     }
+
+    public function wali()
+    {
+        return $this->hasMany(OrangTua::class,'user_id','_id');
+    }
+
+    public function guru()
+    {
+        return $this->hasMany(Guru::class, 'user_id','_id');
+    }
+
+    public function gurubk()
+    {
+        return $this->hasMany(GuruBk::class, 'user_id', '_id');
+    }
 }

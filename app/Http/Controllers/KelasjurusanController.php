@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Kelasjurusan;
+use Illuminate\Support\Facades\Gate;
 
 class KelasjurusanController extends Controller
 {
@@ -31,7 +32,12 @@ class KelasjurusanController extends Controller
 
     public function ajax()
     {
-        return request()->ajax()?response()->json(Kelasjurusan::all()):abort(403, 'permintaan harus ajax');
+        $kelas=Kelasjurusan::all();
+        $kelas=$kelas->filter(function($class,$index){
+            return Gate::allows('kelas-ku',$class);
+        })->toArray();
+        $kelas=array_values($kelas);
+        return request()->ajax()?response()->json($kelas):abort(403, 'permintaan harus ajax');
     }
 
     /**

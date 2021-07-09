@@ -7,6 +7,7 @@ use App\Models\Kelasjurusan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class AbsensiController extends Controller
 {
@@ -18,6 +19,9 @@ class AbsensiController extends Controller
     public function index()
     {
         $classes=Kelasjurusan::all();
+        $classes=$classes->filter(function($item,$index){
+            return Gate::allows('kelas-ku',$item);
+        });
         return view('absensi.index',compact('classes'));
     }
 

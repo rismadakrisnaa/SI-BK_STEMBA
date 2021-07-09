@@ -35,7 +35,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$class->kelasjurusan_nama}}</td>
-                                        <td>{{$class->guru['guru_nama']}}</td>
+                                        <td>{{$class->waliKelas->guru_nama}}</td>
                                         <td class="pl-5 font-weight-bold">{{count($class->siswa)}}</td>
                                         <td>{{$class->kelasjurusan_aktif}}</td>
                                         <td>

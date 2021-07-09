@@ -7,9 +7,14 @@ use App\Models\Kelasjurusan;
 use App\Models\PemesananJadwalKonseling;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PelaksanaanKonselingController extends Controller
 {
+    public function __construct()
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,11 +31,26 @@ class PelaksanaanKonselingController extends Controller
 
     public function hasil()
     {
-        $siswa=Siswa::with('kelas')->get();
-        $guruBk = GuruBk::all();
-        $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->get();
-        $classes = Kelasjurusan::all();
-        return view('konseling.history.index',compact('guruBk','pesertaKonseling','classes','siswa'));
+        $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->where('status','approve')->get();
+        $pesertaKonseling = $pesertaKonseling->filter(function($konseling,$index){
+            if(Gate::allows('gurubk')){
+                return $konseling->guru_bk_id==auth()->user()->gurubk[0]->_id;
+            }
+            return $konseling->siswa_id==auth()->user()->siswa[0]->_id;
+        });
+        return view('konseling.history.index',compact('pesertaKonseling'));
+    }
+
+    public function edit_hasil(PemesananJadwalKonseling $konseling)
+    {
+        return view('konseling.history.hasil', compact('konseling'));
+    }
+
+    public function panggilan()
+    {
+        $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->where('status','approve')
+                                                      ->where('siswa_id',auth()->user()->siswa[0]->_id)->get();
+        return view('konseling.panggilan.index',compact('pesertaKonseling'));
     }
 
     public function cetak(Request $request)
