@@ -97,7 +97,7 @@ class GuruBkController extends Controller
     public function update(Request $request, GuruBk $gurubk)
     {
         $request->validate([
-                'nip'=>'required|numeric',
+                'nip'=>'sometimes|numeric',
                 'name'=>'required|string',
                 'email'=>'required|email|unique:users,email,'.$gurubk->user_id.',_id'
             ],
