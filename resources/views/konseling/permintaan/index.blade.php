@@ -27,6 +27,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jadwal Konseling</th>
+                                <th>Pukul</th>
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
                                 <th>Nama Guru BK</th>
@@ -39,6 +40,7 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
+                                    <td>{{$peserta->pukul}}</td>
                                     <td>{{$peserta->siswa->siswa_nama??''}}</td>
                                     <td>{{$peserta->classes->kelasjurusan_nama??''}}</td>
                                     <td>{{$peserta->guruBk->name??''}}</td>

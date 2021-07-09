@@ -3,6 +3,7 @@
         <div class="fas fa-info-circle"></div>
         DETAIL
     </a>
+    @canany(['admin','gurubk'])
     <a href="{{route('pelanggaran-siswa.edit',$data->_id)}}" class="btn btn-sm btn-warning mr-2">
         <div class="fas fa-edit"></div>
         EDIT
@@ -12,4 +13,5 @@
         @csrf
         <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
     </form>
+    @endcanany
 </div>

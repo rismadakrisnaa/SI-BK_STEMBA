@@ -44,7 +44,7 @@
                         })
                     </script>
                 @endcan
-                @can('gurubk')
+                {{-- @can(['gurubk','siswa']) --}}
                 <div class="form-group form-row">
                     <div class="col-7">
                         <label for="jadwal">Jadwal Konseling</label>
@@ -61,12 +61,12 @@
                         @enderror
                     </div>
                 </div>
-                <script>
+                {{-- <script>
                     document.addEventListener("DOMContentLoaded",function(){
-                        $('#guru_bk_id').val('{{auth()->user()->gurubk[0]->_id}}').attr('disabled',true)
+                        $('#guru_bk_id').val('{{auth()->user()->gurubk[0]->_id}}').attr('disabled',true);
                     })
-                </script>
-                @endcan
+                </script> --}}
+                {{-- @endcan --}}
                 <div class="form-group">
                     <label for="perihal_bimbingan">Perihal Bimbingan</label>
                     <input type="text" name="perihal_bimbingan" id="perihal_bimbingan" class="form-control">

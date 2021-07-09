@@ -2,9 +2,11 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Pelanggaran Siswa</h1>
+        @canany(['admin','gurubk'])
         <a href="{{route('pelanggaran-siswa.create')}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
         </a>
+        @endcanany
     </div>
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)

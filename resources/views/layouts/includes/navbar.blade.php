@@ -99,7 +99,7 @@
 </li>
 @endcanany
 
-@can('siswa')
+{{-- @can('siswa')
 <!-- Nav Item -->
 <li class="nav-item">
     <a class="nav-link" href="{{ url('/dashboard/user') }}">
@@ -107,9 +107,9 @@
         <span>Riwayat Pelanggaran</span>
     </a>
 </li>
-@endcan
+@endcan --}}
 
-@canany(['admin','guru','gurubk'])
+@canany(['admin','guru','gurubk','siswa'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
         aria-expanded="true" aria-controls="collapseFive">
@@ -121,7 +121,7 @@
             @can('admin')
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}" id="jenis-pelanggaran">Jenis Pelanggaran</a>
             @endcan
-            @canany(['admin','guru','gurubk'])
+            @canany(['admin','guru','gurubk','siswa'])
             <a class="collapse-item" href="{{ url('/dashboard/pelanggaran-siswa') }}" id="pelanggaran-siswa">Pelanggaran Siswa</a>
             @endcanany
         </div>

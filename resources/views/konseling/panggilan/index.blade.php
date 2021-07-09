@@ -26,6 +26,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Jadwal Konseling</th>
+                                <th>Pukul</th>
                                 <th>Nama Guru BK</th>
                                 <th>Perihal Konseling</th>
                                 <th>Link Virtual Meet</th>
@@ -37,6 +38,7 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td>{{date('d/m/Y',strtotime($peserta->jadwal))}}</td>
+                                    <td>{{($peserta->pukul))}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>{{$peserta->perihal_bimbingan}}</td>
                                     <td class="text-primary">@if (date('Y-m-d')>=$peserta->jadwal){{$peserta->link}}@endif</td>
