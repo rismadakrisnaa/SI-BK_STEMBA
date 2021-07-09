@@ -55,7 +55,6 @@
         data:function(data)
         {
             data.kelas=$('#kelas_id').val();
-            data.orderBy=$('#order_by').val();
         }
         },
         // orderCellsTop: true,

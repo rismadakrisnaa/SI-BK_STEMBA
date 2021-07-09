@@ -10,10 +10,12 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Siswa</h1>
-  <a href="{{ url('/dashboard/siswa/create') }}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-      <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
-  </a>
+    <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Siswa</h1>
+    @can('admin')
+    <a href="{{ url('/dashboard/siswa/create') }}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
+    </a>
+    @endcan
 </div>
 
 <div class="card shadow mb-4">
@@ -54,6 +56,7 @@
                                         <i class="fa fa-info-circle"></i>
                                         <span class="d-none d-lg-inline">DETAIL</span>
                                     </a>
+                                    @canany(['admin','guru'])
                                     <a href="{{ url('/dashboard/siswa/' . $siswa->_id . '/edit') }}"
                                         class="btn btn-sm btn-warning ml-2">
                                         <i class="fa fa-edit"></i>
@@ -68,6 +71,7 @@
                                             <span class="d-none d-lg-inline">HAPUS</span>
                                         </button>
                                     </form>
+                                    @endcanany
                                 </div>
                             </td>
                         </tr>

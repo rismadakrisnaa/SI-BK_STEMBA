@@ -55,7 +55,7 @@ class Kelasjurusan extends Model
 
     public function siswa()
     {
-        return $this->hasMany(Siswa::class, 'kelasjurusan.kelasjurusan_kode','kelasjurusan_kode');
+        return $this->hasMany(Siswa::class, 'kelas_id','_id');
     }
 
     public function jadwaKonseling()

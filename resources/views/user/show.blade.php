@@ -22,6 +22,10 @@
             <td>{{ $row->email }}</td>
         </tr>
         <tr>
+            <th>ROLE</th>
+            <td>{{ $row->role }}</td>
+        </tr>
+        <tr>
             <th>DIBUAT</th>
             <td>{{ \Carbon\Carbon::parse($row->created_at)->formatLocalized('%d %B %Y %H:%M:%S') }}</td>
         </tr>

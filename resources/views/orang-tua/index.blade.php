@@ -138,7 +138,6 @@
                     $('#waliModal').removeClass('show')[0].style='display:none';
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove()
-                    // window.location.href = base_url+'/dashboard/orang-tua';
                 },
                 error:function({responseJSON}){
                     Swal.fire({

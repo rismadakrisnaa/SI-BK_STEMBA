@@ -34,6 +34,7 @@
     </a>
 </li>
 
+@canany(['admin','guru','gurubk'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo" id="master-data">
@@ -42,16 +43,24 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
+            @canany(['admin','guru','gurubk'])
             <a class="collapse-item" href="{{ url('/dashboard/siswa') }}" id="data-siswa">Data Siswa</a>
+            @endcanany
+            @can('admin')
             <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}" id="data-kelas">Data Kelas dan Jurusan</a>
             <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
             <a class="collapse-item" href="{{ url('/dashboard/guru') }}" id="guru">Data Guru dan Wali Kelas</a>
             <a class="collapse-item" href="{{ url('/dashboard/orang-tua') }}" id="orang-tua">Data Orang Tua</a>
+            @endcan
+            @can('guru')
             <a class="collapse-item" href="{{ url('/dashboard/absensi') }}" id="absensi">Data Absensi Siswa</a>
+            @endcan
         </div>
     </div>
 </li>
+@endcanany
 
+@canany(['admin','gurubk','siswa'])
 <!-- Nav Item -->
 <li class="nav-item">
     <a class="nav-link" href="{{ url('/dashboard/timeline-akademik') }}" id="timeline-akademik">
@@ -59,7 +68,9 @@
         <span>Timeline Akademik</span>
     </a>
 </li>
+@endcanany
 
+@canany(['admin','gurubk','siswa'])
 <!-- Nav Item -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
@@ -72,17 +83,23 @@
             <a class="collapse-item" href="{{ url('/dashboard/pemesanan-jadwal-konseling') }}" id="pemesanan-jadwal-konseling">
                 Pemesanan Jadwal <br/>Konseling
             </a>
-            {{-- <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}">Panggilan Konseling <br/>Siswa</a>
-            <a class="collapse-item" href="{{ url('/dashboard/pelaksanaan-konseling') }}" id="pelaksanaan-konseling">
-                Pelaksanaan Konseling
-            </a> --}}
+            @can('siswa')
+            <a class="collapse-item" href="{{ url('/dashboard/panggilan') }}" id="panggilan-konseling">Panggilan Konseling <br/>Siswa</a>
+            @endcan
+            @canany(['admin','gurubk'])
+            <a class="collapse-item" href="{{ url('/dashboard/permintaan-konseling') }}" id="permintaan-konseling">
+                Permintaan Konseling
+            </a>
+            @endcanany
             <a class="collapse-item" href="{{ url('/dashboard/hasil-konseling') }}" id="hasil-konseling">
                 Hasil Konseling
             </a>
         </div>
     </div>
 </li>
+@endcanany
 
+@can('siswa')
 <!-- Nav Item -->
 <li class="nav-item">
     <a class="nav-link" href="{{ url('/dashboard/user') }}">
@@ -90,7 +107,9 @@
         <span>Riwayat Pelanggaran</span>
     </a>
 </li>
+@endcan
 
+@canany(['admin','guru','gurubk'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
         aria-expanded="true" aria-controls="collapseFive">
@@ -99,12 +118,18 @@
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
+            @can('admin')
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}" id="jenis-pelanggaran">Jenis Pelanggaran</a>
+            @endcan
+            @canany(['admin','guru','gurubk'])
             <a class="collapse-item" href="{{ url('/dashboard/pelanggaran-siswa') }}" id="pelanggaran-siswa">Pelanggaran Siswa</a>
+            @endcanany
         </div>
     </div>
 </li>
+@endcanany
 
+@canany(['admin','gurubk','kepsek'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
         aria-expanded="true" aria-controls="collapseFour">
@@ -119,7 +144,9 @@
         </div>
     </div>
 </li>
+@endcanany
 
+@can('admin')
 <!-- Divider -->
 <hr class="sidebar-divider mt-3 mb-4">
 
@@ -130,6 +157,7 @@
         <span>User</span>
     </a>
 </li>
+@endcan
 
 <!-- Divider -->
 <hr class="sidebar-divider mt-3 mb-4">

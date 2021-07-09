@@ -70,7 +70,7 @@
       "columns": [
          {data:"no"},
          {data:"siswa.siswa_nama"},
-         {data:"siswa.kelasjurusan.kelasjurusan_nama"},
+         {data:"siswa.kelas.kelasjurusan_nama"},
          {data:"pelanggaran.jenispelanggaran_nama"},
          {data:"pelanggaran.jenispelanggaran_poin"},
          {data:"action",searchable:false,orderable:false,sortable:false}//action

@@ -4,6 +4,7 @@
       <div class="modal-content">
         <form action="" method="post" id="form">
             @csrf
+            <input type="number" value="{{auth()->user()->role=='siswa'?0:1}}" name="panggilan" class="form-control d-none">
             <div class="modal-header">
                 <h5 class="modal-title" id="guruBkModalLabel">Form Pemesanan Jadwal Konseling</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,25 +12,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    {{-- <label for="nama">Nama Siswa</label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="{{ Auth::user()->name }}">
-                    @error('nama')
-                        <i class="text-sm text-danger">{{$message}}</i>
-                    @enderror --}}
-                    <div class="input-group">
-                        <label for="siswa_id">Nama Siswa</label>
-                        <select name="siswa_id" id="siswa_id" class="custom-select select2">
-                            <option value=""></option>
-                            @foreach ($siswa as $s)
-                                <option value="{{$s->_id}}">{{$s->siswa_nama.' ('.$s->kelas->kelasjurusan_nama}})</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @error('siswa_id')
-                        <i class="text-sm text-danger">{{$message}}</i>
-                    @enderror
-                </div>
                 <div class="form-group">
                     <label for="kelas_id">Kelas</label>
                     <select name="kelas_id" id="kelas_id" class="custom-select">
@@ -42,6 +24,27 @@
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="siswa_id">Nama Siswa</label>
+                        <select name="siswa_id" id="siswa_id" class="custom-select select2">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    @error('siswa_id')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
+                </div>
+                @can('siswa')
+                    <script>
+                        document.addEventListener('DOMContentLoaded',function(){
+                            $('#kelas_id').val('{{auth()->user()->siswa[0]->kelas->_id}}').attr('disabled',true);
+                            $('#kelas_id')[0].dispatchEvent(new Event('change'));
+                            $('#siswa_id').val('{{auth()->user()->siswa[0]->_id}}').attr('disabled',true);
+                        })
+                    </script>
+                @endcan
+                @can('gurubk')
                 <div class="form-group form-row">
                     <div class="col-7">
                         <label for="jadwal">Jadwal Konseling</label>
@@ -58,6 +61,12 @@
                         @enderror
                     </div>
                 </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded",function(){
+                        $('#guru_bk_id').val('{{auth()->user()->gurubk[0]->_id}}').attr('disabled',true)
+                    })
+                </script>
+                @endcan
                 <div class="form-group">
                     <label for="perihal_bimbingan">Perihal Bimbingan</label>
                     <input type="text" name="perihal_bimbingan" id="perihal_bimbingan" class="form-control">

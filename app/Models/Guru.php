@@ -43,6 +43,11 @@ class Guru extends Model
      */
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id','_id');
+    }
+
     public function kelas()
     {
         return $this->hasMany(Kelasjurusan::class, 'guru_id', '_id');

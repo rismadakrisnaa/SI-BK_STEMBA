@@ -19,6 +19,20 @@ function detailPesanan(id) {
     $('#button').text('Edit');
 }
 
+$('#kelas_id').change(function(){
+    let kelas_id = $(this).val();
+    $.ajax({
+        url: base_url+'/dashboard/kelasjurusan/'+kelas_id,
+        async: false,
+        success: function(kelas){
+            $('#siswa_id').empty().append('<option></option>');
+            kelas.siswa.forEach(i=>{
+                $('#siswa_id').append(`<option value="${i._id}">${i.siswa_nama}</option>`)
+            });
+        }
+    })
+})
+
 $(document).on('click', '.delete-confirm', function(e) {
     e.preventDefault();
     var form = $(this);

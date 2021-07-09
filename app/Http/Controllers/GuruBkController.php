@@ -58,6 +58,7 @@ class GuruBkController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make('passwordgurubk'),
+            'role'=>'gurubk',
             'avatar'=>'/images/avatars/default.png'
         ])->_id;
         GuruBk::create($data);

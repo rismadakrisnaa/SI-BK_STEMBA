@@ -11,6 +11,7 @@ use App\Models\Kelasjurusan;
 use App\Models\Guru;
 use App\Models\OrangTua;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
@@ -32,6 +33,9 @@ class SiswaController extends Controller
     public function index()
     {
         $allSiswa=Siswa::latest()->get();
+        $allSiswa=$allSiswa->filter(function($siswa){
+            return Gate::allows('siswa-ku',$siswa);
+        });
         return view('siswa.index',compact('allSiswa'));
     }
 

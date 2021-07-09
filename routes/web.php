@@ -72,7 +72,14 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
 
     // Konseling
     Route::resource('pemesanan-jadwal-konseling', PemesananJadwalKonselingController::class);
-    Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
+    Route::get('permintaan-konseling', [\App\Http\Controllers\PemesananJadwalKonselingController::class, 'permintaan']);
+    Route::get('permintaan-konseling/{permintaan_konseling}', [\App\Http\Controllers\PemesananJadwalKonselingController::class, 'response']);
+
+    // Panggilan
+    Route::get('panggilan', [\App\Http\Controllers\PelaksanaanKonselingController::class, 'panggilan']);
+
+    // Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
     Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);
+    Route::get('hasil-konseling/{konseling}', [PelaksanaanKonselingController::class, 'edit_hasil']);
     Route::put('hasil-konseling/cetak', [PelaksanaanKonselingController::class, 'cetak']);
 });
