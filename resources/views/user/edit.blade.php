@@ -5,6 +5,8 @@
         <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
     </div>
 
+    @include('layouts.includes.errors')
+
     <div class="row">
         <div class="col-lg-8">
             <div class="card shadow mb-4">

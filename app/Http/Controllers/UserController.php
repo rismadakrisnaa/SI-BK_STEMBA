@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+
         $role=['admin','siswa','guru','gurubk','wali','kepala sekolah'];
         return view('user.create', compact('role'));
     }
@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'bail|required|max:50',
-            'email' => 'required|email|unique:users|max:50',
+            'email' => 'required|email|unique:users,email|unique:users|max:50',
             'role' => 'required|max:50',
             'password' => 'required|confirmed|max:50'
         ]);
@@ -60,6 +60,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
+            'avatar' => '/images/avatars/default.png',
             'password' => Hash::make($request->password)
         ]);
 
@@ -88,7 +89,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $row = User::findOrFail($id);
-        return view('user.edit', compact('row'));
+        $role=['admin','guru','gurubk','siswa','wali','kepsek'];
+        return view('user.edit', compact('row','role'));
     }
 
     /**
@@ -98,34 +100,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'bail|required|max:50',
-            'email' => 'required|email|max:50',
+            'email' => 'required|email|unique:users,email,'.$user->_id.',_id|max:50',
             'password' => 'nullable|confirmed|max:50'
         ]);
 
-        $row = User::findOrFail($id);
-        $any = User::where([['email', '=', $request->email], ['_id', '<>', $id]])->first();
 
-        if ($row != null && $any === null) {
-            if (!empty($request->password)) {
-                $row->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password)
-                ]);
-                $request->session()->flash('alert-success', 'Data berhasil diperbarui dengan perubahan password!');
-            } else {
-                $row->update([
-                    'name' => $request->name,
-                    'email' => $request->email
-                ]);
-                $request->session()->flash('alert-success', 'Data berhasil diperbarui tanpa perubahan password!');
-            }
+        if ($request->has('password')) {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+            $request->session()->flash('alert-success', 'Data berhasil diperbarui dengan perubahan password!');
         } else {
-            $request->session()->flash('alert-warning', 'Data gagal diperbarui!');
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            $request->session()->flash('alert-success', 'Data berhasil diperbarui tanpa perubahan password!');
         }
 
         return redirect('/dashboard/user');
