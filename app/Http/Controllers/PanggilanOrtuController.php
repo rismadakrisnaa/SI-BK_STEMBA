@@ -61,7 +61,7 @@ class PanggilanOrtuController extends Controller
     public function store(Request $request)
     {
         PanggilanOrtu::create($request->except('_token','input'));
-        return redirect()->route('panggilan-ortu.index')->with('alert-success','Panggilan Orang Tua berhaisl ditambahkan.');
+        return redirect()->route('panggilan-ortu.index')->with('alert-success','Panggilan Orang Tua berhasil ditambahkan.');
     }
 
     /**

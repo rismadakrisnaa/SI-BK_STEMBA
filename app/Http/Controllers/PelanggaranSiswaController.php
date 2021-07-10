@@ -35,6 +35,8 @@ class PelanggaranSiswaController extends Controller
         $model=$model->filter(function($siswa){
             if(Gate::allows('kepsek')){
                 return true;
+            }elseif(Gate::allows('siswa')){
+                return $siswa->siswa_id==auth()->user()->siswa[0]->_id;
             }
             return Gate::allows('siswa-ku',$siswa->siswa);
         });

@@ -12,6 +12,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\GuruBk;
+use App\Models\OrangTua;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -63,6 +67,30 @@ class UserController extends Controller
             'avatar' => '/images/avatars/default.png',
             'password' => Hash::make($request->password)
         ]);
+
+        switch($request->role){
+            case 'guru':
+                Guru::create([
+                    'guru_nama'=>$request->name,
+                    'email'=>$request->email,
+                    'guru_aktif'=>1
+                ]);
+                break;
+            case 'gurubk':
+                GuruBk::create($request->only('name','email'));
+                break;
+            case 'siswa':
+                Siswa::create([
+                    'siswa_nama'=>$request->name,
+                    'email'=>$request->email
+                ]);
+                break;
+            case 'wali':
+                OrangTua::create($request->only('name','email'));
+                break;
+            default:
+
+        }
 
         $request->session()->flash('alert-success', 'Data berhasil disimpan!');
         return redirect('/dashboard/user');
