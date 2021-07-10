@@ -34,6 +34,9 @@ class SiswaController extends Controller
     {
         $allSiswa=Siswa::latest()->get();
         $allSiswa=$allSiswa->filter(function($siswa){
+            if(Gate::allows('wali')){
+                return Gate::allows('anak-ku',$siswa);
+            }
             return Gate::allows('siswa-ku',$siswa);
         });
         return view('siswa.index',compact('allSiswa'));

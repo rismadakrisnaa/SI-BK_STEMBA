@@ -33,6 +33,9 @@ class PelanggaranSiswaController extends Controller
         }
         $model=collect($model->get());
         $model=$model->filter(function($siswa){
+            if(Gate::allows('kepsek')){
+                return true;
+            }
             return Gate::allows('siswa-ku',$siswa->siswa);
         });
         foreach($model as $m => $d){

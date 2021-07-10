@@ -49,7 +49,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('kepsek',function(){
-            return auth()->user()->role=='kepsek';
+            return auth()->user()->role=='kepala sekolah';
         });
 
         Gate::define('kelas-ku',function(User $user, Kelasjurusan $kelas){
@@ -64,6 +64,13 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
             return in_array($siswa->_id,auth()->user()->guru[0]->siswa()->pluck('_id')->toArray());
+        });
+
+        Gate::define('anak-ku',function(User $user, Siswa $siswa){
+            if(Gate::allows('admin')||Gate::allows('gurubk')){
+                return true;
+            }
+            return in_array($siswa->_id,auth()->user()->wali[0]->siswa()->pluck('_id')->toArray());
         });
 
     }

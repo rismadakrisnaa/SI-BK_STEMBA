@@ -34,7 +34,7 @@
     </a>
 </li>
 
-@canany(['admin','guru','gurubk'])
+@canany(['admin','guru','gurubk','siswa','wali'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo" id="master-data">
@@ -43,12 +43,14 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            @canany(['admin','guru','gurubk'])
+            @canany(['admin','guru','gurubk','wali'])
             <a class="collapse-item" href="{{ url('/dashboard/siswa') }}" id="data-siswa">Data Siswa</a>
+            @endcanany
+            @canany(['admin','siswa','wali'])
+            <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
             @endcanany
             @can('admin')
             <a class="collapse-item" href="{{ url('/dashboard/kelasjurusan') }}" id="data-kelas">Data Kelas dan Jurusan</a>
-            <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
             <a class="collapse-item" href="{{ url('/dashboard/guru') }}" id="guru">Data Guru dan Wali Kelas</a>
             <a class="collapse-item" href="{{ url('/dashboard/orang-tua') }}" id="orang-tua">Data Orang Tua</a>
             @endcan
@@ -109,7 +111,7 @@
 </li>
 @endcan --}}
 
-@canany(['admin','guru','gurubk','siswa'])
+@canany(['admin','guru','gurubk','siswa','kepsek'])
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
         aria-expanded="true" aria-controls="collapseFive">
@@ -121,7 +123,7 @@
             @can('admin')
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}" id="jenis-pelanggaran">Jenis Pelanggaran</a>
             @endcan
-            @canany(['admin','guru','gurubk','siswa'])
+            @canany(['admin','guru','gurubk','siswa','kepsek'])
             <a class="collapse-item" href="{{ url('/dashboard/pelanggaran-siswa') }}" id="pelanggaran-siswa">Pelanggaran Siswa</a>
             @endcanany
         </div>

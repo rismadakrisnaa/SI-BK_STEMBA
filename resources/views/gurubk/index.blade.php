@@ -2,9 +2,11 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Guru BK</h1>
+        @can('admin')
         <button data-toggle="modal" data-target="#guruBkModal" id="tambah_data" onclick="tambahData()" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
         </button>
+        @endcan
     </div>
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -48,6 +50,7 @@
                                                     <div class="fas fa-info-circle"></div>
                                                     DETAIL
                                                 </button>
+                                                @can('admin')
                                                 <button class="btn btn-sm btn-warning mr-2" onclick="editData('{{$guru->_id}}')" data-toggle="modal" data-target="#guruBkModal">
                                                     <div class="fas fa-edit"></div>
                                                     EDIT
@@ -57,6 +60,7 @@
                                                     @csrf
                                                     <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> HAPUS</button>
                                                 </form>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>
@@ -69,7 +73,9 @@
         </div>
     </div>
 
-    @include('gurubk._modal')
+    @can('admin')
+        @include('gurubk._modal')
+    @endcan
     @include('gurubk._detail')
 @endsection
 
