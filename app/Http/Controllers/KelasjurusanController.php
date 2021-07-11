@@ -34,6 +34,9 @@ class KelasjurusanController extends Controller
     {
         $kelas=Kelasjurusan::all();
         $kelas=$kelas->filter(function($class,$index){
+            if(Gate::allows('gurubk')){
+                return true;
+            }
             return Gate::allows('kelas-ku',$class);
         })->toArray();
         $kelas=array_values($kelas);
