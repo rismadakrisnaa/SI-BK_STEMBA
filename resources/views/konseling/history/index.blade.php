@@ -21,7 +21,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data History Konseling</h6>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover table-striped myDataTable">
+                    <table class="table table-hover table-responsive table-striped myDataTable">
                         <thead class="text-center bg-primary text-white">
                             <tr>
                                 <th>No</th>

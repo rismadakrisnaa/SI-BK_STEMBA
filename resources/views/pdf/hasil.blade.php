@@ -93,6 +93,9 @@
                     <td>Link Virtual Meet</td><td id="detail-link">{{$peserta->link}}</td>
                 </tr>
                 <tr>
+                    <td>Hasil Konseling</td><td id="detail-hasil_konseling">{{$peserta->hasil_konseling}}</td>
+                </tr>
+                <tr>
                     <td>Dibuat</td><td id="detail-created_at">{{$peserta->created_at}}</td>
                 </tr>
                 <tr>
