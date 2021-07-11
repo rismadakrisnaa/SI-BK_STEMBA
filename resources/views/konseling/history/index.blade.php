@@ -59,7 +59,7 @@
                                             <form action="hasil-konseling/cetak" method="post" target="_blank">
                                                 @csrf
                                                 @method('put')
-                                                <button class="btn btn-sm btn-success ml-2"><i class="fas fa-file-pdf"></i> Cetak</button>
+                                                <button class="btn btn-sm btn-success ml-2" name="id" value="{{$peserta->_id}}"><i class="fas fa-file-pdf"></i> Cetak</button>
                                             </form>
                                         </div>
                                     </td>

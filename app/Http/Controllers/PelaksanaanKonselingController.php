@@ -33,6 +33,9 @@ class PelaksanaanKonselingController extends Controller
     {
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->where('status','approve')->get();
         $pesertaKonseling = $pesertaKonseling->filter(function($konseling,$index){
+            if(Gate::allows('admin')){
+                return true;
+            }
             if(Gate::allows('gurubk')){
                 return $konseling->guru_bk_id==auth()->user()->gurubk[0]->_id;
             }
