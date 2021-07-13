@@ -31,6 +31,7 @@
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
                                 <th>Nama Guru BK</th>
+                                <th>Jenis Pertemuan</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -44,6 +45,7 @@
                                     <td>{{$peserta->siswa->siswa_nama??''}}</td>
                                     <td>{{$peserta->classes->kelasjurusan_nama??''}}</td>
                                     <td>{{$peserta->guruBk->name??''}}</td>
+                                    <td>@include('konseling.permintaan._jenispertemuan')</td>
                                     <td>@include('konseling.permintaan._status')</td>
                                     <td>
                                         <div class="d-flex float-right">

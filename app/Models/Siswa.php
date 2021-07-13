@@ -48,6 +48,11 @@ class Siswa extends Model
         return $this->belongsTo(User::class, 'user_id', '_id');
     }
 
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id','_id');
+    }
+    
     public function absen()
     {
         return $this->hasMany(Absensi::class, 'siswa_id','_id');

@@ -90,6 +90,9 @@
                     <td>Perihal Bimbingan</td><td id="detail-perihal_bimbingan">{{$peserta->perihal_bimbingan}}</td>
                 </tr>
                 <tr>
+                    <td>Jenis Pertemuan</td><td>@include('konseling.pemesanan_jadwal._jenispertemuan')</td>
+                </tr>
+                <tr>
                     <td>Link Virtual Meet</td><td id="detail-link">{{$peserta->link}}</td>
                 </tr>
                 <tr>

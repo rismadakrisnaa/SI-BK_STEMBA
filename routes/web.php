@@ -38,6 +38,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update']);
     Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update_avatar']);
     Route::resource('siswa', App\Http\Controllers\SiswaController::class);
+    Route::get('get_datasiswa', [App\Http\Controllers\SiswaController::class, 'ajax']);
 
     Route::get('get_orang_tua', [App\Http\Controllers\OrangTuaController::class,'ajax']);
     Route::resource('orang-tua', OrangTuaController::class);

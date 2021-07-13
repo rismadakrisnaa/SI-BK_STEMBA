@@ -30,6 +30,7 @@
                                 <th>Nama Siswa</th>
                                 <th>Nama Guru BK</th>
                                 <th>Perihal Konseling</th>
+                                <th>Jenis Pertemuan</th>
                                 <th>Hasil Konseling</th>
                                 <th>Action</th>
                             </tr>
@@ -43,6 +44,7 @@
                                     <td>{{$peserta->siswa->siswa_nama}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>{{$peserta->perihal_bimbingan}}</td>
+                                    <td>@include('konseling.pemesanan_jadwal._jenispertemuan')</td>
                                     <td>{{$peserta->hasil_konseling}}</td>
                                     <td>
                                         <div class="d-flex float-right">

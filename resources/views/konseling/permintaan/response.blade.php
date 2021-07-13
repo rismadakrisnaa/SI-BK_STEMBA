@@ -51,6 +51,12 @@
                         <label for="perihal_bimbingan">Perihal Bimbingan</label>
                         <input type="text" name="perihal_bimbingan" value="{{$permintaanKonseling->perihal_bimbingan}}" disabled id="perihal_bimbingan" class="form-control">
                     </div>
+                    <label for="jenispertemuan">Jenis Pertemuan</label>
+                        <select name="jenispertemuan" disabled id="jenispertemuan" class="custom-select">
+                            @foreach (['Virtual Meet','Offline'] as $jenispertemuan)
+                                <option value="{{$jenispertemuan}}"{{$permintaanKonseling->$jenispertemuan?' selected':''}}>{{$jenispertemuan}}</option>
+                            @endforeach
+                        </select>
                     <div class="form-group form-row">
                         <div class="col-3">
                             <label for="status">Status</label>
@@ -61,8 +67,9 @@
                             </select>
                         </div>
                         <div class="col-9">
-                            <label for="link">Link Virtual Meet</label>
+                            <label for="link">Link Virtual Meet atau Offline Meet</label>
                             <input type="url" class="form-control" value="{{$permintaanKonseling->link}}" name="link" id="link">
+                            <small class="form-text text-muted mt-2">Jika pertemuan dilaksanakan secara offline, cukup masukkan keterangan "Offline".</small>
                         </div>
                     </div>
                     <div class="form-group float-right">

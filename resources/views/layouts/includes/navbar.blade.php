@@ -54,9 +54,9 @@
             <a class="collapse-item" href="{{ url('/dashboard/guru') }}" id="guru">Data Guru dan Wali Kelas</a>
             <a class="collapse-item" href="{{ url('/dashboard/orang-tua') }}" id="orang-tua">Data Orang Tua</a>
             @endcan
-            @can('guru')
+            @canany(['guru','admin'])
             <a class="collapse-item" href="{{ url('/dashboard/absensi') }}" id="absensi">Data Absensi Siswa</a>
-            @endcan
+            @endcanany
         </div>
     </div>
 </li>

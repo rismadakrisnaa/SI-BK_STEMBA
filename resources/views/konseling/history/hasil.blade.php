@@ -53,6 +53,12 @@
                                 <label for="perihal_bimbingan">Perihal Bimbingan</label>
                                 <input type="text" name="perihal_bimbingan" value="{{$konseling->perihal_bimbingan}}" disabled id="perihal_bimbingan" class="form-control">
                             </div>
+                            <label for="jenispertemuan">Jenis Pertemuan</label>
+                                 <select name="jenispertemuan" disabled id="jenispertemuan" class="custom-select">
+                                 @foreach (['Virtual Meet','Offline'] as $jenispertemuan)
+                                    <option value="{{$jenispertemuan}}"{{$konseling->$jenispertemuan?' selected':''}}>{{$jenispertemuan}}</option>
+                                 @endforeach
+                                </select>
                             <div class="form-group form-row">
                                 <div class="col-3">
                                     <label for="status">Status</label>
@@ -76,7 +82,7 @@
                         </div>
                     </div>
                     <div class="form-group float-right">
-                        <a href="{{ url('/dashboard/permintaan-konseling/') }}" class="btn btn-primary">
+                        <a href="{{ url('/dashboard/hasil-konseling/') }}" class="btn btn-primary">
                             <i class="fa fa-arrow-left mr-2"></i> KEMBALI
                         </a>
                         <button class="btn btn-success" type="submit">

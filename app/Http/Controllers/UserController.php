@@ -41,7 +41,7 @@ class UserController extends Controller
     public function create()
     {
 
-        $role=['admin','siswa','guru','gurubk','wali','kepala sekolah'];
+        $role=['admin','siswa','guru','gurubk','wali','kepsek'];
         return view('user.create', compact('role'));
     }
 
