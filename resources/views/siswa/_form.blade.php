@@ -24,12 +24,19 @@
     <div class="col-sm-9">
         <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" name="avatar" id="avatar">
-              <label class="custom-file-label" for="avatar">Pilih avatar untuk siswa ini.</label>
+              <input type="file" class="custom-file-input" name="siswa_avatar" id="siswa_avatar">
+              <label class="custom-file-label" for="siswa_avatar">Pilih avatar untuk siswa ini.</label>
             </div>
         </div>
     </div>
 </div>
+{{-- <div class="form-group form-row">
+    <label class="col-sm-3">AVATAR</label>
+    <div class="col-sm-9">
+        <input class="custom-file-input" type="file" name="siswa_avatar" value="{{ $siswa->siswa_avatar??old('siswa_avatar') }}" placeholder="Nama" required="">
+        <label class="custom-file-label" for="siswa_avatar">Pilih avatar untuk siswa ini.</label>
+    </div>
+</div> --}}
 <div class="form-group form-row">
     <label class="col-sm-3">NAMA</label>
     <div class="col-sm-9">

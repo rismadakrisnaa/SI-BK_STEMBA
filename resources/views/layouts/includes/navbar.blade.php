@@ -72,6 +72,16 @@
 </li>
 @endcanany
 
+@can(['wali'])
+<!-- Nav Item -->
+<li class="nav-item">
+    <a class="nav-link" <a href="#" class="text-success" data-toggle="modal" data-target="#waliModal" onclick="tambahWali('Orang Tua')">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Profil Siswa</span>
+    </a>
+</li>
+@endcan
+
 @canany(['admin','gurubk','siswa'])
 <!-- Nav Item -->
 <li class="nav-item">

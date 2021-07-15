@@ -10,8 +10,8 @@
 
 <table class="table table-striped">
     <tr>
-        <th>FOTO PROFIL</th>
-        <td><img class="img-account-profile rounded-circle mb-2 d-block mx-auto" src="{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; float:center; border-radius:50%; margin-right:25px;"></td>
+        <th>AVATAR</th>
+        <td><img class="img-account-profile rounded-circle mb-2 d-block mx-auto" src="{{ $row->user->avatar}}" style="width: 200px; height: 200px; float:center; border-radius:50%; margin-right:25px;"></td>
     </tr>
     <tr>
         <th style="width: 200px;">ID</th>

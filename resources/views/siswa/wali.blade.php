@@ -32,6 +32,26 @@
                 <textarea rows="2" id="alamat" name="alamat" class="form-control"></textarea>
                 <div id="alamat-error"></div>
             </div>
+            <div class="form-group row">
+                <label for="kelas_id" id="kelas_id-label" class="col-sm-3">Kelas</label>
+                <div class="col-sm-9">
+                    <select name="kelas_id" id="kelas_id" class="custom-select"></select>
+                </div>
+                @error('kelas_id')
+                    <i class="text-sm text-danger">{{$message}}</i>
+                @enderror
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="siswa" id="siswa_id-label">Orang Tua Dari</label>
+                    <select name="siswa_id" id="siswa_id" class="custom-select select2">
+                        <option value=""></option>
+                    </select>
+                </div>
+                @error('siswa_id')
+                    <i class="text-sm text-danger">{{$message}}</i>
+                @enderror
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
