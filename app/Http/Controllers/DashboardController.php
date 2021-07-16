@@ -3,6 +3,7 @@
 
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $totaluser=DB::table('users')->count();
+        $totalsiswa=DB::table('siswa')->count();
+        $totalhomevisit=DB::table('homevisit')->count();
+        $totalpelanggaran=DB::table('pelanggaran_siswa')->count();
+        $totalguru=DB::table('guru')->count();
+        $totalpanggilan=DB::table('panggilan_ortu')->count();
+        $totalkonseling=DB::table('pemesanan_jadwal_konseling')->count();
+        return view('dashboard', compact('totaluser','totalsiswa','totalhomevisit',
+        'totalpelanggaran','totalguru','totalpanggilan','totalkonseling'));
     }
 }

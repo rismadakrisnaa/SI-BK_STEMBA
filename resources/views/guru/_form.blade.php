@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-3">NIDN</label>
+    <label class="col-sm-3">NUPTK</label>
     <div class="col-sm-6">
         <input class="form-control @error('guru_nidn')is-invalid @enderror" type="text"  value="{{$guru->guru_nidn??old('guru_nidn')}}"
             name="guru_nidn" placeholder="Nomor Induk Guru Nasional" required="">

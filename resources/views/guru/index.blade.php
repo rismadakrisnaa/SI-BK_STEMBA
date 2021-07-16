@@ -22,6 +22,13 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Guru</h6>
     </div>
     <div class="card-body">
+        {{-- <div>
+            <form action="{{route('guru.store-import')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="guruexcel">
+                <input class="btn btn-success" type="submit" value="Import Data">
+            </form>
+        </div> --}}
         <div class="table-responsive">
             <table class="table myDataTable table-hover">
                 <thead class="bg-primary text-white">

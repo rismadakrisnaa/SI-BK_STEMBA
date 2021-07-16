@@ -17,6 +17,9 @@ use App\Models\Guru;
 use App\Models\GuruBk;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Imports\GuruImport;
+use App\Imports\GuruImport as ImportsGuruImport;
 use Illuminate\Support\Str;
 
 class GuruController extends Controller
@@ -30,6 +33,19 @@ class GuruController extends Controller
     {
         $allGuru=Guru::all();
         return view('guru.index',compact('allGuru'));
+    }
+
+    public function import()
+    {
+        return view('import');
+    }
+
+    public function storeImport(Request $request)
+    {
+        // dd($request);
+        Excel::import(new ImportsGuruImport, $request->file('guruexcel'));
+        
+        return redirect()->back();
     }
 
     public function ajax()

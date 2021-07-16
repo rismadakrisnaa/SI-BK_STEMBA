@@ -83,4 +83,8 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);
     Route::get('hasil-konseling/{konseling}', [PelaksanaanKonselingController::class, 'edit_hasil']);
     Route::put('hasil-konseling/cetak', [PelaksanaanKonselingController::class, 'cetak']);
+
+    //Import data
+    Route::get('guru/import', [App\Http\Controllers\GuruController::class, 'import']);
+    Route::post('guru/store-import', [App\Http\Controllers\GuruController::class, 'storeImport'])->name('guru.store-import');
 });
