@@ -3,7 +3,12 @@
 
 
 namespace App\Http\Controllers;
+
+use App\Models\PelanggaranSiswa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\PemesananJadwalKonseling;
+use Illuminate\Auth\Access\Gate;
 
 class DashboardController extends Controller
 {
@@ -14,7 +19,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('can:siswa', ['only'=>['index2']]);
     }
 
     /**
@@ -22,6 +27,8 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+
     public function index()
     {
         $totaluser=DB::table('users')->count();
@@ -30,8 +37,21 @@ class DashboardController extends Controller
         $totalpelanggaran=DB::table('pelanggaran_siswa')->count();
         $totalguru=DB::table('guru')->count();
         $totalpanggilan=DB::table('panggilan_ortu')->count();
-        $totalkonseling=DB::table('pemesanan_jadwal_konseling')->count();
+        $totalkonseling=DB::table('pemesanan_jadwal_konseling')->where('status','pending')->count();
+
+        
+        $point = PelanggaranSiswa::max('_id');
+        $point1 = DB::table('pelanggaran_siswa')->where('_id',$point)->count();
+
+        $panggilankonseling=PemesananJadwalKonseling ::max('_id');
+        $panggilankonseling1=DB::table('pemesanan_jadwal_konseling')->where('status','approve')->where('_id',$panggilankonseling)->count();
+        
+        
+
+
         return view('dashboard', compact('totaluser','totalsiswa','totalhomevisit',
-        'totalpelanggaran','totalguru','totalpanggilan','totalkonseling'));
+        'totalpelanggaran','totalguru','totalpanggilan','totalkonseling', 'panggilankonseling1','point1'));
     }
+
+    
 }

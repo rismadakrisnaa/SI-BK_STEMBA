@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-9">
                             <label for="link">Link Virtual Meet atau Offline Meet</label>
-                            <input type="url" class="form-control" value="{{$permintaanKonseling->link}}" name="link" id="link">
+                            <input type="text" class="form-control" value="{{$permintaanKonseling->link}}" name="link" id="link">
                             <small class="form-text text-muted mt-2">Jika pertemuan dilaksanakan secara offline, cukup masukkan keterangan "Offline".</small>
                         </div>
                     </div>

@@ -52,10 +52,10 @@
                     @foreach ($allSiswa as $siswa)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img class="img-profile rounded-circle" src="{{ $siswa->user->avatar}}" style="width: 50px; height: 50px; float:center; border-radius:50%; margin-right:25px;"></td>
+                            <td><img class="img-profile rounded-circle" src="{{ $siswa->user->avatar??''}}" style="width: 50px; height: 50px; float:center; border-radius:50%; margin-right:25px;"></td>
                             <td >{{ $siswa->siswa_nis }}</td>
                             <td>{{ $siswa->siswa_nama }}</td>
-                            <td>{{ $siswa->kelas->kelasjurusan_nama }}</td>
+                            <td>{{ $siswa->kelas->kelasjurusan_nama??'' }}</td>
                             <td>{{ $siswa->siswa_tmplahir }} / {{ \Carbon\Carbon::parse($siswa->siswa_tgllahir)->formatLocalized('%d %B %Y') }}</td>
                             <td>
                                 @if ($siswa->siswa_aktif==1)

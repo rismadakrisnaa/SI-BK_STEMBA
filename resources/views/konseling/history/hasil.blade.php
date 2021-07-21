@@ -77,7 +77,7 @@
                         <div class="col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="hasil_konseling">Hasil Konseling</label>
-                                <textarea name="hasil_konseling" id="hasil_konseling" cols="30" style="height: 380px" class="form-control"></textarea>
+                                <textarea name="hasil_konseling" id="hasil_konseling" rows="3" cols="30" style="height: 380px" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>

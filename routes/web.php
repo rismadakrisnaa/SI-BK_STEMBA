@@ -78,6 +78,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
 
     // Panggilan
     Route::get('panggilan', [\App\Http\Controllers\PelaksanaanKonselingController::class, 'panggilan']);
+    Route::get('panggilanadmin', [\App\Http\Controllers\PelaksanaanKonselingController::class, 'panggilanadmin']);
 
     // Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
     Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);

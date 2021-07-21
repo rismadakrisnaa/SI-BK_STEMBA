@@ -13,7 +13,8 @@ class PemesananJadwalKonselingController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:gurubk', ['only'=>['permintaan']]);
+        // $this->middleware('can:gurubk', ['only'=>['permintaan']]);
+        $this->middleware('auth');
     }
 
     /**

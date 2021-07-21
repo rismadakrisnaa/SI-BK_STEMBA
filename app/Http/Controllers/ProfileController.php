@@ -77,7 +77,7 @@ class ProfileController extends Controller
             'name' => 'bail|required|max:50',
             'email' => 'required|email|max:50',
             'password' => 'nullable|confirmed|max:50',
-            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp.svg.png', 'max:5000']
+            'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png', 'max:5000']
         ]);
 
         $id = Auth::id();

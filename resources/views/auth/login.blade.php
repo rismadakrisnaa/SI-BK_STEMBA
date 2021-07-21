@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
+<h1 class="d-flex align-items-center justify-content-center text-white">SIM BK STEMBA</h1>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

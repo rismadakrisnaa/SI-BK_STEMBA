@@ -21,7 +21,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data History Konseling</h6>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover table-responsive table-striped myDataTable">
+                    <table class="table table-hover  table-responsive table-striped myDataTable">
                         <thead class="text-center bg-primary text-white">
                             <tr>
                                 <th>No</th>
@@ -48,12 +48,12 @@
                                     <td>{{$peserta->hasil_konseling}}</td>
                                     <td>
                                         <div class="d-flex float-right">
-                                            @can('gurubk')
+                                            @canany(['gurubk','admin'])
                                             <a href="{{url('/dashboard/hasil-konseling/'.$peserta->_id)}}" class="btn btn-sm btn-warning mr-2">
                                                 <div class="fas fa-edit"></div>
                                                 HASIL
                                             </a>
-                                            @endcan
+                                            @endcanany
                                             <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#detailPesananModal" onclick="detailPesanan('{{$peserta->_id}}')">
                                                 <div class="fas fa-info-circle"></div>
                                                 DETAIL

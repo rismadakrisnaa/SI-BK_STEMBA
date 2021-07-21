@@ -35,7 +35,10 @@
                         <td>Perihal Bimbingan</td><td id="detail-perihal_bimbingan"></td>
                     </tr>
                     <tr>
-                        <td>Link Virtual Meet</td><td id="detail-link"></td>
+                        <td>Jenis Pertemuan</td><td id="detail-jenispertemuan"></td>
+                    </tr>
+                    <tr>
+                        <td>Link Virtual Meet</td><td id="detail-link" class="font-weight-bold" ></td>
                     </tr>
                     <tr>
                         <td>Dibuat</td><td id="detail-created_at"></td>

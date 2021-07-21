@@ -130,27 +130,35 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        
+
+
+
         $request->validate([
             'name' => 'bail|required|max:50',
             'email' => 'required|email|unique:users,email,'.$user->_id.',_id|max:50',
-            'password' => 'nullable|confirmed|max:50'
+            'password' => 'nullable|confirmed|max:50',
+            'role' => 'bail|required|max:50',
         ]);
 
-
-        if ($request->has('password')) {
+        $any = User::where([['email', '=', $request->email],['role', '=', $request->role] ,['_id', '<>', $user]])->first();
+        if ($user != null && $any === null) {
+        if (!empty ($request->password)) {
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'role' => $request->role,
                 'password' => Hash::make($request->password)
             ]);
             $request->session()->flash('alert-success', 'Data berhasil diperbarui dengan perubahan password!');
         } else {
             $user->update([
                 'name' => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
+                'role' => $request->role,
             ]);
             $request->session()->flash('alert-success', 'Data berhasil diperbarui tanpa perubahan password!');
-        }
+        }}
 
         return redirect('/dashboard/user');
     }
