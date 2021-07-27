@@ -47,7 +47,7 @@ class DashboardController extends Controller
         $panggilankonseling1=DB::table('pemesanan_jadwal_konseling')->where('status','approve')->where('_id',$panggilankonseling)->count();
         
         
-
+        
 
         return view('dashboard', compact('totaluser','totalsiswa','totalhomevisit',
         'totalpelanggaran','totalguru','totalpanggilan','totalkonseling', 'panggilankonseling1','point1'));

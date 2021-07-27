@@ -15,9 +15,10 @@
         </tr>
         <tr>
             <th>WALI KELAS</th>
-            <td>{{ !empty($row->guru['guru_gelar_depan']) ? $row->guru['guru_gelar_depan'] . '. ' : '' }}
+            <td>{{ $row->waliKelas->getFullName()}}</td>
+            {{-- <td>{{ !empty($row->guru['guru_gelar_depan']) ? $row->guru['guru_gelar_depan'] . '. ' : '' }}
                 {{ $row->guru['guru_nama'] }}{{ !empty($row->guru['guru_gelar_belakang']) ? ', ' . $row->guru['guru_gelar_belakang'] : '' }}
-            </td>
+            </td> --}}
         </tr>
         <tr>
             <th>KODE</th>

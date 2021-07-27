@@ -27,7 +27,7 @@
                 </button>    <strong>Welcome, {{ Auth::user()->name }}!</strong> Saat ini kamu login sebagai <strong>User Admin.</strong>
             </div>
             @endcan
-            @can('walikelas')
+            @can('guru')
             <div class="alert alert-success fade in alert-dismissible show" style="margin-top:18px;">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true" style="font-size:20px">×</span>
@@ -176,7 +176,7 @@
                 @endcan
 
                 <!-- Pending Requests Card Example -->
-                @canany(['admin','kepsek','gurubk','walikelas'])
+                @canany(['admin','kepsek','gurubk','guru'])
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
                         <div class="card-body">

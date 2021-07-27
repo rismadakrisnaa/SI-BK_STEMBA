@@ -35,7 +35,7 @@
                     <tr>
                         <th class="text-center">NO</th>
                         <th>NIP</th>
-                        <th>NIDN</th>
+                        <th>NUPTK</th>
                         <th>NAMA</th>
                         <th>AKTIF</th>
                         <th class="text-center">AKSI</th>
