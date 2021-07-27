@@ -34,7 +34,8 @@
                                 <th>Nama Siswa</th>
                                 <th>Nama Guru BK</th>
                                 <th>Perihal Konseling</th>
-                                <th>Aktif</th>
+                                <th>Jenis Pertemuan</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                                     <td>{{$peserta->siswa->siswa_nama}}</td>
                                     <td>{{$peserta->guruBk->name}}</td>
                                     <td>{{$peserta->perihal_bimbingan}}</td>
+                                    <td>@include('konseling.pemesanan_jadwal._jenispertemuan')</td>
                                     <td>@include('konseling.pemesanan_jadwal._status')</td>
                                     <td>
                                         <div class="d-flex float-right">

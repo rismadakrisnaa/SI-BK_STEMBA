@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">History Konseling</h1>
+        <h1 class="h3 mb-0 text-gray-800 mb-2 mb-lg-0 font-weight-bold">Panggilan Konseling</h1>
     </div>
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data History Konseling</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Panggilan Konseling</h6>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-striped myDataTable">

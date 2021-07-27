@@ -43,9 +43,12 @@
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            @canany(['admin','guru','gurubk','wali'])
+            @canany(['admin','guru','gurubk'])
             <a class="collapse-item" href="{{ url('/dashboard/siswa') }}" id="data-siswa">Data Siswa</a>
             @endcanany
+            @can(['wali'])
+            <a class="collapse-item" href="{{ url('/dashboard/siswa') }}" id="data-siswa">Data Putra / Putri Anda</a>
+            @endcan
             @canany(['admin','siswa','wali'])
             <a class="collapse-item" href="{{ url('/dashboard/gurubk') }}" id="guru-bk">Data Guru BK</a>
             @endcanany
@@ -54,9 +57,9 @@
             <a class="collapse-item" href="{{ url('/dashboard/guru') }}" id="guru">Data Guru dan Wali Kelas</a>
             <a class="collapse-item" href="{{ url('/dashboard/orang-tua') }}" id="orang-tua">Data Orang Tua</a>
             @endcan
-            @can('guru')
+            @canany(['guru','admin'])
             <a class="collapse-item" href="{{ url('/dashboard/absensi') }}" id="absensi">Data Absensi Siswa</a>
-            @endcan
+            @endcanany
         </div>
     </div>
 </li>
@@ -71,6 +74,7 @@
     </a>
 </li>
 @endcanany
+
 
 @canany(['admin','gurubk','siswa'])
 <!-- Nav Item -->
@@ -87,6 +91,9 @@
             </a>
             @can('siswa')
             <a class="collapse-item" href="{{ url('/dashboard/panggilan') }}" id="panggilan-konseling">Panggilan Konseling <br/>Siswa</a>
+            @endcan
+            @can('admin')
+            <a class="collapse-item" href="{{ url('/dashboard/panggilanadmin') }}" id="panggilan-konseling">Panggilan Konseling <br/>Siswa</a>
             @endcan
             @canany(['admin','gurubk'])
             <a class="collapse-item" href="{{ url('/dashboard/permintaan-konseling') }}" id="permintaan-konseling">
@@ -120,9 +127,9 @@
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            @can('admin')
+            @canany(['admin','gurubk'])
             <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}" id="jenis-pelanggaran">Jenis Pelanggaran</a>
-            @endcan
+            @endcanany
             @canany(['admin','guru','gurubk','siswa','kepsek'])
             <a class="collapse-item" href="{{ url('/dashboard/pelanggaran-siswa') }}" id="pelanggaran-siswa">Pelanggaran Siswa</a>
             @endcanany
@@ -142,7 +149,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ url('/dashboard/panggilan-ortu') }}" id="panggilan-ortu">Panggilan Orang Tua</a>
             <a class="collapse-item" href="{{ route('home-visit.index') }}" id="home-visit">Home Visit</a>
-            <a class="collapse-item" href="{{ url('/dashboard/jenispelanggaran') }}">Hasil Konseling</a>
+            <a class="collapse-item" href="{{ url('/dashboard/hasil-konseling') }}" id="hasil-konseling">Hasil Konseling</a>
         </div>
     </div>
 </li>

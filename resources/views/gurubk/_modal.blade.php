@@ -14,14 +14,14 @@
             <div class="modal-body">
                 <div class="form-group form-row">
                     <div class="col-6">
-                        <label for="nim">NIM</label>
+                        <label for="nim">NIP</label>
                         <input type="number" name="nim" id="nim" class="form-control">
                         @error('nim')
                             <i class="text-sm text-danger">{{$message}}</i>
                         @enderror
                     </div>
                     <div class="col-6">
-                        <label for="nidn">NIDN</label>
+                        <label for="nidn">NUPTK</label>
                         <input type="number" name="nidn" id="nidn" class="form-control">
                         @error('nidn')
                             <i class="text-sm text-danger">{{$message}}</i>
@@ -39,6 +39,13 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control">
                     @error('email')
+                        <i class="text-sm text-danger">{{$message}}</i>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="telepon">No Telepon</label>
+                    <input type="telepon" name="telepon" id="telepon" class="form-control">
+                    @error('telepon')
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>

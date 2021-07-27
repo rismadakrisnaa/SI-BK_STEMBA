@@ -45,6 +45,18 @@ class TimelineAkademikController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                
+                'judul' => 'required',
+                'body' => 'required',
+            ],
+            [
+                'judul.required' => 'Judul Wajib Diisi',
+                'body.required' => 'Body Wajib Diisi',
+            ]
+        );
+
         $data = $request->except('_token');
         $data['user_id']=auth()->user()->_id;
         TimelineAkademik::create($data);

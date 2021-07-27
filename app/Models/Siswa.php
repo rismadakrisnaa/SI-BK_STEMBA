@@ -1,14 +1,6 @@
 <?php
 
-/**
- * Copyright Gosoftware Media 2021
- * --
- * Gosoftware Media
- * Site   : http://gosoftware.web.id
- * e-mail : cs@gosoftware.web.id
- * WA     : 62852-6361-6901
- * --
- */
+
 
 namespace App\Models;
 
@@ -48,6 +40,11 @@ class Siswa extends Model
         return $this->belongsTo(User::class, 'user_id', '_id');
     }
 
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id','_id');
+    }
+    
     public function absen()
     {
         return $this->hasMany(Absensi::class, 'siswa_id','_id');

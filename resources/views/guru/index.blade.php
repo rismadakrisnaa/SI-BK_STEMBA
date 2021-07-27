@@ -22,13 +22,20 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Guru</h6>
     </div>
     <div class="card-body">
+        {{-- <div>
+            <form action="{{route('guru.store-import')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="guruexcel">
+                <input class="btn btn-success" type="submit" value="Import Data">
+            </form>
+        </div> --}}
         <div class="table-responsive">
             <table class="table myDataTable table-hover">
                 <thead class="bg-primary text-white">
                     <tr>
                         <th class="text-center">NO</th>
                         <th>NIP</th>
-                        <th>NIDN</th>
+                        <th>NUPTK</th>
                         <th>NAMA</th>
                         <th>AKTIF</th>
                         <th class="text-center">AKSI</th>

@@ -16,13 +16,13 @@
             <tr>
                 <td><p>Kelas/NIS</p></td>
                 <td><p>:</p></td>
-                <td><p class="data">{{$homeVisit->siswa->kelas->kelasjurusan_kode}} - {{$homeVisit->siswa->siswa_nim}}</p></td>
+                <td><p class="data">{{$homeVisit->siswa->kelas->kelasjurusan_nama}} - {{$homeVisit->siswa->siswa_nim}}</p></td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td><p>Program Keahlian</p></td>
                 <td><p>:</p></td>
                 <td><p class="data">{{$homeVisit->siswa->kelas->kelasjurusan_nama}}</p></td>
-            </tr>
+            </tr> --}}
             <tr>
                 <td><p>Alamat</p></td>
                 <td><p>:</p></td>

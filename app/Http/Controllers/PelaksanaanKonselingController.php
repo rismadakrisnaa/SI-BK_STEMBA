@@ -39,6 +39,9 @@ class PelaksanaanKonselingController extends Controller
             if(Gate::allows('gurubk')){
                 return $konseling->guru_bk_id==auth()->user()->gurubk[0]->_id;
             }
+            if(Gate::allows('kepsek')){
+                return true;
+            }
             return $konseling->siswa_id==auth()->user()->siswa[0]->_id;
         });
         return view('konseling.history.index',compact('pesertaKonseling'));
@@ -53,6 +56,12 @@ class PelaksanaanKonselingController extends Controller
     {
         $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->where('status','approve')
                                                       ->where('siswa_id',auth()->user()->siswa[0]->_id)->get();
+        return view('konseling.panggilan.index',compact('pesertaKonseling'));
+    }
+
+    public function panggilanadmin()
+    {
+        $pesertaKonseling = PemesananJadwalKonseling::with('guruBk')->where('status','approve')->get();
         return view('konseling.panggilan.index',compact('pesertaKonseling'));
     }
 

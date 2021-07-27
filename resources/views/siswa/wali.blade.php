@@ -32,6 +32,7 @@
                 <textarea rows="2" id="alamat" name="alamat" class="form-control"></textarea>
                 <div id="alamat-error"></div>
             </div>
+            
         </div>
         <div class="modal-footer">
             <button type="button" id="close-modal" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

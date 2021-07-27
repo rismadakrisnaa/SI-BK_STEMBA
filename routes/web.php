@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -38,6 +38,7 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
     Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update']);
     Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update_avatar']);
     Route::resource('siswa', App\Http\Controllers\SiswaController::class);
+    Route::get('get_datasiswa', [App\Http\Controllers\SiswaController::class, 'ajax']);
 
     Route::get('get_orang_tua', [App\Http\Controllers\OrangTuaController::class,'ajax']);
     Route::resource('orang-tua', OrangTuaController::class);
@@ -77,9 +78,14 @@ Route::prefix('dashboard')->middleware(['web', 'auth'])->group(function () {
 
     // Panggilan
     Route::get('panggilan', [\App\Http\Controllers\PelaksanaanKonselingController::class, 'panggilan']);
+    Route::get('panggilanadmin', [\App\Http\Controllers\PelaksanaanKonselingController::class, 'panggilanadmin']);
 
     // Route::resource('pelaksanaan-konseling', PelaksanaanKonselingController::class);
     Route::get('hasil-konseling', [PelaksanaanKonselingController::class, 'hasil']);
     Route::get('hasil-konseling/{konseling}', [PelaksanaanKonselingController::class, 'edit_hasil']);
     Route::put('hasil-konseling/cetak', [PelaksanaanKonselingController::class, 'cetak']);
+
+    //Import data
+    Route::get('guru/import', [App\Http\Controllers\GuruController::class, 'import']);
+    Route::post('guru/store-import', [App\Http\Controllers\GuruController::class, 'storeImport'])->name('guru.store-import');
 });

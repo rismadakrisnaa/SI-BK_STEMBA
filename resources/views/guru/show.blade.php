@@ -18,7 +18,7 @@
             <td>{{ $row->guru_nip }}</td>
         </tr>
         <tr>
-            <th>NIDN</th>
+            <th>NUPTK</th>
             <td>{{ $row->guru_nidn }}</td>
         </tr>
         <tr>
@@ -32,6 +32,22 @@
         <tr>
             <th>GELAR BELAKANG</th>
             <td>{{ $row->guru_gelar_belakang }}</td>
+        </tr>
+        <tr>
+            <th>NO TELEPON</th>
+            <td>{{ $row->no_telepon }}</td>
+        </tr>
+        <tr>
+            <th>EMAIL</th>
+            <td>{{ $row->email }}</td>
+        </tr>
+        <tr>
+            <th>JENIS KELAMIN</th>
+            <td>{{ $row->guru_jk }}</td>
+        </tr>
+        <tr>
+            <th>MENGAJAR MAPEL</th>
+            <td>{{ $row->mengajar_mapel }}</td>
         </tr>
         {{-- <tr>
             <th>KELAS DAN JURUSAN</th>

@@ -13,7 +13,8 @@ class PemesananJadwalKonselingController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:gurubk', ['only'=>['permintaan']]);
+        // $this->middleware('can:gurubk', ['only'=>['permintaan']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -96,7 +97,7 @@ class PemesananJadwalKonselingController extends Controller
         }else if(auth()->user()->role=='gurubk'){
             $data['guru_bk_id']=auth()->user()->gurubk[0]->_id;
         }
-        $data['status']='pending';
+        // $data['status']='pending';
         PemesananJadwalKonseling::create($data);
         return back()->with('alert-success','Pesanan Jadwal Konseling berhasil ditambahkan.');
     }

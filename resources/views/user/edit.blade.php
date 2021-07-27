@@ -41,10 +41,20 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group form-row">
+                            <label for="role" class="col-sm-2">ROLE</label>
+                            <div class="col-sm-10">
+                                <select name="role" id="role" class="custom-select">
+                                    @foreach ($role as $ro)
+                                        <option value="{{$ro}}" @if (isset($users)&&$users->role==$ro) selected @endif >{{$ro}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        {{-- <div class="form-group row">
                             <label class="col-sm-2">ROLE</label>
                             <div class="col-sm-10">
-                                {{-- <input class="form-control @error('role')is-invalid @enderror" type="role" name="role" placeholder="Role" required=""> --}}
+                                <input class="form-control @error('role')is-invalid @enderror" type="role" name="role" placeholder="Role" required="">
                                 <select name="role" id="role" class="custom-select" >
                                     <option value="" ></option>
                                     @foreach ($role as $ro)
@@ -55,7 +65,7 @@
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label class="col-sm-2">PASSWORD</label>
                             <div class="col-sm-10">
@@ -91,5 +101,6 @@
             </div>
         </div>
     </div>
+    
 
 @endsection

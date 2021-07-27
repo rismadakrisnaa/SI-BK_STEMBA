@@ -86,11 +86,25 @@
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>
+<<<<<<< HEAD
                 <div class="form-group form-row">
+=======
+                
+                <div class="form-group form-row">
+                        <label for="jenispertemuan">Jenis Pertemuan</label>
+                        <select name="jenispertemuan" id="jenispertemuan" class="custom-select">
+                            @foreach (['Virtual Meet','Offline'] as $jenispertemuan)
+                                <option value="{{$jenispertemuan}}"{{$jenispertemuan?' selected':''}}>{{$jenispertemuan}}</option>
+                            @endforeach
+                        </select>
+                        
+                    @canany(['admin','gurubk'])
+>>>>>>> 9c860133b77dd5a74f679fb6a7a2c9703b91130e
                     <div class="col-3">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="custom-select">
                             @foreach (['pending','approve','rejected'] as $status)
+<<<<<<< HEAD
                                 <option value="{{$status}}">{{$status}}</option>
                             @endforeach
                         </select>
@@ -100,6 +114,22 @@
                         <input type="url" class="form-control" name="link" id="link">
                     </div>
                 </div>
+=======
+                                <option value="{{$status}}"{{$status?' selected':''}}>{{$status}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endcanany
+                    @canany(['admin','gurubk'])
+                    <div class="col-9">
+                        <label for="link">Link Virtual Meet atau Offline Meet</label>
+                        <input type="text" class="form-control" value="" name="link" id="link">
+                        <small class="form-text text-muted mt-2">Jika pertemuan dilaksanakan secara offline, cukup masukkan keterangan "Offline".</small>
+                    </div>
+                    @endcanany
+                </div>
+                
+>>>>>>> 9c860133b77dd5a74f679fb6a7a2c9703b91130e
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" name="is_active" type="checkbox" value="1" id="is_active">
@@ -115,3 +145,22 @@
       </div>
     </div>
 </div>
+
+@push('js')
+    <script>
+        $('#permintaan-konseling').addClass('active').parent().parent().addClass('show').parent().addClass('active');
+        var status = $('#status').val();
+        if(status=='approve'){
+            $('#link').attr('readonly',false);
+        }else{
+            $('#link').val('').attr('readonly',true);
+        }
+        $('#status').change(function(){
+            if($(this).val()=='approve'){
+                $('#link').attr('readonly',false);
+            }else{
+                $('#link').val('').attr('readonly',true);
+            }
+        })
+    </script>
+@endpush

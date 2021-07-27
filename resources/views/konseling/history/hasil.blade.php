@@ -53,6 +53,12 @@
                                 <label for="perihal_bimbingan">Perihal Bimbingan</label>
                                 <input type="text" name="perihal_bimbingan" value="{{$konseling->perihal_bimbingan}}" disabled id="perihal_bimbingan" class="form-control">
                             </div>
+                            <label for="jenispertemuan">Jenis Pertemuan</label>
+                                 <select name="jenispertemuan" disabled id="jenispertemuan" class="custom-select">
+                                 @foreach (['Virtual Meet','Offline'] as $jenispertemuan)
+                                    <option value="{{$jenispertemuan}}"{{$konseling->$jenispertemuan?' selected':''}}>{{$jenispertemuan}}</option>
+                                 @endforeach
+                                </select>
                             <div class="form-group form-row">
                                 <div class="col-3">
                                     <label for="status">Status</label>
@@ -71,12 +77,12 @@
                         <div class="col-sm-4 col-12">
                             <div class="form-group">
                                 <label for="hasil_konseling">Hasil Konseling</label>
-                                <textarea name="hasil_konseling" id="hasil_konseling" cols="30" style="height: 380px" class="form-control"></textarea>
+                                <textarea name="hasil_konseling" id="hasil_konseling" rows="3" cols="30" style="height: 380px" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="form-group float-right">
-                        <a href="{{ url('/dashboard/permintaan-konseling/') }}" class="btn btn-primary">
+                        <a href="{{ url('/dashboard/hasil-konseling/') }}" class="btn btn-primary">
                             <i class="fa fa-arrow-left mr-2"></i> KEMBALI
                         </a>
                         <button class="btn btn-success" type="submit">

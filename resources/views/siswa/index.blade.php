@@ -24,12 +24,25 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover myDataTable" data-form="dataForm">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group row no-gutters">
+                        <label for="kelas_id" class="col-3">Kelas</label>
+                        <span class="col-1 text-center">:</span>
+                        <div class="col-8">
+                            <select id="kelas_id" class="custom-select custom-select-sm"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-hover myDataTable" id="datasiswaTable" data-form="dataForm">
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>NO</th>
+                        <th>AVATAR</th>
                         <th>NIS</th>
                         <th>NAMA</th>
+                        <th>KELAS</th>
                         <th>TEMPAT / TGL LAHIR</th>
                         <th>AKTIF</th>
                         <th></th>
@@ -39,8 +52,10 @@
                     @foreach ($allSiswa as $siswa)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $siswa->siswa_nis }}</td>
+                            <td><img class="img-profile rounded-circle" src="{{ $siswa->user->avatar??''}}" style="width: 50px; height: 50px; float:center; border-radius:50%; margin-right:25px;"></td>
+                            <td >{{ $siswa->siswa_nis }}</td>
                             <td>{{ $siswa->siswa_nama }}</td>
+                            <td>{{ $siswa->kelas->kelasjurusan_nama??'' }}</td>
                             <td>{{ $siswa->siswa_tmplahir }} / {{ \Carbon\Carbon::parse($siswa->siswa_tgllahir)->formatLocalized('%d %B %Y') }}</td>
                             <td>
                                 @if ($siswa->siswa_aktif==1)
@@ -83,10 +98,80 @@
 </div>
 @endsection
 
+{{-- @push('js')
+    <script src="{{asset('js/view/siswa.js')}}"></script>
+@endpush --}}
+
 @push('js')
     <script>
         $('#collapseTwo').addClass('show').parent().addClass('active');
         $('#data-siswa').addClass('active');
+
+        $.ajax({
+        url: base_url + "/dashboard/get_kelas",
+        async: false,
+        success: function(kelas) {
+            $("#kelas_id")
+                .empty()
+                .append('<option value=""></option>');
+            kelas.forEach(v => {
+                $("#kelas_id").append(
+                    `<option value="${v._id}">${v.kelasjurusan_nama}</option>`
+                );
+            });
+        }
+    });
+
+    $("#siswa_id")
+        .parent()
+        .parent()
+        .hide();
+    $("#kelas_id").change(function() {
+        let kelas_id = $(this).val();
+        if (kelas_id != "") {
+            $.ajax({
+                url: base_url + "/dashboard/kelasjurusan/" + kelas_id,
+                async: false,
+                success: function({ siswa }) {
+                    $("#siswa_id")
+                        .empty()
+                        .append("<option></option>");
+                    siswa.forEach(v => {
+                        $("#siswa_id").append(
+                            `<option value="${v._id}">${v.siswa_nama}</option>`
+                        );
+                    });
+                    $("#siswa_id")
+                        .parent()
+                        .parent()
+                        .fadeIn();
+                }
+            });
+        } else {
+            $("#siswa_id")
+                .val("")
+                .parent()
+                .parent()
+                .fadeOut();
+        }
+    });
+
+    var table = $('table[data-form="dataForm"]').on({
+        processing: true,
+        serverSide: true,
+        bSort: false,
+        ajax: {
+            url: base_url + "/dashboard/get_datasiswa",
+            data: function(data) {
+                data.kelas = $("#kelas_id").val();
+            }
+        }});
+       
+        $("#kelas_id").change(function() {
+        table.draw();
+        
+    });
+
         $('table[data-form="dataForm"]').on('click', '.delete-confirm', function(e) {
             e.preventDefault();
             var form = $(this);
