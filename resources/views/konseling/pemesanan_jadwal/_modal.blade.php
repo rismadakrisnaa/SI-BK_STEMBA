@@ -86,10 +86,7 @@
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>
-<<<<<<< HEAD
-                <div class="form-group form-row">
-=======
-                
+
                 <div class="form-group form-row">
                         <label for="jenispertemuan">Jenis Pertemuan</label>
                         <select name="jenispertemuan" id="jenispertemuan" class="custom-select">
@@ -97,9 +94,8 @@
                                 <option value="{{$jenispertemuan}}"{{$jenispertemuan?' selected':''}}>{{$jenispertemuan}}</option>
                             @endforeach
                         </select>
-                        
+
                     @canany(['admin','gurubk'])
->>>>>>> 9c860133b77dd5a74f679fb6a7a2c9703b91130e
                     <div class="col-3">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="custom-select">
@@ -128,7 +124,7 @@
                     </div>
                     @endcanany
                 </div>
-                
+
 >>>>>>> 9c860133b77dd5a74f679fb6a7a2c9703b91130e
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">

@@ -13,6 +13,7 @@ use App\Models\OrangTua;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class SiswaController extends Controller
 {
@@ -40,6 +41,38 @@ class SiswaController extends Controller
             return Gate::allows('siswa-ku',$siswa);
         });
         return view('siswa.index',compact('allSiswa'));
+    }
+
+    public function ajax(Request $request)
+    {
+        $siswa=Siswa::with('kelas');
+
+        if($request->kelas!='')
+        {
+            $siswa->where('kelas_id',$request->kelas);
+        }
+
+        $siswa=collect($siswa->get());
+        foreach($siswa as $m => $d){
+            $siswa[$m]['no']=$m+1;
+        }
+        return
+            request()->ajax()?
+        DataTables::collection($siswa)
+            ->addColumn('avatar',function($siswa){
+                return view('siswa._avatar', compact('siswa'));
+            })
+            ->addColumn('action',function($siswa){
+                return view('siswa._action',compact('siswa'));
+            })
+            ->addColumn('tmp_lahir',function($siswa){
+                return $siswa->siswa_tmplahir.' / '.$siswa->siswa_tgllahir;
+            })
+            ->addColumn('status',function($siswa){
+                return view('siswa._status',compact('siswa'));
+            })
+            ->toJson():
+        abort(403, 'permintaan harus ajax');
     }
 
     /**

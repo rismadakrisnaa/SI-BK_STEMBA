@@ -51,11 +51,11 @@
         "serverSide": true,
         "bSort" : false,
         "ajax": {
-        url: base_url+"/dashboard/get_home_visit",
-        data:function(data)
-        {
-            data.kelas=$('#kelas_id').val();
-        }
+            url: base_url+"/dashboard/get_home_visit",
+            data:function(data)
+            {
+                data.kelas=$('#kelas_id').val();
+            }
         },
         // orderCellsTop: true,
         fixedHeader: true,

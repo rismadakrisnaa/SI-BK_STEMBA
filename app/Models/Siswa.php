@@ -44,7 +44,7 @@ class Siswa extends Model
     {
         return $this->belongsTo(Siswa::class, 'siswa_id','_id');
     }
-    
+
     public function absen()
     {
         return $this->hasMany(Absensi::class, 'siswa_id','_id');
@@ -91,7 +91,7 @@ class Siswa extends Model
         return $this->hasMany(PanggilanOrtu::class, 'siswa_id', '_id');
     }
 
-    public function totalPoint()
+    public function totalPoint($withLabel = true)
     {
         $point = $this->pelanggaran->sum('point');
         if($point<=74){
@@ -101,6 +101,6 @@ class Siswa extends Model
         }else{
             $string = '<b class="text-danger">'.$point.'</b>';
         }
-        return $string;
+        return $withLabel?$string:$point;
     }
 }

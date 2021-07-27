@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-hover myDataTable" id="datasiswaTable" data-form="dataForm">
+            <table class="table table-hover" id="datasiswaTable">
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>NO</th>
@@ -49,48 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($allSiswa as $siswa)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td><img class="img-profile rounded-circle" src="{{ $siswa->user->avatar??''}}" style="width: 50px; height: 50px; float:center; border-radius:50%; margin-right:25px;"></td>
-                            <td >{{ $siswa->siswa_nis }}</td>
-                            <td>{{ $siswa->siswa_nama }}</td>
-                            <td>{{ $siswa->kelas->kelasjurusan_nama??'' }}</td>
-                            <td>{{ $siswa->siswa_tmplahir }} / {{ \Carbon\Carbon::parse($siswa->siswa_tgllahir)->formatLocalized('%d %B %Y') }}</td>
-                            <td>
-                                @if ($siswa->siswa_aktif==1)
-                                    <div class="text-center"><i class="fa fa-check-double text-success"></i></div>
-                                @else
-                                    <div class="text-center"><i class="fa fa-times-circle text-danger"></i></div>
-                                @endif
-                            </td>
-                            <td>
-                                <div class="d-flex float-right">
-                                    <a href="{{ url('/dashboard/siswa/' . $siswa->_id) }}"
-                                        class="btn btn-sm btn-info">
-                                        <i class="fa fa-info-circle"></i>
-                                        <span class="d-none d-lg-inline">DETAIL</span>
-                                    </a>
-                                    @canany(['admin','guru'])
-                                    <a href="{{ url('/dashboard/siswa/' . $siswa->_id . '/edit') }}"
-                                        class="btn btn-sm btn-warning ml-2">
-                                        <i class="fa fa-edit"></i>
-                                        <span class="d-none d-lg-inline">EDIT</span>
-                                    </a>
-                                    <form action="{{ url('/dashboard/siswa/' . $siswa->_id) }}" method="POST"
-                                        class="delete-confirm">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm ml-2">
-                                            <i class="fa fa-trash"></i>
-                                            <span class="d-none d-lg-inline">HAPUS</span>
-                                        </button>
-                                    </form>
-                                    @endcanany
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -98,81 +57,72 @@
 </div>
 @endsection
 
-{{-- @push('js')
-    <script src="{{asset('js/view/siswa.js')}}"></script>
-@endpush --}}
-
 @push('js')
     <script>
         $('#collapseTwo').addClass('show').parent().addClass('active');
         $('#data-siswa').addClass('active');
 
         $.ajax({
-        url: base_url + "/dashboard/get_kelas",
-        async: false,
-        success: function(kelas) {
-            $("#kelas_id")
-                .empty()
-                .append('<option value=""></option>');
-            kelas.forEach(v => {
-                $("#kelas_id").append(
-                    `<option value="${v._id}">${v.kelasjurusan_nama}</option>`
-                );
-            });
-        }
-    });
-
-    $("#siswa_id")
-        .parent()
-        .parent()
-        .hide();
-    $("#kelas_id").change(function() {
-        let kelas_id = $(this).val();
-        if (kelas_id != "") {
-            $.ajax({
-                url: base_url + "/dashboard/kelasjurusan/" + kelas_id,
-                async: false,
-                success: function({ siswa }) {
-                    $("#siswa_id")
-                        .empty()
-                        .append("<option></option>");
-                    siswa.forEach(v => {
-                        $("#siswa_id").append(
-                            `<option value="${v._id}">${v.siswa_nama}</option>`
-                        );
-                    });
-                    $("#siswa_id")
-                        .parent()
-                        .parent()
-                        .fadeIn();
-                }
-            });
-        } else {
-            $("#siswa_id")
-                .val("")
-                .parent()
-                .parent()
-                .fadeOut();
-        }
-    });
-
-    var table = $('table[data-form="dataForm"]').on({
-        processing: true,
-        serverSide: true,
-        bSort: false,
-        ajax: {
-            url: base_url + "/dashboard/get_datasiswa",
-            data: function(data) {
-                data.kelas = $("#kelas_id").val();
+            url: base_url + "/dashboard/get_kelas",
+            async: false,
+            success: function(kelas) {
+                $("#kelas_id").empty().append('<option value=""></option>');
+                kelas.forEach(v => {
+                    $("#kelas_id").append(`<option value="${v._id}">${v.kelasjurusan_nama}</option>`);
+                });
             }
-        }});
-       
-        $("#kelas_id").change(function() {
-        table.draw();
-        
-    });
+        });
 
-        $('table[data-form="dataForm"]').on('click', '.delete-confirm', function(e) {
+        $("#siswa_id").parent().parent().hide();
+
+        var table = $('#datasiswaTable').DataTable({
+            processing: true,
+            serverSide: true,
+            bSort: false,
+            ajax: {
+                url: base_url + "/dashboard/get_datasiswa",
+                data: function(data) {
+                    data.kelas = $("#kelas_id").val();
+                }
+            },
+            fixedHeader: true,
+            "columns": [
+                {data:"no"},
+                {data:"avatar"},
+                {data:"siswa_nis"},
+                {data:"siswa_nama"},
+                {data:"kelas.kelasjurusan_nama"},
+                {data:"tmp_lahir"},
+                {data:"status"},
+                {data:"action",searchable:false,orderable:false,sortable:false}//action
+            ],
+            "language": {
+                "sEmptyTable":     ("No data available in table"),
+                "sInfo":           ("Showing")+" _START_ "+("to")+" _END_ "+("of")+" _TOTAL_ "+("records"),
+                "sInfoEmpty":      ("Showing")+" 0 "+("to")+" 0 "+("of")+" 0 "+("records"),
+                "sInfoFiltered":   "("+("filtered")+" "+("from")+" _MAX_ "+("total")+" "+("records")+")",
+                "sInfoPostFix":    "",
+                "sInfoThousands":  ",",
+                "sLengthMenu":     ("Show")+" _MENU_ "+("records"),
+                "sLoadingRecords": ("Loading..."),
+                "sProcessing":     ("Processing..."),
+                "sSearch":         ("Search")+":",
+                "sZeroRecords":    ("No matching records found"),
+                "oPaginate": {
+                    "sFirst":    ("First"),
+                    "sLast":     ("Last"),
+                    "sNext":     ("Next"),
+                    "sPrevious": ("Previous")
+                },
+            }
+        });
+
+        $("#kelas_id").change(function() {
+            console.log($(this).val())
+            table.draw();
+        });
+
+        $(document).on('click', '.delete-confirm', function(e) {
             e.preventDefault();
             var form = $(this);
             Swal.fire({
