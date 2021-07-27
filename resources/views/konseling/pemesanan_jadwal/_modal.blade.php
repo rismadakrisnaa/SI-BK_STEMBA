@@ -86,6 +86,20 @@
                         <i class="text-sm text-danger">{{$message}}</i>
                     @enderror
                 </div>
+                <div class="form-group form-row">
+                    <div class="col-3">
+                        <label for="status">Status</label>
+                        <select name="status" id="status" class="custom-select">
+                            @foreach (['pending','approve','rejected'] as $status)
+                                <option value="{{$status}}">{{$status}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-9">
+                        <label for="link">Link Virtual Meet</label>
+                        <input type="url" class="form-control" name="link" id="link">
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input class="custom-control-input" name="is_active" type="checkbox" value="1" id="is_active">
